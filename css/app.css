@@ -34,7 +34,7 @@ body {
     max-width: 420px; /* Standard mobile width limit */
     height: 100vh;
     max-height: 850px;
-    background: var(--color-background);
+    background: #e9ffd5;
     border: 8px solid #0f172a; /* Dark border to simulate a phone */
     border-radius: 40px;
     overflow: hidden;
