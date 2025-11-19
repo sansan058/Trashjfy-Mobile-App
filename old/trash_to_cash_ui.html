@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trash-to-Cash Modern UI Mockup</title>
+    <style>
+        /* --- 1. CORE LAYOUT STYLES (The Phone Frame) --- */
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #f7f9fc; /* Light background for contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            gap: 20px;
+        }
+        .phone-frame {
+            width: 375px;
+            height: 750px;
+            background-color: white;
+            border: 10px solid #2d3748; /* Darker border for a sophisticated look */
+            border-radius: 48px; /* More rounded corners */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            position: relative;
+        }
+        .screen {
+            height: 100%;
+            display: none;
+            flex-direction: column;
+        }
+        .screen.active {
+            display: flex;
+        }
+        .screen-header {
+            background-color: #047857; /* Emerald Green Primary Color */
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            font-size: 1.15em;
+            font-weight: 600; /* Semi-bold */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .screen-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3em;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+        .content {
+            padding: 20px 15px; /* Slightly more padding */
+            overflow-y: auto;
+            flex-grow: 1;
+            background-color: #f7f9fc; /* Light screen background */
+        }
+        .nav-bar {
+            background-color: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.85em;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05); /* Subtle lift */
+        }
+        .nav-bar span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            color: #64748b; /* Gray text for inactive */
+        }
+        .nav-bar span.active {
+            color: #047857;
+            font-weight: 600;
+        }
+
+        /* --- 2. COMMON UI ELEMENTS --- */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Gentle shadow */
+        }
+        input[type="text"], input[type="email"], input[type="password"], textarea, select {
+            width: 100%;
+            padding: 14px; /* Larger touch targets */
+            margin-bottom: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background-color: #f8fafc; /* Very light input background */
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background-color: #047857;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-secondary {
+            width: 100%;
+            padding: 16px;
+            background-color: white;
+            color: #047857;
+            border: 2px solid #047857;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .link {
+            color: #047857;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            font-size: 0.95em;
+            cursor: pointer;
+        }
+
+        /* --- 3. SCREEN-SPECIFIC STYLES --- */
+
+        /* 1. Authentication */
+        .auth-logo { text-align: center; margin: 50px 0 30px 0; font-size: 2.2em; color: #047857; font-weight: 700;}
+
+        /* 2. Dashboard */
+        #dashboard .points-display {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #047857;
+            margin: 5px 0 0 0;
+        }
+        #dashboard .main-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        #dashboard .main-btn {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+            padding: 20px 10px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        #dashboard .main-btn:hover {
+            box-shadow: 0 4px 12px rgba(4, 120, 87, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* 3. Waste Upload */
+        #upload-waste .upload-area {
+            border: 2px dashed #9ca3af;
+            background-color: #f0fdf4;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        #upload-waste .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        #upload-waste .category-btn {
+            padding: 15px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8em;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        #upload-waste .category-btn.selected {
+            border: 2px solid #047857;
+            background-color: #ecfdf5;
+            font-weight: 700;
+        }
+        #waste-result h2 { color: #047857; text-align: center; font-size: 2em; margin: 10px 0; }
+
+        /* 4. Pickup & Logistics */
+        #track-pickup .status-timeline {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            position: relative;
+        }
+        #track-pickup .status-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: #e2e8f0;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        #track-pickup .step {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        #track-pickup .step.active {
+            background: #047857;
+            color: white;
+        }
+
+        /* 5. Machine Deposit */
+        #scan-qr .scan-area {
+            height: 280px;
+            background: #1e293b;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+        }
+        #deposit-result h1 { color: #047857; font-size: 3em; text-align: center; margin: 20px 0; }
+
+        /* 7. Analytics & 8. Leaderboard */
+        .stat-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        #leaderboard .user-rank { background-color: #ecfdf5; border: 1px solid #a7f3d0; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 100; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <p style="margin: 0 0 10px 0; font-weight: bold;">Screen Selector:</p>
+        <select id="screen-select" onchange="showScreen(this.value)">
+            <option value="login">1.1 Login</option>
+            <option value="register">1.2 Registration</option>
+            <option value="dashboard" selected>2. Dashboard</option>
+            <option value="upload-waste">3.1 Upload Waste</option>
+            <option value="waste-result">3.2 Valuation Result</option>
+            <option value="schedule-pickup">4.1 Schedule Pickup</option>
+            <option value="track-pickup">4.2 Track Pickup</option>
+            <option value="scan-qr">5.1 Scan QR/NFC</option>
+            <option value="deposit-result">5.2 Deposit Result</option>
+            <option value="rewards-wallet">6.1 Rewards Wallet</option>
+            <option value="redeem-reward">6.2 Redeem Reward</option>
+            <option value="analytics">7. Analytics Dashboard</option>
+            <option value="leaderboard">8. Leaderboard</option>
+            <option value="forum-home">9. Community Forum Home</option>
+            <option value="create-post">9. Community Create Post</option>
+            <option value="profile">10. Profile Screen</option>
+        </select>
+    </div>
+
+    <div class="phone-frame">
+
+        <div class="screen" id="login">
+            <div class="content" style="background-color: white;">
+                <div class="auth-logo">♻️ Trash-to-Cash</div>
+                <h3 style="text-align: center; margin-bottom: 30px; color: #1e293b;">Welcome Back!</h3>
+                <input type="email" placeholder="Email or Phone number">
+                <input type="password" placeholder="Password">
+                <p class="link" onclick="showScreen('dashboard')" style="text-align: right; margin-top: -5px;">Forgot Password?</p>
+                <button class="btn-primary" onclick="showScreen('dashboard')" style="margin-top: 20px;">Sign In</button>
+                <p class="link" onclick="showScreen('register')" style="margin-top: 25px;">New User? **Create an Account**</p>
+            </div>
+        </div>
+
+        <div class="screen" id="register">
+            <div class="content" style="background-color: white;">
+                <div class="auth-logo">♻️ Trash-to-Cash</div>
+                <h3 style="text-align: center; margin-bottom: 20px; color: #1e293b;">Create Your Account</h3>
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+                <input type="text" placeholder="Phone Number">
+                <input type="password" placeholder="Password (min 8 chars)">
+                <input type="text" placeholder="Residential Address">
+                <button class="btn-primary" onclick="showScreen('login')">Register</button>
+                <p class="link" onclick="showScreen('login')">Already have an account? **Sign In**</p>
+            </div>
+        </div>
+
+        <div class="screen active" id="dashboard">
+            <div class="screen-header" style="background-color: white; color: #1e293b; border-bottom: 1px solid #e2e8f0;">
+                <span style="font-weight: 400; font-size: 1.1em;">Welcome, **Alex**</span>
+                <button onclick="showScreen('profile')" style="color: #1e293b;">👤</button>
+            </div>
+            <div class="content">
+                <div class="card" style="background-color: #ecfdf5;">
+                    <p style="margin: 0; font-size: 0.9em; color: #047857;">Total Points & Balance</p>
+                    <p class="points-display">1,250 PTS</p>
+                    <div style="display: flex; justify-content: space-between; font-weight: 500; margin-top: 10px;">
+                        <span>Wallet Balance:</span>
+                        <span style="color: #047857;">$12.50 USD</span>
+                    </div>
+                </div>
+
+                <div class="main-grid">
+                    <div class="main-btn" onclick="showScreen('upload-waste')">📸 Upload Waste</div>
+                    <div class="main-btn" onclick="showScreen('schedule-pickup')">🚚 Schedule Pickup</div>
+                    <div class="main-btn" onclick="showScreen('scan-qr')">🏭 Deposit via Machine</div>
+                    <div class="main-btn" onclick="showScreen('rewards-wallet')">🎁 Rewards</div>
+                    <div class="main-btn" onclick="showScreen('leaderboard')">🏆 Leaderboard</div>
+                    <div class="main-btn" onclick="showScreen('forum-home')">🌱 Community</div>
+                </div>
+            </div>
+            <div class="nav-bar">
+                <span onclick="showScreen('dashboard')" class="active">🏠 Home</span>
+                <span onclick="showScreen('analytics')">📊 Analytics</span>
+                <span onclick="showScreen('profile')">👤 Profile</span>
+            </div>
+        </div>
+
+        <div class="screen" id="upload-waste">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Waste Valuation</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="upload-area">
+                    <p style="font-size: 3em; color: #047857;">⬆️</p>
+                    <p style="font-weight: 600;">Tap to Upload Photo (Camera/Gallery)</p>
+                    <small>AI uses the image to estimate the value.</small>
+                </div>
+                <h4 style="color: #1e293b;">Choose Waste Category</h4>
+                <div class="category-grid">
+                    <div class="category-btn selected">🗑️ Plastic</div>
+                    <div class="category-btn">📰 Paper</div>
+                    <div class="category-btn">🍾 Glass</div>
+                    <div class="category-btn">🥫 Metal</div>
+                    <div class="category-btn">🔌 Electronic</div>
+                    <div class="category-btn">📦 Other</div>
+                </div>
+                <input type="text" placeholder="Enter Weight (optional) e.g., 2.5 kg">
+                <button class="btn-primary" onclick="showScreen('waste-result')">Get Estimated Value</button>
+            </div>
+        </div>
+
+        <div class="screen" id="waste-result">
+            <div class="screen-header">
+                <button onclick="showScreen('upload-waste')">←</button>
+                <span>Valuation Result</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="card">
+                    <img src="https://via.placeholder.com/340x180?text=Waste+Photo+Preview" alt="Waste photo preview" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h2 style="color: #047857;">+ 520 Points / $5.20</h2>
+                    <p style="margin: 5px 0;">Category: **Paper** | Weight: **4.8 kg**</p>
+                    <small style="color: #64748b;">*This is an AI-estimated value, subject to collector verification.*</small>
+                </div>
+                <button class="btn-primary" onclick="showScreen('schedule-pickup')">Add to Pickup Request</button>
+                <button class="btn-secondary">Save to Recycling History</button>
+            </div>
+        </div>
+
+        <div class="screen" id="schedule-pickup">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Schedule Pickup</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="card">
+                    <h4 style="margin-top: 0;">Items to Collect</h4>
+                    <p>1x Paper (4.8kg, 520 Points)</p>
+                    <p style="color: #047857; font-weight: bold;">Total Estimated Value: 520 PTS</p>
+                </div>
+                <div class="card">
+                    <h4 style="margin-top: 0;">Pickup Details</h4>
+                    <select>
+                        <option>Choose Date & Time Slot</option>
+                        <option>Tomorrow, 9:00 AM - 11:00 AM</option>
+                        <option>Thursday, 2:00 PM - 4:00 PM</option>
+                    </select>
+                    <input type="text" placeholder="Pickup Address (Editable)">
+                    <textarea placeholder="Add special instructions or notes..." rows="3"></textarea>
+                </div>
+                <button class="btn-primary" onclick="showScreen('track-pickup')">Request Pickup</button>
+            </div>
+        </div>
+
+        <div class="screen" id="track-pickup">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Track Pickup (#8372)</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="card" style="text-align: center; background-color: #ecfdf5;">
+                    <p style="font-size: 1.1em; color: #047857; font-weight: bold; margin-bottom: 5px;">Status: ON THE WAY! 🚚</p>
+                    <p style="font-size: 0.9em;">Estimated arrival in **12 mins**</p>
+                </div>
+
+                <div class="card">
+                    <div class="status-timeline">
+                        <div class="step active" style="margin-left:-5px;">1</div>
+                        <div class="step active">2</div>
+                        <div class="step active">3</div>
+                        <div class="step">4</div>
+                        <div class="step" style="margin-right:-5px;">5</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.7em; margin-bottom: 10px;">
+                        <span>Requested</span>
+                        <span>Assigned</span>
+                        <span style="font-weight: bold;">On the way</span>
+                        <span>Collected</span>
+                        <span>Completed</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <p style="margin: 0; font-weight: 600;">Collector: **David Lee**</p>
+                    <p style="margin: 5px 0 0 0; color: #64748b;">Contact: 555-0192 (Call Icon)</p>
+                    <div style="height: 150px; background: #e2e8f0; border-radius: 8px; margin-top: 15px; display: flex; justify-content: center; align-items: center;">[Live Map Simulation]</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="scan-qr">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Machine Deposit</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <h3 style="text-align: center;">Ready to Deposit</h3>
+                <div class="card" style="padding: 30px;">
+                    <div class="scan-area" onclick="showScreen('deposit-result')" style="cursor: pointer;">
+                        [ QR Scanner / NFC Zone ]
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">*Tap the button below or hold your phone to the NFC zone on the machine.*</p>
+                    <button class="btn-primary" style="margin-top: 10px;">Activate Scanner</button>
+                </div>
+                <p style="text-align: center; color: #047857;">Status: Machine Ready. Insert items.</p>
+            </div>
+        </div>
+
+        <div class="screen" id="deposit-result">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Deposit Completed</span>
+                <span></span>
+            </div>
+            <div class="content" style="text-align: center;">
+                <div class="card" style="padding: 40px; background-color: #ecfdf5;">
+                    <p style="font-size: 3em;">✅</p>
+                    <h2 style="color: #047857;">Deposit Success!</h2>
+                </div>
+                <div class="card">
+                    <p style="font-size: 1.1em; color: #1e293b;">Weight Detected: **3.5 kg**</p>
+                    <h1 style="color: #047857; font-size: 3em; margin: 10px 0;">+ 350 Points</h1>
+                    <p style="font-weight: bold; margin: 0;">New Wallet Balance: **1,600 Points**</p>
+                </div>
+                <button class="btn-primary" onclick="showScreen('dashboard')">Return to Dashboard</button>
+            </div>
+        </div>
+
+        <div class="screen" id="rewards-wallet">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Rewards & Wallet</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="card" style="text-align: center; background-color: #ecfdf5;">
+                    <p style="margin: 0; font-size: 1em;">Your Current Balance</p>
+                    <h1 style="color: #047857; margin: 5px 0 15px 0; font-size: 2.5em;">1,600 PTS</h1>
+                    <button class="btn-secondary" style="width: 80%; padding: 10px;">Cashout to Bank Account</button>
+                </div>
+                <h4 style="color: #1e293b;">Redeem Rewards</h4>
+                <div class="card" onclick="showScreen('redeem-reward')" style="cursor: pointer;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>🎁 $10 Gift Card Voucher</span>
+                        <span style="font-weight: bold; color: #047857;">500 PTS →</span>
+                    </div>
+                </div>
+                <h4 style="color: #1e293b;">Transaction History</h4>
+                <div class="card">
+                    <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/17 Machine Deposit</span> <span style="color:#047857;">+350 PTS</span></p>
+                    <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/15 Pickup #8372</span> <span style="color:#047857;">+900 PTS</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="redeem-reward">
+            <div class="screen-header">
+                <button onclick="showScreen('rewards-wallet')">←</button>
+                <span>Redeem Reward</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="card">
+                    <h3 style="text-align: center;">$10 Gift Card Voucher</h3>
+                    <p style="text-align: center; font-weight: bold; color: #047857;">Cost: 500 Points</p>
+                    <p>Details: Redeem for a digital gift card.</p>
+                    <p>Available Points: 1,600 PTS</p>
+                </div>
+                <button class="btn-primary" onclick="showScreen('rewards-wallet')">Confirm Redemption</button>
+            </div>
+        </div>
+
+        <div class="screen" id="analytics">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Impact Dashboard</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                    <div class="stat-box" style="width: 48%; border-left: 5px solid #047857;">Total Recycled: **500 kg**</div>
+                    <div class="stat-box" style="width: 48%; border-left: 5px solid #2563eb;">CO₂ Saved: **1.2 Tons**</div>
+                </div>
+                <h4 style="color: #1e293b;">Monthly Trend (Points)</h4>
+                <div class="card" style="height: 150px; display: flex; justify-content: center; align-items: center; background-color: #f0fdf4;">[Bar/Line Chart Placeholder]</div>
+                <h4 style="color: #1e293b;">Waste Breakdown</h4>
+                <div class="card" style="height: 150px; display: flex; justify-content: center; align-items: center; background-color: #f0fdf4;">[Pie Chart Placeholder]</div>
+            </div>
+            <div class="nav-bar">
+                <span onclick="showScreen('dashboard')">🏠 Home</span>
+                <span onclick="showScreen('analytics')" class="active">📊 Impact</span>
+                <span onclick="showScreen('profile')">👤 Profile</span>
+            </div>
+        </div>
+
+        <div class="screen" id="leaderboard">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Community Leaderboard</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="stat-box user-rank">
+                    <p style="margin: 0; font-size: 1.1em;">Your Current Rank: **#87**</p>
+                    <p style="margin: 5px 0 0 0; color: #047857;">1,600 PTS</p>
+                </div>
+                <p style="text-align: center; margin-bottom: 20px;">Badges: ⭐ Plastic Master, 🏅 Eco Warrior</p>
+                <div class="card">
+                    <ol style="padding-left: 20px;">
+                        <li style="padding: 5px 0; font-weight: 700;">🥇 John D. - 5,100 PTS</li>
+                        <li style="padding: 5px 0; font-weight: 600;">🥈 Sarah K. - 4,850 PTS</li>
+                        <li style="padding: 5px 0; font-weight: 500;">🥉 Emily P. - 3,920 PTS</li>
+                        <li style="padding: 5px 0; color: #64748b;">4. Mike Z. - 3,500 PTS</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="forum-home">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>Eco-Community</span>
+                <button onclick="showScreen('create-post')" style="font-size: 1.5em; font-weight: 300;">+</button>
+            </div>
+            <div class="content">
+                <h4 style="margin-top: 0; color: #1e293b;">Latest Discussions</h4>
+                <div class="card post-item" style="border-left: 5px solid #047857;">
+                    <p style="font-weight: bold; margin-bottom: 5px;">Where to recycle old batteries?</p>
+                    <p style="font-size: 0.9em; margin: 0;">User: Jane | Local Tips</p>
+                    <small style="color: #64748b;">15 comments, 42 likes</small>
+                </div>
+                <div class="card post-item">
+                    <p style="font-weight: bold; margin-bottom: 5px;">My DIY Compost Bin setup!</p>
+                    <p style="font-size: 0.9em; margin: 0;">User: Bob | Tips & Tricks</p>
+                    <small style="color: #64748b;">8 comments, 65 likes</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="create-post">
+            <div class="screen-header">
+                <button onclick="showScreen('forum-home')">←</button>
+                <span>New Post</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <input type="text" placeholder="Title of your post">
+                <textarea placeholder="Share your tip or start a discussion..." rows="6"></textarea>
+                <div class="upload-area" style="padding: 20px; background-color: #f7f9fc; border: 1px solid #cbd5e1;">
+                    <p>📸 Upload Image (Optional)</p>
+                </div>
+                <button class="btn-primary" onclick="showScreen('forum-home')">Publish Post</button>
+            </div>
+        </div>
+
+        <div class="screen" id="profile">
+            <div class="screen-header">
+                <button onclick="showScreen('dashboard')">←</button>
+                <span>My Profile</span>
+                <span></span>
+            </div>
+            <div class="content">
+                <div class="card" style="text-align: center;">
+                    <img src="https://via.placeholder.com/80" style="border-radius: 50%; border: 3px solid #047857;">
+                    <h3 style="margin: 10px 0 5px 0;">Alex Chen</h3>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="stat-box" style="width: 48%; font-weight: 600;">Recycled: **45 Times**</div>
+                    <div class="stat-box" style="width: 48%; font-weight: 600;">Total Points: **1,600**</div>
+                </div>
+
+                <div class="card">
+                    <h4 style="margin-top: 0;">Account Settings</h4>
+                    <p style="display: flex; justify-content: space-between; align-items: center;"><span>Name: Alex Chen</span> <button style="background:none; border:none; color:#047857; font-weight: 600; cursor:pointer;">Edit</button></p>
+                    <p style="display: flex; justify-content: space-between; align-items: center;"><span>Address: 123 Eco Way</span> <button style="background:none; border:none; color:#047857; font-weight: 600; cursor:pointer;">Edit</button></p>
+                </div>
+                <button class="btn-secondary" style="border-color: #cbd5e1; color: #1e293b;">Change Password</button>
+                <button class="btn-primary" style="background-color: #ef4444; margin-top: 15px;">Logout</button>
+            </div>
+            <div class="nav-bar">
+                <span onclick="showScreen('dashboard')">🏠 Home</span>
+                <span onclick="showScreen('analytics')">📊 Impact</span>
+                <span onclick="showScreen('profile')" class="active">👤 Profile</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const targetScreen = document.getElementById(screenId);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                document.getElementById('screen-select').value = screenId;
+                
+                // Update nav bar active state
+                document.querySelectorAll('.nav-bar span').forEach(span => {
+                    span.classList.remove('active');
+                });
+                // Simple logic to set nav active state based on screen ID
+                const navMap = {
+                    dashboard: '🏠 Home', analytics: '📊 Impact', profile: '👤 Profile',
+                    'rewards-wallet': '🎁 Rewards' // Treat rewards/leaderboard as related to home for this simple nav
+                };
+                let currentNav = navMap[screenId.split('-')[0]] || navMap[screenId];
+                if (currentNav) {
+                    document.querySelector(`.nav-bar span[title*="${currentNav.split(' ')[1]}"]`).classList.add('active');
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            showScreen('dashboard');
+        });
+    </script>
+
+</body>
+</html>
