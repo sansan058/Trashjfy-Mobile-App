@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Collector Dashboard</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        .task-card {
+            background-color: #f0f4ff; /* Light Blue/Secondary theme */
+            border: 2px solid var(--color-primary);
+        }
+        .task-card .task-count {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: var(--color-text-dark);
+            margin: 0 0 5px 0;
+        }
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        .task-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--color-border);
+        }
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="collector-dashboard">
+        <div class="screen-header" style="background-color: var(--color-primary);">
+            <span></span>
+            <span>Collector View</span>
+            <a href="notifications.html" style="color: white; text-decoration: none;">⚙️</a>
+        </div>
+        <div class="content" style="height: calc(100% - 50px);"> 
+            <div class="card task-card" style="text-align: center;">
+                <p style="margin: 0; font-size: 0.9em; font-weight: 600;">Pickups Assigned Today</p>
+                <p class="task-count">14</p>
+                <button class="btn-primary" style="background-color: var(--color-primary); margin-top: 10px; width: 100%;">Start Today's Route 🗺️</button>
+            </div>
+
+            <h4 style="color: var(--color-primary);">Next Pickups</h4>
+            <div class="card">
+                <ul class="task-list">
+                    <li>
+                        <p style="font-weight: bold; margin: 0;">#8375: Alex Chen</p>
+                        <small style="color: var(--color-text-light);">123 Eco Way. 4.8kg Paper. (Est. 10:30 AM)</small>
+                        <a href="track-pickup.html" style="color: var(--color-primary); float: right;">View Map</a>
+                    </li>
+                    <li>
+                        <p style="font-weight: bold; margin: 0;">#8376: Jane Doe</p>
+                        <small style="color: var(--color-text-light);">45 Green St. 2.1kg Plastic. (Est. 11:15 AM)</small>
+                        <a href="track-pickup.html" style="color: var(--color-primary); float: right;">View Map</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <h4 style="color: var(--color-primary);">Machine Status</h4>
+            <div class="grid-2-col">
+                <div class="card" style="text-align: center;">
+                    <p style="font-size: 1.5em; margin: 0;">✅</p>
+                    <small>Machine A: Online</small>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <p style="font-size: 1.5em; margin: 0;">⚙️</p>
+                    <small>Machine C: Maintenance</small>
+                </div>
+            </div>
+            
+            <a href="user-login.html" class="btn-primary" style="background-color: #ef4444; margin-top: 15px; text-decoration: none; text-align: center; display: block;">Logout</a>
+        </div>
+    </div>
+
+</body>
+</html>
