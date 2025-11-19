@@ -6,7 +6,9 @@
     <title>Trashify - Impact Dashboard</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
-        /* ... existing styles ... */
+        .metric-box { text-align: center; }
+        .metric-box h3 { margin: 5px 0; color: var(--color-secondary); }
+        .metric-box small { color: var(--color-text-light); }
     </style>
 </head>
 <body>
@@ -18,7 +20,39 @@
             <span></span>
         </div>
         <div class="content">
+            <h4 style="margin-top: 0;">Your Lifetime Impact</h4>
+            <div class="grid-2-col">
+                <div class="card metric-box">
+                    <h3>21.5 kg</h3>
+                    <small>Waste Recycled</small>
+                </div>
+                <div class="card metric-box">
+                    <h3>15</h3>
+                    <small>Collections Made</small>
+                </div>
             </div>
+            
+            <h4 style="color: var(--color-secondary);">Recycling Trends Dashboard</h4>
+            <div class="card">
+                <p style="font-weight: bold; margin-bottom: 10px;">Material Breakdown (Last 30 Days)</p>
+                <div style="height: 150px; background: #e2e8f0; border-radius: 8px; display: flex; justify-content: center; align-items: center; color: var(--color-text-light);">
+                    
+                </div>
+                <ul style="list-style: none; padding-left: 0; margin-top: 10px; font-size: 0.9em;">
+                    <li>🔵 Plastic: 45%</li>
+                    <li>🟢 Paper: 30%</li>
+                    <li>⚫ Glass/Metal: 25%</li>
+                </ul>
+            </div>
+            
+            <h4 style="color: var(--color-secondary);">Predicted Next Action (ML Feature)</h4>
+            <div class="card" style="background-color: #f0f4ff;">
+                <p style="font-weight: bold; margin: 0;">Prediction: Low engagement risk.</p>
+                <small>The system predicts you might skip recycling this week. Try scheduling a pickup now to earn **+50 bonus points**!</small>
+                <a href="upload-waste.html" class="btn-primary" style="background-color: var(--color-secondary); margin-top: 10px; padding: 8px; text-align: center; display: block;">Schedule Pickup Now</a>
+            </div>
+
+        </div>
         
         <div class="nav-bar">
             <a href="dashboard.html">🏠 Home</a>

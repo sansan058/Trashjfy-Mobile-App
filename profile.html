@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Profile</title>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        .profile-header { text-align: center; margin-bottom: 20px; }
+        .profile-img { width: 80px; height: 80px; border-radius: 50%; background-color: var(--color-border); margin: 0 auto 10px; display: block; }
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .setting-item:last-child { border-bottom: none; }
+    </style>
 </head>
 <body>
 
@@ -15,6 +27,49 @@
             <span></span>
         </div>
         <div class="content">
+            
+            <div class="profile-header">
+                <div class="profile-img"></div>
+                <h3 style="margin: 0;">Alex Chen</h3>
+                <small style="color: var(--color-text-light);">Member Since 2023</small>
+            </div>
+            
+            <h4 style="margin-top: 0;">Account Settings</h4>
+            <div class="card">
+                <div class="setting-item">
+                    <span>Email Address</span>
+                    <span style="font-weight: 600;">alex.c@example.com ></span>
+                </div>
+                <div class="setting-item">
+                    <span>Shipping Address</span>
+                    <span style="font-weight: 600;">123 Eco Way ></span>
+                </div>
+                <div class="setting-item">
+                    <span>Notification Settings</span>
+                    <span style="font-weight: 600;">On ></span>
+                </div>
+                <a href="#" class="setting-item" style="text-decoration: none; color: inherit;">
+                    <span>Password & Security (FR-USER-003)</span>
+                    <span style="font-weight: 600;">Reset ></span>
+                </a>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">Recycling History (FR-WASTE-003)</h4>
+            <div class="card">
+                <div class="setting-item">
+                    <span>Total Pickups Completed</span>
+                    <span style="font-weight: 600; color: var(--color-primary);">15</span>
+                </div>
+                <div class="setting-item">
+                    <span>Total Weight Recycled</span>
+                    <span style="font-weight: 600; color: var(--color-primary);">21.5 kg</span>
+                </div>
+                <div class="setting-item">
+                    <span>Last Deposit Date</span>
+                    <span style="font-weight: 600;">11/17/2025</span>
+                </div>
+            </div>
+
             <a href="user-login.html" class="btn-primary" style="background-color: #ef4444; margin-top: 15px; text-decoration: none; text-align: center; display: block;">Logout</a>
         </div>
         

@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Rewards & Wallet</title>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        .reward-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .reward-item:last-child { border-bottom: none; }
+    </style>
 </head>
 <body>
 
@@ -15,14 +26,35 @@
             <span></span>
         </div>
         <div class="content">
-            <h4 style="color: #1e293b;">Redeem Rewards</h4>
-            <a href="redeem.html" class="card" style="cursor: pointer; text-decoration: none; color: inherit;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>🎁 $10 Gift Card Voucher</span>
-                    <span style="font-weight: bold; color: #047857;">500 PTS →</span>
-                </div>
-            </a>
+            <div class="card" style="text-align: center; background-color: var(--color-success-bg);">
+                <p style="margin: 0; font-size: 1em;">Your Current Balance</p>
+                <h1 style="color: var(--color-primary); margin: 5px 0 15px 0; font-size: 2.5em;">1,600 PTS</h1>
+                <button class="btn-secondary" style="width: 80%; padding: 10px; border: 2px solid var(--color-primary);">Cashout to Bank Account</button>
             </div>
+            
+            <h4 style="color: var(--color-primary);">Redeem Rewards (FR-REWARD-002)</h4>
+            <div class="card">
+                <a href="redeem.html" class="reward-item" style="cursor: pointer; text-decoration: none; color: inherit;">
+                    <span>🎁 **$10 Gift Card Voucher**</span>
+                    <span style="font-weight: bold; color: var(--color-primary);">500 PTS →</span>
+                </a>
+                <a href="redeem.html" class="reward-item" style="cursor: pointer; text-decoration: none; color: inherit;">
+                    <span>🌳 **Plant a Tree Donation**</span>
+                    <span style="font-weight: bold; color: var(--color-primary);">200 PTS →</span>
+                </a>
+                <div class="reward-item" style="color: var(--color-text-light);">
+                    <span>🎟️ **15% off Partner Retailer**</span>
+                    <span style="font-weight: bold;">(Locked at 2,000 PTS)</span>
+                </div>
+            </div>
+            
+            <h4 style="color: var(--color-secondary);">Transaction History</h4>
+            <div class="card">
+                <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/17 Machine Deposit</span> <span style="color:var(--color-primary);">+350 PTS</span></p>
+                <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/15 Pickup #8372</span> <span style="color:var(--color-primary);">+900 PTS</span></p>
+                <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/01 Reward Redemption</span> <span style="color:#ef4444;">-500 PTS</span></p>
+            </div>
+        </div>
     </div>
 
 </body>

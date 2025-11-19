@@ -6,7 +6,14 @@
     <title>Trashify - Upload Waste</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
-        /* ... existing styles ... */
+        .upload-box {
+            border: 2px dashed var(--color-border);
+            padding: 30px 15px;
+            text-align: center;
+            border-radius: 12px;
+            color: var(--color-text-light);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -14,11 +21,38 @@
     <div class="phone-frame" id="upload-waste">
         <div class="screen-header">
             <a href="dashboard.html" style="color: white; text-decoration: none;">←</a>
-            <span>Waste Valuation</span>
+            <span>Waste Submission (FR-WASTE-001)</span>
             <span></span>
         </div>
         <div class="content">
-            <a href="valuation.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block;">Get Estimated Value</a>
+            <h4 style="margin-top: 0;">1. Take a Photo</h4>
+            <div class="upload-box">
+                <p style="font-size: 2em; margin: 0;">📸</p>
+                Tap to Upload Photo / Scan Waste
+                <small style="display: block; margin-top: 5px;">(AI will attempt to classify the materials)</small>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">2. Select Categories</h4>
+            <div class="card">
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox" checked> Plastic Bottles (PET/HDPE)
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Mixed Paper/Cardboard
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox"> Glass & Cans
+                </label>
+                <label style="display: block;">
+                    <input type="checkbox"> E-Waste / Small Electronics
+                </label>
+            </div>
+            
+            <h4 style="margin-top: 30px;">3. Finalize & Estimate</h4>
+            <a href="valuation.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block;">
+                Estimate Value & Proceed to Schedule
+            </a>
+            <a href="dashboard.html" class="link">Cancel Request</a>
         </div>
     </div>
 

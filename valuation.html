@@ -5,21 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Valuation Result</title>
     <link rel="stylesheet" href="css/app.css">
-    <style>
-        #waste-result h2 { color: #047857; text-align: center; font-size: 2em; margin: 10px 0; }
-    </style>
 </head>
 <body>
 
-    <div class="phone-frame" id="waste-result">
+    <div class="phone-frame" id="valuation-result">
         <div class="screen-header">
             <a href="upload-waste.html" style="color: white; text-decoration: none;">←</a>
-            <span>Valuation Result</span>
+            <span>Valuation Result (FR-WASTE-002)</span>
             <span></span>
         </div>
         <div class="content">
-            <a href="schedule-pickup.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block;">Add to Pickup Request</a>
-            <button class="btn-secondary">Save to Recycling History</button>
+            <div class="card">
+                <h4 style="margin-top: 0;">AI Classification Summary</h4>
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <img src="https://via.placeholder.com/340x180?text=Waste+Photo+Preview" alt="Waste Photo Preview" style="width: 100%; height: auto; border-radius: 8px;">
+                </div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="display: flex; justify-content: space-between; padding: 5px 0;">
+                        <span>Plastic Bottles (4.5 kg)</span>
+                        <span style="font-weight: bold; color: var(--color-primary);">$3.50</span>
+                    </li>
+                    <li style="display: flex; justify-content: space-between; padding: 5px 0;">
+                        <span>Mixed Paper (3.0 kg)</span>
+                        <span style="font-weight: bold; color: var(--color-primary);">$1.40</span>
+                    </li>
+                    <li style="display: flex; justify-content: space-between; padding: 5px 0;">
+                        <span>E-Waste (1 Unit)</span>
+                        <span style="font-weight: bold; color: var(--color-primary);">$2.00</span>
+                    </li>
+                </ul>
+                <hr style="border-top: 1px dashed var(--color-border); margin: 15px 0;">
+            </div>
+            
+            <div class="card" style="text-align: center; background-color: var(--color-success-bg);">
+                <p style="margin: 0; font-size: 1.1em;">Estimated Total Value:</p>
+                <h1 style="color: var(--color-primary); margin: 5px 0 10px 0; font-size: 2.5em;">$6.90</h1>
+                <small>Points will be credited upon collector verification.</small>
+            </div>
+
+            <a href="schedule-pickup.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block; margin-top: 20px;">
+                Add to Pickup Request & Schedule Slot
+            </a>
+
+            <a href="dashboard.html" class="link">Cancel Request</a>
+
         </div>
     </div>
 

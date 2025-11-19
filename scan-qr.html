@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trashify - Scan QR</title>
+    <title>Trashify - Scan QR & Machines</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
-        /* ... existing styles ... */
+        .map-box {
+            width: 100%;
+            height: 180px;
+            background-color: #f0fdf4; /* Very light green */
+            border: 2px solid var(--color-primary);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            color: #047857;
+            text-align: center;
+        }
+        .scan-area {
+            background-color: #334155; 
+            border: 4px dashed #9ca3af; 
+            color: white; 
+            padding: 40px 10px;
+            border-radius: 12px;
+            display: block;
+            text-align: center;
+            font-size: 1.1em;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -18,15 +42,22 @@
             <span></span>
         </div>
         <div class="content">
-            <h3 style="text-align: center;">Ready to Deposit</h3>
-            <div class="card" style="padding: 30px;">
-                <a href="deposit-result.html" class="scan-area" style="cursor: pointer; text-decoration: none; color: white;">
-                    [ QR Scanner / NFC Zone ]
-                </a>
-                <p style="text-align: center; margin-top: 20px;">*Tap the button below or hold your phone to the NFC zone on the machine.*</p>
-                <a href="deposit-result.html" class="btn-primary" style="margin-top: 10px; text-decoration: none; text-align: center; display: block;">Activate Scanner</a>
+            <h4 style="margin-top: 0; color: var(--color-secondary);">Find Nearest Machine (FR-MACH-001)</h4>
+            <div class="map-box">
+                [GPS Map Placeholder: Showing Nearest Machines]
+                <p>📍 Nearest: Eco-Center, 0.5km</p>
             </div>
-            <p style="text-align: center; color: #047857;">Status: Machine Ready. Insert items.</p>
+            
+            <h4 style="color: var(--color-secondary);">Start Deposit (FR-MACH-002)</h4>
+            <p style="text-align: center; margin-bottom: 15px;">**Step 1:** Tap below or use NFC on the smart machine.</p>
+
+            <div class="card" style="padding: 15px;">
+                <a href="deposit-result.html" class="scan-area" style="cursor: pointer;">
+                    Tap to Activate Scanner / NFC
+                </a>
+                <p style="text-align: center; margin-top: 15px;">Status: **Ready to Connect**</p>
+                <a href="deposit-result.html" class="btn-primary" style="margin-top: 10px; text-decoration: none; text-align: center; display: block;">Simulate Deposit</a>
+            </div>
         </div>
     </div>
 

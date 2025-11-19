@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Pickup Details #8372</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* Specific styles for the collector detail page */
+        .detail-header {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .detail-list {
+            list-style: none;
+            padding: 0;
+        }
+        .detail-list li {
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--color-border);
+        }
+        .detail-list li:last-child {
+            border-bottom: none;
+        }
+        /* Style for the Route Optimization data box */
+        .route-info {
+            background-color: #f0f4ff; /* Light Blue background */
+            border-left: 5px solid var(--color-secondary);
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        /* Verification button color */
+        .verify-btn {
+            background-color: #f59e0b; /* Orange for confirmation/action */
+        }
+        .verify-btn:hover {
+            background-color: #d97706;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="collector-detail">
+        <div class="screen-header" style="background-color: var(--color-secondary);">
+            <a href="collector-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span>Pickup Assignment #8372</span>
+            <span></span>
+        </div>
+        <div class="content" style="height: calc(100% - 50px);"> 
+            
+            <div class="detail-header">
+                <h3 style="color: white; margin-top: 0;">Target: Jane Doe</h3>
+                <p style="margin: 5px 0 0 0; font-weight: 300;">45 Green Street, Apt B, Cityville</p>
+                <small>Scheduled: 10:30 AM - 11:30 AM</small>
+            </div>
+
+            <h4 style="color: var(--color-secondary); margin-top: 0;">Optimized Route Data (FR-LOG-004)</h4>
+            <div class="route-info">
+                <p style="font-weight: 600;">Status: **On Route**</p>
+                <small>Current Stop **1/14**. Next stop is **4.2 km** (8 min). </small>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">Waste Details (FR-WASTE-002 Est.)</h4>
+            <div class="card">
+                <ul class="detail-list">
+                    <li>
+                        <span style="font-weight: 600;">Plastic Bottles (PET)</span>
+                        <span>**2.1 kg** (Est. $1.50)</span>
+                    </li>
+                    <li>
+                        <span style="font-weight: 600;">Cardboard</span>
+                        <span>**1.5 kg** (Est. $0.40)</span>
+                    </li>
+                    <li>
+                        <span style="font-weight: 600;">Electronics (Small)</span>
+                        <span>**1 unit** (Est. $5.00)</span>
+                    </li>
+                </ul>
+                <hr style="border-top: 1px solid var(--color-border); margin: 10px 0;">
+                <p style="display: flex; justify-content: space-between; font-weight: bold;"><span>TOTAL EST. VALUE</span> <span style="color: var(--color-primary);">$6.90</span></p>
+            </div>
+            
+            <h4 style="color: var(--color-secondary);">Verification Actions (FR-LOG-002)</h4>
+            <div class="grid-2-col">
+                <button class="btn-primary" style="background-color: #10b981; border: none;">Scan QR Code (On waste bag)</button>
+                <button class="btn-secondary">Dispute / Report Issue</button>
+            </div>
+
+            <button class="btn-primary verify-btn" style="width: 100%; margin-top: 15px;">
+                Confirm Pickup & Credit Points
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

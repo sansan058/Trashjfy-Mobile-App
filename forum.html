@@ -5,17 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Eco-Community</title>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        .post-card {
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .post-card h5 {
+            margin: 0 0 5px 0;
+            color: var(--color-text-dark);
+        }
+        .post-meta {
+            font-size: 0.8em;
+            color: var(--color-text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 <body>
 
     <div class="phone-frame" id="forum-home">
         <div class="screen-header">
             <a href="dashboard.html" style="color: white; text-decoration: none;">←</a>
-            <span>Eco-Community</span>
+            <span>Eco-Community (FR-COM-001)</span>
             <a href="create-post.html" style="color: white; text-decoration: none; font-size: 1.5em; font-weight: 300;">+</a>
         </div>
         <div class="content">
+            <h4 style="margin-top: 0;">Featured Discussions</h4>
+            
+            <div class="card post-card">
+                <h5>Tips for cleaning plastic bottles before pickup?</h5>
+                <p style="font-size: 0.9em; margin-bottom: 5px;">I'm trying to ensure my waste is clean for the factory. Any advice?</p>
+                <div class="post-meta">
+                    <span>Posted by GreenGuru</span>
+                    <span>💬 12 comments</span>
+                </div>
             </div>
+
+            <div class="card post-card">
+                <h5>New e-waste machine in Central Park is great!</h5>
+                <p style="font-size: 0.9em; margin-bottom: 5px;">Just deposited an old tablet. Instant points!</p>
+                <div class="post-meta">
+                    <span>Posted by EcoQueen</span>
+                    <span>💬 5 comments</span>
+                </div>
+            </div>
+
+            <div class="card post-card">
+                <h5>Do factory commissions affect my points?</h5>
+                <p style="font-size: 0.9em; margin-bottom: 5px;">Curious how the valuation process works for users.</p>
+                <div class="post-meta">
+                    <span>Posted by Sarah K.</span>
+                    <span>💬 1 comment</span>
+                </div>
+            </div>
+            
+            <a href="#" class="link" style="margin-top: 10px;">Load more discussions...</a>
+        </div>
     </div>
 
 </body>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Find a Machine</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        .map-container {
+            width: 100%;
+            height: 250px;
+            background-color: #e6ffed; /* Light green map color */
+            border: 2px solid var(--color-primary);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            color: #10b981;
+            text-align: center;
+            position: relative;
+        }
+        .user-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 0.8em;
+            border: 2px solid white;
+        }
+        .machine-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .machine-list-item:last-child { border-bottom: none; }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="find-machine">
+        <div class="screen-header">
+            <a href="dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span>Smart Machine Locator (FR-MACH-001)</span>
+            <span></span>
+        </div>
+        <div class="content">
+            
+            <h4 style="margin-top: 0; color: var(--color-secondary);">Real-Time Location Map</h4>
+            <div class="map-container">
+                <span class="user-pin">You 📍</span>
+                <p>
+                    [Interactive GPS Map Placeholder]
+                </p>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">Machines Near You</h4>
+            <div class="card">
+                
+                <a href="scan-qr.html" class="machine-list-item" style="cursor: pointer; text-decoration: none; color: inherit;">
+                    <div>
+                        <span style="font-weight: bold;">Eco-Center RVM (RVM)</span>
+                        <small style="display: block; color: var(--color-text-light);">Available 24/7 - Plastic, Glass</small>
+                    </div>
+                    <span style="font-weight: 600; color: var(--color-primary);">0.5 km →</span>
+                </a>
+
+                <a href="scan-qr.html" class="machine-list-item" style="cursor: pointer; text-decoration: none; color: inherit;">
+                    <div>
+                        <span style="font-weight: bold;">City Library Drop-off (E-Waste)</span>
+                        <small style="display: block; color: var(--color-text-light);">Closes 5:00 PM - Electronics only</small>
+                    </div>
+                    <span style="font-weight: 600; color: var(--color-primary);">1.2 km →</span>
+                </a>
+                
+                <a href="scan-qr.html" class="machine-list-item" style="cursor: pointer; text-decoration: none; color: inherit;">
+                    <div>
+                        <span style="font-weight: bold;">Green Park Kiosk (RVM)</span>
+                        <small style="display: block; color: var(--color-text-light);">Open - Mixed Paper only</small>
+                    </div>
+                    <span style="font-weight: 600; color: var(--color-text-light);">3.1 km</span>
+                </a>
+            </div>
+
+            <button class="btn-secondary" style="width: 100%; margin-top: 20px;">
+                Filter by Waste Type
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

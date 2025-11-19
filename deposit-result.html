@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Deposit Completed</title>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        .success-box {
+            background-color: var(--color-success-bg);
+            border: 2px solid var(--color-primary);
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .success-box h1 {
+            color: var(--color-primary);
+            font-size: 3em;
+            margin: 10px 0;
+        }
+        .deposit-summary {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,6 +34,23 @@
             <span></span>
         </div>
         <div class="content" style="text-align: center;">
+            
+            <div class="success-box">
+                <p style="font-size: 3em; margin: 0;">🎉</p>
+                <h3 style="color: var(--color-primary); margin: 5px 0 10px 0;">Deposit Successful!</h3>
+                
+                <p style="margin: 0;">You earned (FR-REWARD-001):</p>
+                <h1 style="color: var(--color-primary);">+350 PTS</h1>
+                <small>Your new balance is **1,950 PTS**.</small>
+            </div>
+
+            <h4 style="color: var(--color-secondary); margin-top: 0;">Transaction Summary</h4>
+            <div class="card deposit-summary">
+                <p style="display: flex; justify-content: space-between; padding: 5px 0;"><span>Machine ID:</span> <span>RVM-NYC004</span></p>
+                <p style="display: flex; justify-content: space-between; padding: 5px 0;"><span>Material:</span> <span>Mixed Plastics & Cans</span></p>
+                <p style="display: flex; justify-content: space-between; padding: 5px 0;"><span>Est. Items:</span> <span>35</span></p>
+            </div>
+            
             <a href="dashboard.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block;">Return to Dashboard</a>
         </div>
     </div>
