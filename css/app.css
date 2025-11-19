@@ -153,9 +153,15 @@ select:focus {
     font-size: 0.9em;
     text-decoration: none;
 }
-
-.link:hover {
+.link-text {
     color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-text:hover {
+    color: var(--color-primary);
+    font-weight: 600;
 }
 
 /* --- 4. DASHBOARD SPECIFIC --- */
