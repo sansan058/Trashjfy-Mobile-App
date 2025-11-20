@@ -209,10 +209,30 @@
                 </ul>
             </div>
 
-            <button class="btn-secondary" style="margin-top: 30px; border: 1px solid #ef4444; color: #ef4444;">
+            <!-- <button class="btn-secondary" style="margin-top: 30px; border: 1px solid #ef4444; color: #ef4444;">
                 Go Offline / Log Out
             </button>
-            <a href="login.html" class="link" style="color: var(--color-text-light);">Switch Role</a>
+            <a href="login.html" class="link" style="color: var(--color-text-light);">Switch Role</a> -->
+
+            <a href="login.html" class="btn-primary" 
+   style="
+        background-color: #ef4444; /* Standard red for log out */
+        text-align: center; 
+        display: block; 
+        margin-top: 30px; 
+        text-decoration: none;
+        padding: 12px; /* Ensure padding matches the btn-primary style */
+        border-radius: 8px;
+        font-weight: 700;
+        /* The default btn-primary style should handle the white text color */
+   "
+>
+    Log Out
+</a>
+
+<a href="login.html" class="link" style="color: var(--color-text-light); margin-top: 10px; display: block; text-align: center;">
+    Switch Role
+</a>
 
             <div style="height: 30px;"></div>
         </div>
@@ -221,7 +241,7 @@
             <a href="collector-dashboard.html"><span>🏠</span>Dashboard</a>
             <a href="collector-tasks.html"><span>📋</span>Tasks</a>
             <a href="collector-payouts.html"><span>💰</span>Payouts</a>
-            <a href="collector-partner-profile.html" class="active"><span>⚙️</span>Profile</a>
+            <a href="collector-partner-profile.html" class="active"><span>👤</span>Profile</a>
         </div>
     </div>
 
