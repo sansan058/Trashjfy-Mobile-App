@@ -57,6 +57,10 @@ body {
     padding-top: 15px;
 }
 
+
+
+
+
 /* Screens with a full header (not just a title) */
 .screen-header {
     background-color: var(--color-primary);
@@ -85,7 +89,7 @@ h4 { color: var(--color-primary); margin-top: 20px; margin-bottom: 10px; }
 /* Cards & Containers */
 .card {
     background: var(--color-card-bg);
-    padding: 15px;
+    padding: 12px;
     border-radius: 12px;
     margin-bottom: 15px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -176,7 +180,7 @@ select:focus {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .action-card {
@@ -264,3 +268,4 @@ select:focus {
     color: var(--color-primary);
     font-weight: 700;
 }
+

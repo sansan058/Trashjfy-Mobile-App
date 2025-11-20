@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Verification</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- Shared Design Elements for Collector Screens (Required for UI fix) --- */
+        .screen-header-redesigned {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .collector-nav-bar {
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%; 
+            border-top: 1px solid var(--color-border);
+            z-index: 10;
+        }
+        .collector-nav-bar a {
+            text-align: center;
+            text-decoration: none;
+            color: var(--color-text-light);
+            font-size: 0.8em;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        .collector-nav-bar a.active {
+            color: var(--color-primary);
+        }
+        .collector-nav-bar a span {
+            display: block;
+            font-size: 1.5em; 
+            margin-bottom: 3px;
+        }
+        /* Crucial: Content height calculation */
+        .phone-frame .content {
+            height: calc(100% - 110px); 
+            padding-top: 15px;
+            overflow-y: auto;
+        }
+
+        /* --- Page Specific Styles --- */
+        .verification-card {
+            background-color: var(--color-success-bg);
+            border: 1px solid #34d399;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .verification-card h3 {
+            color: var(--color-primary);
+            margin-top: 0;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--color-text-dark);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn-issue {
+            background-color: #ef4444; 
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 700;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="verification-screen">
+        
+        <div class="screen-header-redesigned">
+            <a href="task-details.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">On-Site Verification #8372</span>
+            <span style="width: 20px;"></span>
+        </div>
+        
+        <div class="content">
+
+            <div class="verification-card">
+                <h3>Verification Checklist</h3>
+                <p style="color: var(--color-text-light); margin-bottom: 5px;">Customer: Alex Johnson (123 Main St)</p>
+                <p style="font-weight: bold; color: var(--color-secondary);">Status: Arrived at Location</p>
+            </div>
+
+            <h4 style="color: var(--color-primary); margin-top: 0;">1. Actual Weight & Quantity</h4>
+            
+            <div class="card">
+                <div class="input-group">
+                    <label>Actual Total Weight (kg)</label>
+                    <input type="number" placeholder="Est. 15 kg" value="14.8">
+                </div>
+                <div class="input-group">
+                    <label>Waste Categories Confirmed</label>
+                    <select>
+                        <option>All items matched estimate</option>
+                        <option>Discrepancy: Missing E-Waste</option>
+                        <option>Discrepancy: Quality Issue (Wet Paper)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <h4 style="color: var(--color-primary);">2. Documentation (Optional)</h4>
+            <div class="card">
+                <p style="color: var(--color-text-light); font-size: 0.9em;">
+                    Upload photo of the collected waste to confirm its state.
+                </p>
+                <div class="btn-secondary" style="margin-top: 10px; text-align: center; cursor: pointer;">
+                    Upload Final Photo 📸
+                </div>
+            </div>
+
+            <h4 style="color: var(--color-primary);">3. Final Action</h4>
+            
+            <a href="collector-dashboard.html" class="btn-primary" style="background-color: var(--color-secondary); text-align: center; display: block;">
+                Complete Pickup & Finalize Commission
+            </a>
+            
+            <div class="action-buttons">
+                <button class="btn-issue">Report Discrepancy</button>
+            </div>
+            
+            <div style="height: 30px;"></div>
+        </div>
+        
+        <div class="collector-nav-bar">
+            <a href="collector-dashboard.html"><span>🏠</span>Dashboard</a>
+            <a href="collector-tasks.html" class="active"><span>📋</span>Tasks</a>
+            <a href="collector-payouts.html"><span>💰</span>Payouts</a>
+            <a href="collector-partner-profile.html"><span>⚙️</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

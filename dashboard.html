@@ -5,15 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Dashboard</title>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- 1. Aesthetic Header Redesign --- */
+        .screen-header-redesigned {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .header-logo-group {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        .header-logo-group img {
+            height: 25px; 
+            width: 25px;
+            border-radius: 50%; 
+            margin-right: 8px;
+            border: 1px solid white; 
+        }
+        /* --- Removed .welcome-box styling as the element is removed --- */
+
+        /* --- 2. Search Bar Styling --- */
+        .search-container {
+            padding: 8px 20px; 
+            background-color: #e9ffd5;
+            border-bottom: 0.5px solid var(--color-border);
+            position: sticky;
+            /* FIX: Top position is now exactly the header height (50px) */
+            top: 50px; 
+            z-index: 9;
+        }
+        .search-input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px; 
+        }
+        .search-input-group input {
+            padding: 8px; 
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            flex-grow: 1; 
+            font-size: 0.9em; 
+            margin-bottom: 0; 
+        }
+        .search-btn-right {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 8px 10px; 
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em; 
+            cursor: pointer;
+            line-height: 1; 
+        }
+    </style>
 </head>
 <body>
 
     <div class="phone-frame" id="dashboard-screen">
-        <div class="screen-header">
-            <span>👋 Welcome back, Alex!</span>
-            <span>Trashify</span>
-            <a href="notifications.html" style="color: white; text-decoration: none;">🔔</a>
+        
+        <div class="screen-header-redesigned">
+            <div class="header-logo-group">
+                <img src="img/trashifylogo.png" alt="Logo" onerror="this.onerror=null;this.src='https://via.placeholder.com/25?text=R';">
+                Trashify
+            </div>
+            <a href="notifications.html" style="color: white; text-decoration: none; font-size: 1.2em;">🔔</a>
         </div>
+        
+        <div class="search-container"> 
+            <div class="search-input-group">
+                <input type="text" placeholder="Search rewards, machines, or tips...">
+                <button class="search-btn-right">🔍</button>
+            </div>
+        </div>
+        
         <div class="content"> 
             
             <h4 style="margin-top: 0;">Your Recycling Balance</h4>
@@ -23,25 +99,25 @@
                 <a href="rewards.html" class="link" style="color: var(--color-primary); margin-top: 0;">View Rewards & Wallet →</a>
             </div>
 
-            <h4 style="color: var(--color-secondary);">Quick Actions</h4>
+            <h4 style="color: var(--color-primary);">Quick Actions</h4>
             <div class="grid-2-col">
                 <a href="upload-waste.html" class="action-card secondary">
                     <p>🚚</p>
                     <span>Schedule Pickup</span>
                 </a>
-                <a href="scan-qr.html" class="action-card primary">
+                <a href="scan-qr.html" class="action-card secondary">
                     <p>♻️</p>
                     <span>Machine Deposit</span>
                 </a>
             </div>
 
-            <h4 style="color: var(--color-secondary);">Active Pickup Request</h4>
+            <h4 style="color: var(--color-primary);">Active Pickup Request</h4>
             <a href="track-pickup.html" class="card" style="text-decoration: none; display: block; color: inherit;">
                 <p style="font-weight: bold; margin: 0;">Pickup #8372 (Confirmed)</p>
                 <small style="color: var(--color-text-light);">Collector ETA: 10:45 AM today. Tracking available.</small>
             </a>
 
-            <h4 style="color: var(--color-secondary);">Community & Impact</h4>
+            <h4 style="color: var(--color-primary);">Community & Impact</h4>
             <div class="grid-2-col">
                 <a href="leaderboard.html" class="action-card secondary">
                     <p>🏆</p>

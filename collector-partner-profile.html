@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Partner Profile</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* Collector Nav Bar Styling */
+        
+        /* ==========================================================
+   1. PARENT CONTEXT FIX: .phone-frame
+   ========================================================== */
+
+.phone-frame {
+    /* CRITICAL FIX: This makes the .phone-frame the reference point
+       for absolutely positioned children (like the nav bar). */
+    position: relative; 
+    /* The rest of your phone-frame styling (height, width, etc.) 
+       must be defined elsewhere or inline. */
+    height: 100vh; /* Assuming the frame takes up the viewport height */
+    overflow: hidden; /* Ensures nothing spills out of the frame */
+}
+
+
+/* ==========================================================
+   2. COLLECTOR NAVIGATION BAR STYLING
+   ========================================================== */
+
+.collector-nav-bar {
+    /* CRITICAL FIX: position: absolute makes it stick to the 
+       bottom of the *parent positioned element* (.phone-frame). */
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%; /* Ensures it spans the full width of the frame */
+    
+    height: 60px; 
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Aligns content better with padding-bottom */
+    
+    background: white; /* Use a solid background color */
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    
+    z-index: 10; 
+    
+    padding-top: 5px; 
+    padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+}
+
+.collector-nav-bar a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 0.8em;
+    text-align: center;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+    flex-grow: 1;
+    display: block; 
+}
+
+.collector-nav-bar a.active {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* ==========================================================
+   3. CONTENT SCROLLING FIX
+   ========================================================== */
+
+.phone-frame .content {
+    /* CRITICAL FIX: Calculates scrollable area.
+       50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
+    height: calc(100% - 120px); 
+    padding-top: 15px;
+    /* Allows content inside to scroll independently */
+    overflow-y: auto; 
+}
+
+/* ==========================================================
+   4. HEADER STYLES (For completeness)
+   ========================================================== */
+
+.screen-header-redesigned {
+    background-color: var(--color-primary); 
+    color: white;
+    padding: 10px 20px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+        /* --- Page Specific Styles --- */
+        .profile-header {
+            text-align: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-border);
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            overflow: hidden;
+            border: 3px solid var(--color-secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em; 
+            color: var(--color-text-light);
+        }
+        .profile-info h3 {
+            margin: 0 0 5px 0;
+            color: var(--color-secondary);
+        }
+        .profile-info small {
+            display: block;
+            color: var(--color-text-light);
+        }
+        .settings-list {
+            list-style: none;
+            padding: 0;
+        }
+        .settings-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .settings-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="collector-partner-profile-screen">
+        
+        <div class="screen-header-redesigned">
+            <a href="collector-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">Partner Profile</span>
+            <span style="width: 20px;"></span>
+        </div>
+        
+        <div class="content">
+            
+            <div class="profile-header">
+                <div class="profile-img">
+                    <img src="img/greenpf.jpg" alt="Logistics Partner Logo" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/80?text=L';" 
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="profile-info">
+                    <h3>SwiftRoute Logistics</h3>
+                    <small>Partner ID: FR-002-SRL</small>
+                </div>
+                <a href="#" class="link" style="margin-top: 5px; color: var(--color-secondary);">Edit Partner Details</a>
+            </div>
+            
+            <h4 style="color: var(--color-primary);">Operational Scope</h4>
+            <div class="card">
+                <ul class="settings-list">
+                    <li>
+                        <span>Service Area:</span>
+                        <span style="font-weight: bold;">North Sector, City Zone 3</span>
+                    </li>
+                    <li>
+                        <span>Vehicle Fleet Size:</span>
+                        <span style="font-weight: bold;">3 Trucks, 1 Van</span>
+                    </li>
+                    <li>
+                        <span>Max Daily Pickups:</span>
+                        <span style="font-weight: bold;">45 Missions</span>
+                    </li>
+                    <li>
+                        <span>Current Status:</span>
+                        <span style="color: var(--color-primary); font-weight: bold;">🟢 Online & Available</span>
+                    </li>
+                </ul>
+            </div>
+
+            <h4 style="color: var(--color-primary);">Financial & Compliance</h4>
+            <div class="card">
+                <ul class="settings-list">
+                    <li>
+                        <span>Payout Account Details:</span>
+                        <span style="color: var(--color-text-light);">Manage →</span>
+                    </li>
+                    <li>
+                        <span>Insurance & Licensing:</span>
+                        <span style="color: var(--color-secondary);">View Documents →</span>
+                    </li>
+                    <li>
+                        <span>Contact Info for Support:</span>
+                        <span style="color: var(--color-text-light);">Change →</span>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="btn-secondary" style="margin-top: 30px; border: 1px solid #ef4444; color: #ef4444;">
+                Go Offline / Log Out
+            </button>
+            <a href="login.html" class="link" style="color: var(--color-text-light);">Switch Role</a>
+
+            <div style="height: 30px;"></div>
+        </div>
+        
+        <div class="collector-nav-bar">
+            <a href="collector-dashboard.html"><span>🏠</span>Dashboard</a>
+            <a href="collector-tasks.html"><span>📋</span>Tasks</a>
+            <a href="collector-payouts.html"><span>💰</span>Payouts</a>
+            <a href="collector-partner-profile.html" class="active"><span>⚙️</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

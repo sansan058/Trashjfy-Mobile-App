@@ -6,73 +6,223 @@
     <title>Trashify - Collector Dashboard</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
-        .task-card {
-            background-color: #f0f4ff; /* Light Blue/Secondary theme */
-            border: 2px solid var(--color-primary);
+        /* --- Shared Design Elements for Collector Screens --- */
+        .screen-header-redesigned {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
-        .task-card .task-count {
-            font-size: 2.5em;
-            font-weight: 800;
-            color: var(--color-text-dark);
-            margin: 0 0 5px 0;
+        .header-logo-group {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 700;
         }
-        .task-list {
-            list-style: none;
-            padding: 0;
+        .header-logo-group img {
+            height: 25px; 
+            width: 25px;
+            border-radius: 50%; 
+            margin-right: 8px;
+            border: 1px solid white; 
         }
-        .task-list li {
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--color-border);
+        .search-container {
+            padding: 8px 20px; 
+            background-color: #e9ffd5; 
+            border-bottom: 0.5px solid var(--color-border);
+            position: sticky;
+            top: 50px; 
+            z-index: 9;
         }
-        .task-list li:last-child {
-            border-bottom: none;
+        .search-input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px; 
         }
+        .search-input-group input {
+            padding: 8px; 
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            flex-grow: 1; 
+            font-size: 0.9em; 
+            margin-bottom: 0; 
+        }
+        .search-btn-right {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 8px 10px; 
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em; 
+            cursor: pointer;
+            line-height: 1; 
+        }
+        
+        /* Collector Nav Bar Styling */
+        
+        /* ==========================================================
+   1. PARENT CONTEXT FIX: .phone-frame
+   ========================================================== */
+
+.phone-frame {
+    /* CRITICAL FIX: This makes the .phone-frame the reference point
+       for absolutely positioned children (like the nav bar). */
+    position: relative; 
+    /* The rest of your phone-frame styling (height, width, etc.) 
+       must be defined elsewhere or inline. */
+    height: 100vh; /* Assuming the frame takes up the viewport height */
+    overflow: hidden; /* Ensures nothing spills out of the frame */
+}
+
+
+/* ==========================================================
+   2. COLLECTOR NAVIGATION BAR STYLING
+   ========================================================== */
+
+.collector-nav-bar {
+    /* CRITICAL FIX: position: absolute makes it stick to the 
+       bottom of the *parent positioned element* (.phone-frame). */
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%; /* Ensures it spans the full width of the frame */
+    
+    height: 60px; 
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Aligns content better with padding-bottom */
+    
+    background: white; /* Use a solid background color */
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    
+    z-index: 10; 
+    
+    padding-top: 5px; 
+    padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+}
+
+.collector-nav-bar a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 0.8em;
+    text-align: center;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+    flex-grow: 1;
+    display: block; 
+}
+
+.collector-nav-bar a.active {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* ==========================================================
+   3. CONTENT SCROLLING FIX
+   ========================================================== */
+
+.phone-frame .content {
+    /* CRITICAL FIX: Calculates scrollable area.
+       50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
+    height: calc(100% - 120px); 
+    padding-top: 15px;
+    /* Allows content inside to scroll independently */
+    overflow-y: auto; 
+}
+
+/* ==========================================================
+   4. HEADER STYLES (For completeness)
+   ========================================================== */
+
+.screen-header-redesigned {
+    background-color: var(--color-primary); 
+    color: white;
+    padding: 10px 20px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
     </style>
 </head>
 <body>
 
     <div class="phone-frame" id="collector-dashboard">
-        <div class="screen-header" style="background-color: var(--color-primary);">
-            <span></span>
-            <span>Collector View</span>
-            <a href="notifications.html" style="color: white; text-decoration: none;">⚙️</a>
+        
+        <div class="screen-header-redesigned">
+            <div class="header-logo-group">
+                <img src="img/trashifylogo.png" alt="Logo" onerror="this.onerror=null;this.src='https://via.placeholder.com/25?text=R';">
+                Trashify Logistics
+            </div>
+            <a href="notifications.html" style="color: white; text-decoration: none; font-size: 1.2em;">🔔</a>
         </div>
-        <div class="content" style="height: calc(100% - 50px);"> 
-            <div class="card task-card" style="text-align: center;">
-                <p style="margin: 0; font-size: 0.9em; font-weight: 600;">Pickups Assigned Today</p>
-                <p class="task-count">14</p>
-                <button class="btn-primary" style="background-color: var(--color-primary); margin-top: 10px; width: 100%;">Start Today's Route 🗺️</button>
+        
+        <div class="search-container"> 
+            <div class="search-input-group">
+                <input type="text" placeholder="Search tasks, locations, or payouts...">
+                <button class="search-btn-right">🔍</button>
+            </div>
+        </div>
+        
+        <div class="content"> 
+            
+            <h4 style="color: var(--color-primary); margin-top: 0;">Today's Logistics Summary</h4>
+            <div class="card balance-card" style="text-align: center;">
+                <p style="margin: 0; font-size: 0.9em;">Active Pickups Today</p>
+                <h2 class="task-count">3</h2>
+                <p style="margin: 0; font-size: 0.9em;">Est. Earnings: **$8.30**</p>
+                <a href="collector-payouts.html" class="link" style="color: var(--color-primary); margin-top: 10px; display: block;">View Payouts & History →</a>
             </div>
 
-            <h4 style="color: var(--color-primary);">Next Pickups</h4>
-            <div class="card">
-                <ul class="task-list">
-                    <li>
-                        <p style="font-weight: bold; margin: 0;">#8375: Alex Chen</p>
-                        <small style="color: var(--color-text-light);">123 Eco Way. 4.8kg Paper. (Est. 10:30 AM)</small>
-                        <a href="track-pickup.html" style="color: var(--color-primary); float: right;">View Map</a>
-                    </li>
-                    <li>
-                        <p style="font-weight: bold; margin: 0;">#8376: Jane Doe</p>
-                        <small style="color: var(--color-text-light);">45 Green St. 2.1kg Plastic. (Est. 11:15 AM)</small>
-                        <a href="track-pickup.html" style="color: var(--color-primary); float: right;">View Map</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <h4 style="color: var(--color-primary);">Machine Status</h4>
+            <h4 style="color: var(--color-primary);">Quick Actions</h4>
             <div class="grid-2-col">
-                <div class="card" style="text-align: center;">
-                    <p style="font-size: 1.5em; margin: 0;">✅</p>
-                    <small>Machine A: Online</small>
-                </div>
-                <div class="card" style="text-align: center;">
-                    <p style="font-size: 1.5em; margin: 0;">⚙️</p>
-                    <small>Machine C: Maintenance</small>
-                </div>
+                <a href="collector-tasks.html" class="action-card secondary">
+                    <p>📋</p>
+                    <span>View Task List</span>
+                </a>
+                <a href="collector-route.html" class="action-card primary">
+                    <p>🗺️</p>
+                    <span>Start Route</span>
+                </a>
+            </div>
+
+            <h4 style="color: var(--color-primary);">Next Task Details</h4>
+            <div class="card" style="padding: 10px 15px;">
+                <p style="font-weight: bold; margin: 0;">#8372: Residential Pickup</p>
+                <small style="color: var(--color-text-light);">Time Slot: 10:45 AM - 11:45 AM</small>
+                <small style="display: block; margin-top: 5px;">Location: 123 Main St, Apt 4A</small>
+                <a href="task-details.html" class="link" style="color: var(--color-primary); margin-top: 10px;">View Full Details & Verify →</a>
             </div>
             
-            <a href="user-login.html" class="btn-primary" style="background-color: #ef4444; margin-top: 15px; text-decoration: none; text-align: center; display: block;">Logout</a>
+            <h4 style="color: var(--color-primary);">Warehouse & Inventory</h4>
+            <a href="#" class="card action-card secondary" style="display: block; text-align: center; padding: 15px;">
+                <p style="margin: 0; font-size: 1.5em;">📦</p>
+                <span>Log Inventory Drop-off</span>
+            </a>
+            
+        </div>
+        
+        <div class="collector-nav-bar">
+            <a href="collector-dashboard.html" class="active"><span>🏠</span>Dashboard</a>
+            <a href="collector-tasks.html"><span>📋</span>Tasks</a>
+            <a href="collector-payouts.html"><span>💰</span>Payouts</a>
+            <a href="collector-partner-profile.html"><span>⚙️</span>Profile</a>
         </div>
     </div>
 

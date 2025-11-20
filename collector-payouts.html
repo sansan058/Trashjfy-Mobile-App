@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Payout History</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* Collector Nav Bar Styling */
+        
+        /* ==========================================================
+   1. PARENT CONTEXT FIX: .phone-frame
+   ========================================================== */
+
+.phone-frame {
+    /* CRITICAL FIX: This makes the .phone-frame the reference point
+       for absolutely positioned children (like the nav bar). */
+    position: relative; 
+    /* The rest of your phone-frame styling (height, width, etc.) 
+       must be defined elsewhere or inline. */
+    height: 100vh; /* Assuming the frame takes up the viewport height */
+    overflow: hidden; /* Ensures nothing spills out of the frame */
+}
+
+
+/* ==========================================================
+   2. COLLECTOR NAVIGATION BAR STYLING
+   ========================================================== */
+
+.collector-nav-bar {
+    /* CRITICAL FIX: position: absolute makes it stick to the 
+       bottom of the *parent positioned element* (.phone-frame). */
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%; /* Ensures it spans the full width of the frame */
+    
+    height: 60px; 
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Aligns content better with padding-bottom */
+    
+    background: white; /* Use a solid background color */
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    
+    z-index: 10; 
+    
+    padding-top: 5px; 
+    padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+}
+
+.collector-nav-bar a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 0.8em;
+    text-align: center;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+    flex-grow: 1;
+    display: block; 
+}
+
+.collector-nav-bar a.active {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* ==========================================================
+   3. CONTENT SCROLLING FIX
+   ========================================================== */
+
+.phone-frame .content {
+    /* CRITICAL FIX: Calculates scrollable area.
+       50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
+    height: calc(100% - 120px); 
+    padding-top: 15px;
+    /* Allows content inside to scroll independently */
+    overflow-y: auto; 
+}
+
+/* ==========================================================
+   4. HEADER STYLES (For completeness)
+   ========================================================== */
+
+.screen-header-redesigned {
+    background-color: var(--color-primary); 
+    color: white;
+    padding: 10px 20px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+        /* --- Page Specific Styles --- */
+        .payout-summary {
+            background-color: #e0f2fe;
+            border: 2px solid var(--color-secondary);
+            text-align: center;
+            padding: 20px;
+        }
+        .payout-summary h1 {
+            color: var(--color-secondary);
+            font-size: 3em;
+            margin: 5px 0 10px 0;
+        }
+        .transaction-list {
+            list-style: none;
+            padding: 0;
+        }
+        .transaction-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .transaction-list li:last-child {
+            border-bottom: none;
+        }
+        .commission-amount {
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="collector-payouts">
+        
+        <div class="screen-header-redesigned">
+            <a href="collector-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">Payouts & Earnings</span>
+            <span style="width: 20px;"></span>
+        </div>
+        
+        <div class="content">
+
+            <h4 style="color: var(--color-primary); margin-top: 0;">Total Balance</h4>
+            <div class="card payout-summary">
+                <p style="margin: 0; font-size: 0.9em;">Total Earned (Pending Payout)</p>
+                <h1>$125.50</h1>
+                <small style="display: block; color: var(--color-text-light);">Last updated: Nov 19, 2025</small>
+            </div>
+
+            <a href="#" class="btn-primary" style="background-color: var(--color-secondary); text-align: center; display: block;">
+                Request Payout to Bank Account
+            </a>
+
+            <h4 style="color: var(--color-primary); margin-top: 30px;">Transaction History</h4>
+            
+            <div class="card">
+                <ul class="transaction-list">
+                    <li>
+                        <div>
+                            **Pickup #8365** (Verified)
+                            <small style="display: block; color: var(--color-text-light);">Nov 18, 2025 | 18 kg</small>
+                        </div>
+                        <span class="commission-amount">+$1.95</span>
+                    </li>
+                    <li>
+                        <div>
+                            **Pickup #8364** (Verified)
+                            <small style="display: block; color: var(--color-text-light);">Nov 17, 2025 | 45 kg</small>
+                        </div>
+                        <span class="commission-amount">+$4.20</span>
+                    </li>
+                    <li>
+                        <div>
+                            **Pickup #8363** (Paid Out)
+                            <small style="display: block; color: var(--color-text-light);">Nov 15, 2025 | Payout to Bank</small>
+                        </div>
+                        <span style="font-weight: bold; color: #ef4444;">-$68.00</span>
+                    </li>
+                    <li>
+                        <div>
+                            **Pickup #8362** (Verified)
+                            <small style="display: block; color: var(--color-text-light);">Nov 15, 2025 | 12 kg</small>
+                        </div>
+                        <span class="commission-amount">+$1.10</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div style="height: 30px;"></div>
+        </div>
+
+        <div class="collector-nav-bar">
+            <a href="collector-dashboard.html"><span>🏠</span>Dashboard</a>
+            <a href="collector-tasks.html"><span>📋</span>Tasks</a>
+            <a href="collector-payouts.html" class="active"><span>💰</span>Payouts</a>
+            <a href="collector-partner-profile.html"><span>⚙️</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

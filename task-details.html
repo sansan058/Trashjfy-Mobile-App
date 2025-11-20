@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Task Details</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--color-border);
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="task-details">
+        <div class="screen-header" style="background-color: var(--color-secondary);">
+            <a href="collector-tasks.html" style="color: white; text-decoration: none;">←</a>
+            <span>Task #8372 Details</span>
+            <span></span>
+        </div>
+        <div class="content">
+            <h4 style="color: var(--color-secondary); margin-top: 0;">Customer & Location</h4>
+            <div class="card">
+                <div class="detail-item">
+                    <span>Customer Name:</span>
+                    <strong>Alex Johnson</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Address:</span>
+                    <strong>123 Main St, Apt 4A</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Contact Phone:</span>
+                    <strong>(555) 555-1234</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Pickup Instructions:</span>
+                    <strong style="color: var(--color-primary);">Items by back gate. Code 456.</strong>
+                </div>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">Waste Summary & Estimate</h4>
+            <div class="card">
+                <div class="detail-item">
+                    <span>Scheduled Time:</span>
+                    <strong>10:45 AM - 11:45 AM</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Est. Total Weight:</span>
+                    <strong>15 kg</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Est. Commission:</span>
+                    <strong style="color: var(--color-secondary);">$1.80</strong>
+                </div>
+                <p style="font-size: 0.9em; margin-top: 15px; color: var(--color-text-light);">
+                    Waste types: Plastic Bottles, Paper, Small E-Waste.
+                </p>
+                <img src="https://via.placeholder.com/340x100?text=Customer+Photo+of+Waste" alt="Customer Photo" style="width: 100%; border-radius: 6px; margin-top: 10px;">
+            </div>
+            
+            <a href="verification.html" class="btn-primary" style="background-color: var(--color-secondary); text-align: center; display: block; margin-top: 20px;">
+                I Have Arrived - Start Verification
+            </a>
+            
+            <a href="collector-dashboard.html" class="link">Return to Dashboard</a>
+
+        </div>
+    </div>
+
+</body>
+</html>
