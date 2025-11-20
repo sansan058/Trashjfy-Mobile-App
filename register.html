@@ -1,3 +1,5 @@
+<!-- DONE -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,15 +20,35 @@
             <input type="text" placeholder="Full Name">
             <input type="email" placeholder="Email Address">
             <input type="text" placeholder="Phone Number">
-            <input type="password" placeholder="Password (min 8 chars)">
-            <input type="text" placeholder="Residential Address">
-            
-            <a href="user-login.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block;">Register</a>
+            <input type="password" id="reg-password" placeholder="Password (min 8 chars)">
+            <input type="text" id="reg-address" placeholder="Residential Address">
+
+            <label for="reg-role" style="display:block; margin:12px 0 6px; font-weight:600; color: #047857;">Account Type</label>
+            <select id="reg-role" style="width: 96%; padding: 12px; margin-bottom: 12px; margin-left: 10px; border-radius:8px; border:1px solid #047857;">
+                <option value="user">User</option>
+                <option value="factory">Collector / Factory</option>
+            </select>
+
+            <div class="center-container">
+                <button id="register-btn" class="btn-primary" style="border:none; cursor:pointer;">Register</button>
+            </div>
             <p class="link"> Already have an account?
-                <a href="user-login.html" class="link-text"> Sign In</a>
+                <a href="login.html" class="link-text"> Sign In</a>
             </p>
         </div>
     </div>
+
+        <script>
+            document.getElementById('register-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                const role = document.getElementById('reg-role').value;
+                if (role === 'factory') {
+                    window.location.href = 'factory-login.html';
+                } else {
+                    window.location.href = 'user-login.html';
+                }
+            });
+        </script>
 
 </body>
 </html>

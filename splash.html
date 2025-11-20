@@ -23,12 +23,18 @@
         .splash-logo {
             font-size: 3em;
             font-weight: 800;
-            margin-top: 10px;
+            margin-top: 5px;
         }
         .splash-slogan {
             font-size: 1.2em;
             margin-top: 5px;
             opacity: 0.8;
+        }
+
+        .auth-splash img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
         }
         .loading-dot {
             width: 8px;
@@ -52,7 +58,9 @@
 
     <div class="phone-frame">
         <div class="splash-screen">
-            <img src="img/trashifylogo.png" alt="Trashify Logo" onerror="this.onerror=null;this.src='https://via.placeholder.com/60?text=R';" style="width: 60px; height: 60px;">
+            <div class="auth-splash">
+                <img src="img/trashifylogo.png" alt="Trashify Logo"> 
+            </div>
             <div class="splash-logo">Trashify</div>
             <div class="splash-slogan">Waste to Value. Simplified.</div>
             
@@ -68,7 +76,7 @@
         // Redirects to the login selection page after 2 seconds
         setTimeout(function() {
             window.location.href = 'login.html';
-        }, 2000); 
+        }, 10000); 
     </script>
 
 </body>
