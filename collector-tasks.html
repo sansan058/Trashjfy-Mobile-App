@@ -12,93 +12,104 @@
    1. PARENT CONTEXT FIX: .phone-frame
    ========================================================== */
 
-.phone-frame {
-    /* CRITICAL FIX: This makes the .phone-frame the reference point
-       for absolutely positioned children (like the nav bar). */
-    position: relative; 
-    /* The rest of your phone-frame styling (height, width, etc.) 
-       must be defined elsewhere or inline. */
-    height: 100vh; /* Assuming the frame takes up the viewport height */
-    overflow: hidden; /* Ensures nothing spills out of the frame */
-}
+        .phone-frame {
+            /* CRITICAL FIX: This makes the .phone-frame the reference point
+            for absolutely positioned children (like the nav bar). */
+            position: relative; 
+            /* The rest of your phone-frame styling (height, width, etc.) 
+            must be defined elsewhere or inline. */
+            height: 100vh; /* Assuming the frame takes up the viewport height */
+            overflow: hidden; /* Ensures nothing spills out of the frame */
+        }
 
 
-/* ==========================================================
-   2. COLLECTOR NAVIGATION BAR STYLING
-   ========================================================== */
+        /* ==========================================================
+        2. COLLECTOR NAVIGATION BAR STYLING
+        ========================================================== */
 
-.collector-nav-bar {
-    /* CRITICAL FIX: position: absolute makes it stick to the 
-       bottom of the *parent positioned element* (.phone-frame). */
-    position: absolute; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%; /* Ensures it spans the full width of the frame */
-    
-    height: 60px; 
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start; /* Aligns content better with padding-bottom */
-    
-    background: white; /* Use a solid background color */
-    border-top: 1px solid var(--color-border);
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    
-    z-index: 10; 
-    
-    padding-top: 5px; 
-    padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
-}
+        .collector-nav-bar {
+            /* CRITICAL FIX: position: absolute makes it stick to the 
+            bottom of the *parent positioned element* (.phone-frame). */
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
 
-.collector-nav-bar a {
-    color: var(--color-text-light);
-    text-decoration: none;
-    font-size: 0.8em;
-    text-align: center;
-    font-weight: 500;
-    padding: 5px;
-    border-radius: 5px;
-    flex-grow: 1;
-    display: block; 
-}
+        .collector-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
 
-.collector-nav-bar a.active {
-    color: var(--color-primary);
-    font-weight: 700;
-}
+        .collector-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
 
 /* ==========================================================
    3. CONTENT SCROLLING FIX
    ========================================================== */
 
-.phone-frame .content {
-    /* CRITICAL FIX: Calculates scrollable area.
-       50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
-    height: calc(100% - 120px); 
-    padding-top: 15px;
-    /* Allows content inside to scroll independently */
-    overflow-y: auto; 
-}
+        .phone-frame .content {
+            /* CRITICAL FIX: Calculates scrollable area.
+            50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
+            box-sizing: border-box;
+            height: calc(100% - 125px); 
+            padding: 0 20px 20px 20px;
+            /* Allows content inside to scroll independently */
+            overflow-y: auto; 
+            margin-top: 0;
+        }
 
 /* ==========================================================
    4. HEADER STYLES (For completeness)
    ========================================================== */
 
-.screen-header-redesigned {
-    background-color: var(--color-primary); 
-    color: white;
-    padding: 10px 20px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+        .screen-header-redesigned {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+           
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title{
+            margin:0 auto;
+            text-align: center;
+            font-weight: 700;
+        }
+
         /* --- Page Specific Styles --- */
         .task-filter-header {
             display: flex;
@@ -108,7 +119,7 @@
             margin-bottom: 10px;
         }
         .task-list-card {
-            padding: 15px;
+            padding: 15px 15px 15px 20px;
             margin-bottom: 15px;
             cursor: pointer;
             border-left: 5px solid var(--color-secondary); 
@@ -135,8 +146,8 @@
     <div class="phone-frame" id="collector-tasks">
         
         <div class="screen-header-redesigned">
-            <a href="collector-dashboard.html" style="color: white; text-decoration: none;">←</a>
-            <span style="flex-grow: 1; text-align: center;">Pickup Logistics</span>
+            <a href="collector-dashboard.html" style="color: white; text-decoration: none; width: 20px;">←</a>
+            <span class="header-title">Pickup Logistics</span>
             <span style="width: 20px;"></span>
         </div>
 
@@ -155,7 +166,7 @@
 
             <h5 style="color: var(--color-text-dark);">Your Accepted Pickups (3)</h5>
             
-            <a href="task-details.html" class="card task-list-card accepted" style="text-decoration: none; color: inherit;">
+            <a href="task-details.html" class="card task-list-card " style="text-decoration: none; color: inherit;">
                 <h5>#8372: Residential Pickup</h5>
                 <div class="task-meta">
                     <div>Time: **10:45 AM - 11:45 AM** (Today)</div>
