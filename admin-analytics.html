@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Analytics</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- ADMIN INTERFACE SHARED STYLES --- */
+        .admin-header {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: sticky; top: 0; z-index: 10;
+        }
+       .admin-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .admin-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .admin-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
+
+        .phone-frame .content {
+            height: calc(100% - 160px); 
+            padding-top: 15px;
+           
+            overflow-y: auto; 
+            padding-bottom: 15px; 
+        }
+        .chart-placeholder {
+            height: 150px;
+            background-color: var(--color-primary-bg); /* Uses light green background */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary); /* Uses main green color */
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        
+        <div class="admin-header">
+            <a href="admin-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">Analytics & Reporting</span>
+            <span></span>
+        </div>
+        
+        <div class="content">
+
+            <h4 style="color: var(--color-primary); margin-top: 0;">Financial Health</h4>
+            <div class="chart-placeholder">
+                [Revenue Trend Line Chart]
+            </div>
+            
+            <h4 style="color: var(--color-primary);">Recycling Volume (by Material)</h4>
+            <div class="chart-placeholder" style="background-color: var(--color-secondary-bg); color: var(--color-secondary);">
+                [Volume Bar Chart: PET, Paper, Glass]
+            </div>
+
+            <h4 style="color: var(--color-primary);">User Engagement</h4>
+            <div class="chart-placeholder" style="background-color: var(--color-primary-bg); color: var(--color-primary); margin-bottom: 100px;">
+                [Active Users vs. Total Users]
+            </div>
+
+        </div>
+        
+        <div class="admin-nav-bar">
+            <a href="admin-dashboard.html" class="active"><span>📊</span>Dashboard</a>
+            <a href="admin-user-management.html"><span>👤</span>Users</a>
+            <a href="admin-tracking.html"><span>🗺️</span>Track</a>
+            <a href="admin-rates.html"><span>⚙️</span>Settings</a>
+            <a href="admin-profile.html"><span>👑</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Factory Dashboard</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- NEW Collector/Factory Header Styles for Logo --- */
+          .screen-header-redesigned {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .header-logo-group {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        .header-logo-group img {
+            height: 25px; 
+            width: 25px;
+            border-radius: 50%; 
+            margin-right: 8px;
+            border: 1px solid white; 
+        }
+
+        /* notification */
+
+        .notification-icon-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none; 
+        }
+
+        .my-fixed-img {
+            margin-top: 7.5px;
+            height: 24px; 
+            width: 24px;
+        }
+
+        /* --- Search Bar Styling --- */
+        .search-container {
+        padding: 8px 20px;
+        background-color: #e9ffd5; 
+        position: sticky;
+        top: 50px;
+        z-index: 9;
+        }
+
+        /* This is the new wrapper for the entire search bar */
+        .search-bar-rounded {
+        display: flex;
+        align-items: center;
+        border-radius: 50px;
+        border: 1px solid #047857; 
+        overflow: hidden; 
+        height: 40px; 
+        }
+
+        /* Styling for the input field */
+        .search-bar-rounded input {
+        padding: 8px 15px; 
+        border: none; /* Crucial: Remove the individual input border */
+        flex-grow: 1;
+        font-size: 1.1em; 
+        margin: 0;
+        height: 100%;
+        }
+
+        /* Styling for the button */
+        .search-btn-right {
+        background-color: #047857;
+        color: white;
+        padding: 0 15px; 
+        border: none; /* Crucial: Remove the individual button border */
+        border-radius: 0;
+        cursor: pointer;
+        line-height: 1;
+        height: 100%; /* Ensure button fills the height of the bar */
+
+        font-size: 0; 
+        text-indent: -9999px; 
+        overflow: hidden;
+
+        background-image: url(img/search.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 65%;
+        background-color: #047857;
+        }
+
+        /* To ensure the input placeholder text looks good */
+        .search-bar-rounded input::placeholder {
+            color: #999;
+            font-size: 0.85em;
+        }
+        
+        /* Collector Nav Bar Styling */
+        
+        /* ==========================================================
+            1. PARENT CONTEXT FIX: .phone-frame
+            ========================================================== */
+
+        .phone-frame {
+            position: relative; 
+            /* The rest of your phone-frame styling (height, width, etc.) 
+            must be defined elsewhere or inline. */
+            height: 100vh; /* Assuming the frame takes up the viewport height */
+            overflow: hidden; /* Ensures nothing spills out of the frame */
+        }
+
+
+        /* ==========================================================
+        2. COLLECTOR NAVIGATION BAR STYLING
+        ========================================================== */
+        .factory-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .factory-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .factory-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
+
+        .phone-frame .content {
+            height: calc(100% - 160px); 
+            padding-top: 15px;
+           
+            overflow-y: auto; 
+            padding-bottom: 15px; 
+        }
+        /* --- Page Specific Styles --- */
+        .factory-metric {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--color-success-bg);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-primary);
+        }
+        .factory-metric h2 {
+            margin: 0 0 5px 0;
+            color: var(--color-primary);
+            font-size: 2.2em;
+        }
+        .factory-metric p {
+            color: var(--color-text-dark);
+            margin: 0;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        /* Style for the search input to fit the dashboard context */
+        .phone-frame input[type="text"] {
+            width: 93%;
+            margin: 0 10px 15px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="factory-dashboard">
+        
+        <div class="screen-header-redesigned">
+            <div class="header-logo-group">
+                <img src="img/trashifylogo.png" alt="Logo">
+                Trashify
+            </div>
+            <a href="notifications.html">
+                <img src="img/notifications.png" alt="Notifications" class="my-fixed-img">
+            </a>
+        </div>
+        
+        <div class="search-container"> 
+            <div class="search-bar-rounded">
+                <input type="text" placeholder="Search tasks, locations, or payouts...">
+                <button class="search-btn-right"></button>
+            </div>
+        </div>
+        
+        <div class="content">
+                        
+            <h4 style="margin-top: 20px; color: var(--color-secondary);">Today's Supply Status</h4>
+            <div class="grid-2-col">
+                <div class="factory-metric">
+                    <h2>850 kg</h2>
+                    <p>Expected Delivery</p>
+                </div>
+                <div class="factory-metric">
+                    <h2>$0.15 / kg</h2>
+                    <p>Plastic Purchase Price</p>
+                </div>
+            </div>
+
+            <h4 style="color: var(--color-primary);">Core Management Tasks</h4>
+            
+            <div class="grid-2-col" style="gap: 20px;">
+                
+                <a href="factory-deliveries.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                    <p style="color: var(--color-primary);">🚚</p>
+                    <span style="color: var(--color-primary);">Verify Deliveries</span>
+                </a>
+                
+                <a href="factory-pricing.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                    <p style="color: var(--color-primary);">💲</p>
+                    <span style="color: var(--color-primary);">Pricing Management</span>
+                </a>
+
+                 <a href="factory-reports.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                    <p style="color: var(--color-primary);">📈</p>
+                    <span style="color: var(--color-primary);">Supply & Analytics</span>
+                </a>
+                
+                <a href="factory-payouts.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                    <p style="color: var(--color-primary);">🏦</p>
+                    <span style="color: var(--color-primary);">Commission Payouts</span>
+                </a>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">Recent Delivery Alerts</h4>
+            <div class="card">
+                <p style="margin: 0; font-weight: 600;">Delivery #2035 from Truck 4 (15:00)</p>
+                <small style="color: var(--color-text-light);">Expected: 300 kg Mixed Paper | Status: Awaiting weigh-in verification.</small>
+                <div style="text-align: right; margin-top: 10px;">
+                    <a href="factory-deliveries.html" class="link-text">View Details &rarr;</a>
+                </div>
+            </div>
+            
+            <div style="height: 30px;"></div>
+        </div>
+        
+        <div class="factory-nav-bar">
+            <a href="factory-dashboard.html" class="active"><span>🏠</span>Dashboard</a>
+            <a href="factory-deliveries.html"><span>🚚</span>Deliveries</a>
+            <a href="factory-pricing.html"><span>💲</span>Pricing</a>
+            <a href="factory-reports.html"><span>📈</span>Reports</a>
+            <a href="factory-profile.html"><span>👤</span>Profile</a>
+
+        </div>
+    </div>
+
+</body>
+</html>

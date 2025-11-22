@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+       /* --- Shared Design Elements for Collector Screens --- */
+        .screen-header-redesigned {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .header-logo-group {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        .header-logo-group img {
+            height: 25px; 
+            width: 25px;
+            border-radius: 50%; 
+            margin-right: 8px;
+            border: 1px solid white; 
+        }
+
+        /* notification */
+
+        .notification-icon-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none; 
+        }
+
+        .my-fixed-img {
+            margin-top: 7.5px;
+            height: 24px; 
+            width: 24px;
+        }
+
+        /* --- Search Bar Styling --- */
+        .search-container {
+        padding: 8px 20px;
+        background-color: #e9ffd5; 
+        position: sticky;
+        top: 50px;
+        z-index: 9;
+        }
+
+        /* This is the new wrapper for the entire search bar */
+        .search-bar-rounded {
+        display: flex;
+        align-items: center;
+        border-radius: 50px;
+        border: 1px solid #047857; 
+        overflow: hidden; 
+        height: 40px; 
+        }
+
+        /* Styling for the input field */
+        .search-bar-rounded input {
+        padding: 8px 15px; 
+        border: none; /* Crucial: Remove the individual input border */
+        flex-grow: 1;
+        font-size: 1.1em; 
+        margin: 0;
+        height: 100%;
+        }
+
+        /* Styling for the button */
+        .search-btn-right {
+        background-color: #047857;
+        color: white;
+        padding: 0 15px; 
+        border: none; /* Crucial: Remove the individual button border */
+        border-radius: 0;
+        cursor: pointer;
+        line-height: 1;
+        height: 100%; /* Ensure button fills the height of the bar */
+
+        font-size: 0; 
+        text-indent: -9999px; 
+        overflow: hidden;
+
+        background-image: url(img/search.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 65%;
+        background-color: #047857;
+        }
+
+        /* To ensure the input placeholder text looks good */
+        .search-bar-rounded input::placeholder {
+            color: #999;
+            font-size: 0.85em;
+        }
+        
+        /* Collector Nav Bar Styling */
+        
+        /* ==========================================================
+            1. PARENT CONTEXT FIX: .phone-frame
+            ========================================================== */
+
+        .phone-frame {
+            position: relative; 
+            /* The rest of your phone-frame styling (height, width, etc.) 
+            must be defined elsewhere or inline. */
+            height: 100vh; /* Assuming the frame takes up the viewport height */
+            overflow: hidden; /* Ensures nothing spills out of the frame */
+        }
+
+
+        /* ==========================================================
+        2. COLLECTOR NAVIGATION BAR STYLING
+        ========================================================== */
+        .admin-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .admin-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .admin-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
+
+        .phone-frame .content {
+            height: calc(100% - 160px); 
+            padding-top: 15px;
+           
+            overflow-y: auto; 
+            padding-bottom: 15px; 
+        }
+
+        /* --- DASHBOARD SPECIFIC STYLES --- */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .metric-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-bottom: 4px solid var(--color-admin-primary);
+        }
+        .metric-card strong {
+            display: block;
+            font-size: 1.8em;
+            color: var(--color-admin-primary);
+            margin-bottom: 5px;
+        }
+        .metric-card small {
+            color: var(--color-text-light);
+            font-weight: 600;
+        }
+        .alert-card {
+            background-color: var(--color-danger-bg);
+            border-left: 4px solid var(--color-danger);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .alert-card a {
+            color: var(--color-danger);
+            font-weight: 600;
+        }
+        .quick-link-item {
+            padding: 12px 0; 
+            border-bottom: 1px solid var(--color-border);
+            text-decoration: none; 
+            color: var(--color-text-dark); 
+            font-weight: 600; 
+            display: flex; 
+            justify-content: space-between; 
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="admin-dashboard-screen">
+
+        
+        <div class="screen-header-redesigned">
+            <div class="header-logo-group">
+                <img src="img/trashifylogo.png" alt="Logo">
+                Trashify Admin
+            </div>
+            <a href="notifications.html">
+                <img src="img/notifications.png" alt="Notifications" class="my-fixed-img">
+            </a>
+        </div>
+        
+        <div class="search-container"> 
+            <div class="search-bar-rounded">
+                <input type="text" placeholder="Search tasks, locations, or payouts...">
+                <button class="search-btn-right"></button>
+            </div>
+        </div>
+        
+       
+        <div class="content">
+            
+            <h4 style="color: var(--color-admin-primary); margin-top: 0;">Action Required (4)</h4>
+            
+            <a href="admin-approvals.html" class="alert-card" style="text-decoration: none; display: block;">
+                <p style="margin: 0; font-weight: 700; color: var(--color-danger);">New Approvals Pending</p>
+                <small style="display: block; color: var(--color-text-dark);">2 Collectors & 2 Factories require review.</small>
+            </a>
+
+            <a href="admin-rates.html" class="alert-card" style="background-color: #fffbeb; border-left: 4px solid #f59e0b; text-decoration: none; display: block;">
+                <p style="margin: 0; font-weight: 700; color: #f59e0b;">Pricing Alert</p>
+                <small style="display: block; color: var(--color-text-dark);">PET Plastic price changed from $0.50/kg to $0.55/kg.</small>
+            </a>
+
+
+            <h4 style="color: var(--color-admin-primary); margin-top: 30px;">System Overview (24h)</h4>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <strong>$1,850</strong>
+                    <small>Total Revenue (Fee)</small>
+                </div>
+                <div class="metric-card">
+                    <strong>45</strong>
+                    <small>Total Deliveries</small>
+                </div>
+                <div class="metric-card" style="border-bottom: 4px solid var(--color-success);">
+                    <strong>+21</strong>
+                    <small>New Users</small>
+                </div>
+                <div class="metric-card" style="border-bottom: 4px solid var(--color-secondary);">
+                    <strong>15 TONS</strong>
+                    <small>Waste Recycled</small>
+                </div>
+            </div>
+
+            <h4 style="color: var(--color-admin-primary); margin-top: 30px;">Reports & Management</h4>
+            <div class="card" style="margin-bottom: 100px;">
+                <ul class="settings-list" style="list-style: none; padding: 0;">
+                    <li style="border-bottom: 1px solid var(--color-border);"><a href="admin-approvals.html" class="quick-link-item">Pending Approvals <span style="color: var(--color-text-light);">→</span></a></li>
+                    <li style="border-bottom: 1px solid var(--color-border);"><a href="admin-analytics.html" class="quick-link-item">View System Analytics <span style="color: var(--color-text-light);">→</span></a></li>
+                    <li style="border-bottom: 1px solid var(--color-border);"><a href="admin-tracking.html" class="quick-link-item">Live Logistics Tracking <span style="color: var(--color-text-light);">→</span></a></li>
+                    <li><a href="admin-promotions.html" class="quick-link-item">Manage Promotions & Rewards <span style="color: var(--color-text-light);">→</span></a></li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="admin-nav-bar">
+            <a href="admin-dashboard.html" class="active"><span>📊</span>Dashboard</a>
+            <a href="admin-user-management.html"><span>👤</span>Users</a>
+            <a href="admin-tracking.html"><span>🗺️</span>Track</a>
+            <a href="admin-rates.html"><span>⚙️</span>Settings</a>
+            <a href="admin-profile.html"><span>👑</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

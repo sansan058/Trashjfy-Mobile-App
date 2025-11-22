@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Pending Approvals</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- ADMIN INTERFACE SHARED STYLES --- */
+        .admin-header {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: sticky; top: 0; z-index: 10;
+        }
+       .admin-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .admin-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .admin-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
+
+        .phone-frame .content {
+            height: calc(100% - 160px); 
+            padding-top: 15px;
+           
+            overflow-y: auto; 
+            padding-bottom: 15px; 
+        }
+        .approval-item {
+            padding: 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        
+        <div class="admin-header">
+            <a href="admin-user-management.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">Pending Approvals (4)</span>
+            <span></span>
+        </div>
+        
+        <div class="content">
+            
+            <h4 style="color: var(--color-primary); margin-top: 0;">New Factory Partner</h4>
+            <div class="approval-item">
+                <strong style="display: block; color: var(--color-primary);">EcoSort Inc.</strong>
+                <small>Role: Factory Partner | Applied: 2 hours ago</small>
+                <div class="action-buttons">
+                    <button class="btn-primary" style="background-color: var(--color-success); flex-grow: 1;">Approve</button>
+                    <button class="btn-secondary" style="background-color: var(--color-danger); color: white; flex-grow: 1;">Reject</button>
+                </div>
+            </div>
+
+            <h4 style="color: var(--color-primary);">New Collector Applications (3)</h4>
+            <div class="approval-item">
+                <strong style="display: block; color: var(--color-secondary);">Maria A.</strong>
+                <small>Role: Logistics Collector | Applied: 4 hours ago</small>
+                <div class="action-buttons">
+                    <button class="btn-primary" style="background-color: var(--color-success); flex-grow: 1;">Approve</button>
+                    <button class="btn-secondary" style="background-color: var(--color-danger); color: white; flex-grow: 1;">Reject</button>
+                </div>
+            </div>
+            
+            <div class="approval-item" style="margin-bottom: 100px;">
+                <strong style="display: block; color: var(--color-secondary);">Trucking Co. #34</strong>
+                <small>Role: Logistics Collector | Applied: 1 day ago</small>
+                <div class="action-buttons">
+                    <button class="btn-primary" style="background-color: var(--color-success); flex-grow: 1;">Approve</button>
+                    <button class="btn-secondary" style="background-color: var(--color-danger); color: white; flex-grow: 1;">Reject</button>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="admin-nav-bar">
+            <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
+            <a href="admin-user-management.html" class="active"><span>👤</span>Users</a>
+            <a href="admin-tracking.html"><span>🗺️</span>Track</a>
+            <a href="admin-rates.html"><span>⚙️</span>Settings</a>
+            <a href="admin-profile.html"><span>👑</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

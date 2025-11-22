@@ -1,5 +1,3 @@
-<!-- DONE -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Register</title>
     <link rel="stylesheet" href="css/app.css"> 
+    <style>
+        /* Styles for the custom select component */
+        .custom-select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .custom-select {
+            position: relative;
+            cursor: pointer;
+            width: 100%;
+        }
+        .custom-select-trigger {
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: white;
+            text-align: left;
+            position: relative;
+        }
+        .custom-select-trigger:after {
+            content: '▼';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: var(--color-text-light);
+            transition: transform 0.2s;
+        }
+        .custom-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid var(--color-border);
+            border-top: none;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 5;
+            max-height: 200px; /* Increased max-height for 4 items */
+            overflow-y: auto;
+            transition: max-height 0.3s ease-out;
+        }
+        .custom-options.open {
+            max-height: 200px;
+        }
+        .custom-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            display: block;
+            text-align: left;
+        }
+        .custom-option:hover {
+            background-color: #f3f4f6;
+        }
+        .custom-option.selected {
+            background-color: var(--color-primary-bg);
+            font-weight: 600;
+        }
+        .signup-container {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .signup-container input {
+            width: 95%;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,93 +86,117 @@
                 Trashify
             </div>
             <h3 style="text-align: center; margin-bottom: 20px; color: #047857;">Create Your Account</h3>
-            <input type="text" placeholder="Full Name">
-            <input type="email" placeholder="Email Address">
-            <input type="text" placeholder="Phone Number">
-            <input type="password" id="reg-password" placeholder="Password (min 8 chars)">
-            <input type="text" id="reg-address" placeholder="Residential Address">
+            
+            <form class="signup-container">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Phone Number" required>
+                <input type="password" id="reg-password" placeholder="Password (min 8 chars)" required>
+                <input type="text" id="reg-address" placeholder="Residential Address" required>
 
-            <label for="reg-role" style="display:block; margin:12px 0 6px; font-weight:600; color: #047857;">Account Type</label>
-            <div class="custom-select-wrapper">
-                <div class="custom-select">
-                    <div class="custom-select-trigger">User</div>
-                    <div class="custom-options">
-                    <span class="custom-option selected" data-value="User">User</span>
-                    <span class="custom-option" data-value="Collector / Factory">Collector / Factory</span>
+                <label for="reg-role" style="display:block; margin:12px 0 6px; font-weight:600; color: #047857;">Account Type</label>
+                <div class="custom-select-wrapper">
+                    <div class="custom-select">
+                        <div class="custom-select-trigger">User (Individual Recycler)</div>
+                        <div class="custom-options">
+                        <span class="custom-option selected" data-value="User">User</span>
+                        <span class="custom-option" data-value="Collector">Collector</span>
+                        <span class="custom-option" data-value="Factory">Factory</span>
+                        <span class="custom-option" data-value="Admin">Admin</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Hidden actual select for forms -->
-            <select name="accountType" id="accountType" style="display:none;">
-            <option value="User" selected>User</option>
-            <option value="Collector / Factory">Collector / Factory</option>
-            </select>
+                <select name="accountType" id="accountType" style="display:none;">
+                <option value="User" selected>User</option>
+                <option value="Collector">Collector</option>
+                <option value="Factory">Factory</option>
+                <option value="Admin">Admin</option>
+                </select>
 
 
-            <div class="center-container">
-                <button id="register-btn" class="btn-primary" style="border:none; cursor:pointer;">Register</button>
-            </div>
-            <p class="link"> Already have an account?
+                <div class="center-container" style="margin-top: 30px;">
+                    <button id="register-btn" class="btn-primary" type="submit" style="border:none; cursor:pointer;">Register</button>
+                </div>
+            </form>
+            
+            <p class="link" style="text-align: center; margin-top: 20px;"> Already have an account?
                 <a href="login.html" class="link-text"> Sign In</a>
             </p>
         </div>
     </div>
 
-        <script>
-            // Custom select functionality
-            const customSelect = document.querySelector('.custom-select');
-            const customTrigger = document.querySelector('.custom-select-trigger');
-            const customOptions = document.querySelector('.custom-options');
-            const customOptionItems = document.querySelectorAll('.custom-option');
-            let selectedValue = 'User'; // default
+    <script>
+        // Custom select functionality
+        const customSelect = document.querySelector('.custom-select');
+        const customTrigger = document.querySelector('.custom-select-trigger');
+        const customOptions = document.querySelector('.custom-options');
+        const customOptionItems = document.querySelectorAll('.custom-option');
+        let selectedValue = 'User'; // default
 
-            // Toggle dropdown on trigger click
-            customTrigger.addEventListener('click', function (e) {
+        // Initialize trigger text
+        customTrigger.textContent = customOptionItems[0].textContent;
+
+        // Toggle dropdown on trigger click
+        customTrigger.addEventListener('click', function (e) {
+            e.stopPropagation();
+            customOptions.classList.toggle('open');
+            customTrigger.classList.toggle('active');
+        });
+
+        // Handle option selection
+        customOptionItems.forEach(option => {
+            option.addEventListener('click', function (e) {
                 e.stopPropagation();
-                customOptions.classList.toggle('open');
+                const value = this.getAttribute('data-value');
+                selectedValue = value;
+
+                // Update trigger text
+                customTrigger.textContent = this.textContent;
+
+                // Update selected state
+                customOptionItems.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+
+                // Close dropdown
+                customOptions.classList.remove('open');
+                customTrigger.classList.remove('active');
+
+                // Update hidden select
+                document.getElementById('accountType').value = value;
             });
+        });
 
-            // Handle option selection
-            customOptionItems.forEach(option => {
-                option.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    const value = this.getAttribute('data-value');
-                    selectedValue = value;
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!customSelect.contains(e.target)) {
+                customOptions.classList.remove('open');
+                customTrigger.classList.remove('active');
+            }
+        });
 
-                    // Update trigger text (remove the arrow)
-                    customTrigger.textContent = value;
-
-                    // Update selected state
-                    customOptionItems.forEach(opt => opt.classList.remove('selected'));
-                    this.classList.add('selected');
-
-                    // Close dropdown
-                    customOptions.classList.remove('open');
-
-                    // Update hidden select
-                    document.getElementById('accountType').value = value;
-                });
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function (e) {
-                if (!customSelect.contains(e.target)) {
-                    customOptions.classList.remove('open');
-                }
-            });
-
-            // Register button click handler
-            document.getElementById('register-btn').addEventListener('click', function (e) {
-                e.preventDefault();
-                // Redirect based on selectedValue
-                if (selectedValue.toLowerCase().includes('factory') || selectedValue.toLowerCase().includes('collector')) {
-                    window.location.href = 'factory-login.html';
-                } else {
+        // Register button click handler
+        document.getElementById('register-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            // Redirect based on selectedValue (to the respective login/application page)
+            switch(selectedValue) {
+                case 'User':
+                    window.location.href = 'user-login.html'; // Assuming immediate login possible
+                    break;
+                case 'Collector':
+                    window.location.href = 'collector-login.html'; // Application/Approval required
+                    break;
+                case 'Factory':
+                    window.location.href = 'factory-login.html'; // Application/Approval required
+                    break;
+                case 'Admin':
+                    window.location.href = 'admin-login.html'; // Admin accounts created by management
+                    break;
+                default:
                     window.location.href = 'user-login.html';
-                }
-            });
-        </script>
+            }
+        });
+    </script>
 
 </body>
 </html>

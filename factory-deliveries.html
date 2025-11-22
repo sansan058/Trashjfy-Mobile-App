@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Verify Deliveries</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- Factory Interface Shared Styles (Standardized) --- */
+        .factory-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .factory-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .factory-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+        /* Content height calculation: 50px header + ~60px nav = 110px */
+        .phone-frame .content {
+            height: calc(100% - 110px); 
+            padding-top: 15px;
+            overflow-y: auto;
+        }
+        /* --- Page Specific Styles --- */
+        .delivery-list-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--color-primary);
+        }
+        .delivery-list-item.verified {
+            border-left: 4px solid var(--color-success-bg); /* Using primary bg color for contrast */
+            opacity: 0.8;
+        }
+        .delivery-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delivery-info strong {
+            display: block;
+            font-size: 1.1em;
+            color: var(--color-text-dark);
+        }
+        .delivery-status {
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+        .delivery-list-item.verified .delivery-status {
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        <div class="screen-header">
+            <a href="factory-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">Delivery Verification</span>
+            <span></span>
+        </div>
+        <div class="content">
+            <h4 style="color: var(--color-primary); margin-top: 0;">Pending Verification (FR-FAC-001)</h4>
+            
+            <div class="delivery-list-item">
+                <div class="delivery-info">
+                    <div>
+                        <strong>#2035: Truck 4 (Central)</strong>
+                        <small style="color: var(--color-text-light);">Expected: 300 kg Mixed Paper</small>
+                    </div>
+                    <span class="delivery-status">Awaiting Input</span>
+                </div>
+                <div style="margin-top: 10px; text-align: right;">
+                    <button class="btn-primary" style="padding: 8px 15px; font-size: 0.9em;">Verify Weight & Approve</button>
+                </div>
+            </div>
+            
+            <div class="delivery-list-item">
+                <div class="delivery-info">
+                    <div>
+                        <strong>#2036: Truck 1 (North)</strong>
+                        <small style="color: var(--color-text-light);">Expected: 150 kg Plastic Bottles</small>
+                    </div>
+                    <span class="delivery-status">Awaiting Input</span>
+                </div>
+                <div style="margin-top: 10px; text-align: right;">
+                    <button class="btn-primary" style="padding: 8px 15px; font-size: 0.9em;">Verify Weight & Approve</button>
+                </div>
+            </div>
+
+            <h4 style="color: var(--color-secondary); margin-top: 30px;">Recently Verified</h4>
+            
+            <div class="delivery-list-item verified">
+                <div class="delivery-info">
+                    <div>
+                        <strong>#2034: Truck 3 (East)</strong>
+                        <small style="color: var(--color-text-light);">Verified: 120 kg E-Waste</small>
+                    </div>
+                    <span class="delivery-status">Approved</span>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="factory-nav-bar">
+            <a href="factory-dashboard.html"><span>🏠</span>Dashboard</a>
+            <a href="factory-deliveries.html" class="active"><span>🚚</span>Deliveries</a>
+            <a href="factory-pricing.html"><span>💲</span>Pricing</a>
+            <a href="factory-reports.html"><span>📈</span>Reports</a>
+            <a href="factory-profile.html"><span>👤</span>Profile</a>
+
+        </div>
+    </div>
+
+</body>
+</html>

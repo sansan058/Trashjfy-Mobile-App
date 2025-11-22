@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - User Management</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- ADMIN INTERFACE SHARED STYLES --- */
+        .admin-header {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: sticky; top: 0; z-index: 10;
+        }
+        .admin-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .admin-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .admin-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
+
+        .phone-frame .content {
+            height: calc(100% - 160px); 
+            padding-top: 15px;
+           
+            overflow-y: auto; 
+            padding-bottom: 15px; 
+        }
+        .user-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .quick-link-item {
+            padding: 12px 0; 
+            border-bottom: 1px solid var(--color-border);
+            text-decoration: none; 
+            color: var(--color-text-dark); 
+            font-weight: 600; 
+            display: flex; 
+            justify-content: space-between; 
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        
+        <div class="admin-header">
+            <a href="admin-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">User Management</span>
+            <span></span>
+        </div>
+        
+        <div class="content">
+            
+            <a href="admin-approvals.html" class="btn-primary" style="background-color: var(--color-danger); margin-bottom: 25px; text-decoration: none; text-align: center; display: block;">
+                4 Pending Approvals (Collectors/Factories)
+            </a>
+
+            <h4 style="color: var(--color-primary);">Quick Filters</h4>
+            <div class="card" style="display: flex; justify-content: space-between; margin-bottom: 25px;">
+                <button class="btn-secondary" style="background-color: var(--color-primary-bg);">Users (2.5K)</button>
+                <button class="btn-secondary">Collectors (120)</button>
+                <button class="btn-secondary">Factories (15)</button>
+            </div>
+
+            <h4 style="color: var(--color-primary);">User List</h4>
+            <div class="card" style="margin-bottom: 100px;">
+                <ul class="user-list" style="list-style: none; padding: 0;">
+                    <li>
+                        <div>
+                            <strong style="display: block;">Alice Johnson</strong>
+                            <small>Recycling User - 500 Pts</small>
+                        </div>
+                        <span style="color: var(--color-text-light);">→</span>
+                    </li>
+                    <li>
+                        <div>
+                            <strong style="display: block;">Truck 001 (R. Patel)</strong>
+                            <small style="color: var(--color-secondary);">Logistics Collector - Active</small>
+                        </div>
+                        <span style="color: var(--color-text-light);">→</span>
+                    </li>
+                    <li style="border-bottom: none;">
+                        <div>
+                            <strong style="display: block;">GreenFlow Facility</strong>
+                            <small style="color: var(--color-primary);">Factory Partner - PET Focus</small>
+                        </div>
+                        <span style="color: var(--color-text-light);">→</span>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="admin-nav-bar">
+            <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
+            <a href="admin-user-management.html" class="active"><span>👤</span>Users</a>
+            <a href="admin-tracking.html"><span>🗺️</span>Track</a>
+            <a href="admin-rates.html"><span>⚙️</span>Settings</a>
+            <a href="admin-profile.html"><span>👑</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

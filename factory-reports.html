@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Supply Analytics</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- Factory Interface Shared Styles (Standardized) --- */
+         .factory-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .factory-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .factory-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+        /* Content height calculation: 50px header + ~60px nav = 110px */
+        .phone-frame .content {
+            height: calc(100% - 110px); 
+            padding-top: 15px;
+            overflow-y: auto;
+        }
+        /* --- Page Specific Styles --- */
+        .report-metric {
+            text-align: center;
+            padding: 10px;
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+        .report-metric h3 {
+            margin: 0 0 5px 0;
+            color: var(--color-secondary);
+            font-size: 1.8em;
+        }
+        .report-metric p {
+            color: var(--color-text-light);
+            margin: 0;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        <div class="screen-header">
+            <a href="factory-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">Supply & Analytics</span>
+            <span></span>
+        </div>
+        <div class="content">
+            <h4 style="color: var(--color-primary); margin-top: 0;">Monthly Supply Overview</h4>
+            
+            <div class="card" style="padding: 15px;">
+                <div class="grid-2-col" style="gap: 10px;">
+                    <div class="report-metric">
+                        <h3>18.2 T</h3>
+                        <p>Total Incoming Supply</p>
+                    </div>
+                    <div class="report-metric">
+                        <h3>+12%</h3>
+                        <p>Vs. Last Month</p>
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">Material Breakdown (FR-FAC-003)</h4>
+            <div class="card" style="text-align: center; height: 180px;">
+                [Chart Placeholder: Pie Chart of Material Mix]
+            </div>
+
+            <h4 style="color: var(--color-primary);">Supply Reliability</h4>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; padding: 5px 0;">
+                    <span>Verification Success Rate:</span>
+                    <strong>98.5%</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 5px 0;">
+                    <span>Trucks Delivered On-Time:</span>
+                    <strong>95%</strong>
+                </div>
+                <hr style="margin: 10px 0;">
+                <p style="font-size: 0.9em; color: var(--color-text-light);">
+                    Data sourced from over 5,000 household pickups this month.
+                </p>
+            </div>
+            
+            <a href="download-report.pdf" class="btn-secondary" style="margin-top: 20px; text-decoration: none; text-align: center; display: block;">
+                Download Full Report (PDF)
+            </a>
+            
+        </div>
+        
+        <div class="factory-nav-bar">
+            <a href="factory-dashboard.html"><span>🏠</span>Dashboard</a>
+            <a href="factory-deliveries.html"><span>🚚</span>Deliveries</a>
+            <a href="factory-pricing.html"><span>💲</span>Pricing</a>
+            <a href="factory-reports.html" class="active"><span>📈</span>Reports</a>
+            <a href="factory-profile.html"><span>👤</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

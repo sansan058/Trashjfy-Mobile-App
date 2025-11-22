@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashify - Commission Payouts</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+        /* --- Factory Interface Shared Styles (Standardized) --- */
+         .factory-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
+
+        .factory-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
+
+        .factory-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+        /* Content height calculation: 50px header + ~60px nav = 110px */
+        .phone-frame .content {
+            height: calc(100% - 110px); 
+            padding-top: 15px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        <div class="screen-header">
+            <a href="factory-dashboard.html" style="color: white; text-decoration: none;">←</a>
+            <span style="flex-grow: 1; text-align: center;">Trashify Commission</span>
+            <span></span>
+        </div>
+        <div class="content">
+            <h4 style="color: var(--color-primary); margin-top: 0;">Outstanding Balance (FR-FAC-004)</h4>
+            
+            <div class="card" style="text-align: center; background-color: var(--color-success-bg);">
+                <p style="margin: 0; font-size: 1.1em;">Total Commission Due to Trashify:</p>
+                <h1 style="color: var(--color-secondary); margin: 5px 0 10px 0; font-size: 2.5em;">$1,250.00</h1>
+                <small>Based on 5% commission of verified material value.</small>
+            </div>
+
+            <h4 style="color: var(--color-secondary);">Payment History</h4>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; padding: 5px 0;">
+                    <span>**03 Nov 2025**</span>
+                    <strong style="color: var(--color-primary);">$980.50 (Paid)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 5px 0;">
+                    <span>**03 Oct 2025**</span>
+                    <strong style="color: var(--color-primary);">$1,100.00 (Paid)</strong>
+                </div>
+                <hr style="margin: 15px 0;">
+                <p style="text-align: center; font-size: 0.9em; color: var(--color-text-light);">
+                    Payments are processed monthly on the 3rd.
+                </p>
+            </div>
+
+            <button class="btn-primary" style="background-color: var(--color-secondary); margin-top: 20px;">
+                Make Payment Now
+            </button>
+            
+        </div>
+        
+        <div class="factory-nav-bar">
+            <a href="factory-dashboard.html" class="active"><span>🏠</span>Dashboard</a>
+            <a href="factory-deliveries.html"><span>🚚</span>Deliveries</a>
+            <a href="factory-pricing.html"><span>💲</span>Pricing</a>
+            <a href="factory-reports.html"><span>📈</span>Reports</a>
+            <a href="factory-profile.html"><span>👤</span>Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>
