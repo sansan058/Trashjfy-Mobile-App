@@ -9,8 +9,8 @@
          /* Collector Nav Bar Styling */
         
         /* ==========================================================
-   1. PARENT CONTEXT FIX: .phone-frame
-   ========================================================== */
+        1. PARENT CONTEXT FIX: .phone-frame
+        ========================================================== */
 
         .phone-frame {
             /* CRITICAL FIX: This makes the .phone-frame the reference point
@@ -71,9 +71,9 @@
             font-size: 1.5em; 
             margin-bottom: 3px;
         }
-/* ==========================================================
-   3. CONTENT SCROLLING FIX
-   ========================================================== */
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
 
         .phone-frame .content {
             /* CRITICAL FIX: Calculates scrollable area.
@@ -86,9 +86,9 @@
             margin-top: 0;
         }
 
-/* ==========================================================
-   4. HEADER STYLES (For completeness)
-   ========================================================== */
+        /* ==========================================================
+        4. HEADER STYLES (For completeness)
+        ========================================================== */
 
         .screen-header-redesigned {
             background-color: var(--color-primary); 
@@ -119,13 +119,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .task-list-card {
-            padding: 15px 15px 15px 20px;
-            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--color-primary);
+            padding: 15px 25px 15px 20px;
+            margin-bottom: 0px;
             cursor: pointer;
-            border-left: 5px solid var(--color-secondary); 
+            display: block;
+        }
+
+        .gigabox a:last-child{
+            border-bottom: none;
         }
         .task-list-card h5 {
             margin: 0 0 5px 0;
@@ -142,6 +147,29 @@
         .task-list-card.new {
             border-left-color: #94a3b8; 
         }
+
+        .box{
+            padding: 10px;
+            background-color: var(--color-primary);
+            border-radius: 8px;
+            margin-bottom: 0px;
+            margin-top: 0;
+        }
+
+        .gigabox{
+            border: 1px solid var(--color-primary);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            text-align: center;
+            background-color: white;
+        }   
+
+        .map-link-adjust{
+            position: relative;
+            top: -5px;
+            left: 10px
+        }
     </style>
 </head>
 <body>
@@ -156,7 +184,7 @@
 
         <div class="content">
             
-            <h4 style="color: var(--color-primary); margin-top: 0;">Available & Accepted Tasks</h4>
+            <h4 style="color: var(--color-primary); margin-top: 15px;">Available & Accepted Tasks</h4>
             
             <div class="task-filter-header">
                 <select style="padding: 5px; border-radius: 6px;">
@@ -164,43 +192,47 @@
                     <option>Filter: Available (New)</option>
                     <option>Filter: By Distance</option>
                 </select>
-                <a href="collector-route.html" class="link" style="color: var(--color-primary); margin: 0;">View Map 🗺️</a>
+                <a href="collector-route.html" class="link map-link-adjust" style="color: var(--color-primary); margin: 0; align-self: center;">View Map🗺️</a>
             </div>
 
-            <h5 style="color: var(--color-text-dark);">Your Accepted Pickups (3)</h5>
+            <h4 class="box" style="color: white;">Your Accepted Pickups (3)</h4>
             
-            <a href="task-details.html" class="card task-list-card " style="text-decoration: none; color: inherit;">
-                <h5>#8372: Residential Pickup</h5>
-                <div class="task-meta">
-                    <div>Time: **10:45 AM - 11:45 AM** (Today)</div>
-                    <div>Location: **123 Main St, Apt 4A**</div>
-                    <div>Est. Weight: **15 kg** | Commission: **$1.80**</div>
-                </div>
-            </a>
+            <div class="gigabox">
+                <a href="task-details.html" class="task-list-card" style="text-decoration: none;">
+                    <h5>#8372: Residential Pickup</h5>
+                    <div class="task-meta" >
+                        <div>Time: 10:45 AM - 11:45 AM (Today)</div>
+                        <div>Location: 123 Main St, Apt 4A</div>
+                        <div>Est. Weight: 15 kg | Commission: $1.80</div>
+                    </div>
+                </a>
+            
 
-            <a href="task-details.html" class="card task-list-card" style="border-left-color: #f59e0b; text-decoration: none; color: inherit;">
+            <a href="task-details.html" class="task-list-card" style="text-decoration: none;
+            margin-top: 0;">
                 <h5>#8373: Commercial E-Waste</h5>
                 <div class="task-meta">
-                    <div>Time: **1:00 PM - 2:00 PM** (Today)</div>
-                    <div>Location: **456 Commerce Blvd** (1.2 mi)</div>
-                    <div>Est. Weight: **50 kg** | Commission: **$5.50**</div>
+                    <div>Time: 1:00 PM - 2:00 PM (Today)</div>
+                    <div>Location: 456 Commerce Blvd (1.2 mi)</div>
+                    <div>Est. Weight: 50 kg | Commission: $5.50</div>
                 </div>
             </a>
-            
-            <h5 style="color: var(--color-text-dark); margin-top: 30px;">New Available Tasks (5)</h5>
+            </div>
 
-            <a href="task-details.html" class="card task-list-card new" style="text-decoration: none; color: inherit;">
-                <h5>#8377: Plastic & Cardboard</h5>
-                <div class="task-meta">
-                    <div>Time: **Tomorrow Morning** (7:00 AM)</div>
-                    <div>Location: **890 Green Street** (4.5 mi)</div>
-                    <div>Est. Weight: **8 kg** | Commission: **$0.90**</div>
-                </div>
-            </a>
-            
-            <a href="#" class="link" style="margin-top: 10px;">Load more available tasks...</a>
-            
-            <div style="height: 30px;"></div>
+            <h4 class="box"
+            style="color: white; margin-top: 5px;">New Available Tasks (5)</h4>
+
+            <div class="gigabox">
+                <a href="task-details.html" class="task-list-card new" style="text-decoration: none;">
+                    <h5>#8377: Plastic & Cardboard</h5>
+                    <div class="task-meta">
+                        <div>Time: Tomorrow Morning (7:00 AM)</div>
+                        <div>Location: 890 Green Street (4.5 mi)</div>
+                        <div>Est. Weight: 8 kg | Commission: $0.90</div>
+                    </div>
+                </a>
+            </div>
+            <a href="#" class="link" style="margin-top: 10px;">Load more available tasks...</a>  
         </div>
         
         <div class="collector-nav-bar">
