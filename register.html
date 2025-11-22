@@ -24,10 +24,22 @@
             <input type="text" id="reg-address" placeholder="Residential Address">
 
             <label for="reg-role" style="display:block; margin:12px 0 6px; font-weight:600; color: #047857;">Account Type</label>
-            <select id="reg-role" style="width: 96%; padding: 12px; margin-bottom: 12px; margin-left: 10px; border-radius:8px; border:1px solid #047857;">
-                <option value="user">User</option>
-                <option value="factory">Collector / Factory</option>
+            <div class="custom-select-wrapper">
+                <div class="custom-select">
+                    <div class="custom-select-trigger">User</div>
+                    <div class="custom-options">
+                    <span class="custom-option selected" data-value="User">User</span>
+                    <span class="custom-option" data-value="Collector / Factory">Collector / Factory</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden actual select for forms -->
+            <select name="accountType" id="accountType" style="display:none;">
+            <option value="User" selected>User</option>
+            <option value="Collector / Factory">Collector / Factory</option>
             </select>
+
 
             <div class="center-container">
                 <button id="register-btn" class="btn-primary" style="border:none; cursor:pointer;">Register</button>
@@ -39,10 +51,53 @@
     </div>
 
         <script>
+            // Custom select functionality
+            const customSelect = document.querySelector('.custom-select');
+            const customTrigger = document.querySelector('.custom-select-trigger');
+            const customOptions = document.querySelector('.custom-options');
+            const customOptionItems = document.querySelectorAll('.custom-option');
+            let selectedValue = 'User'; // default
+
+            // Toggle dropdown on trigger click
+            customTrigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                customOptions.classList.toggle('open');
+            });
+
+            // Handle option selection
+            customOptionItems.forEach(option => {
+                option.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const value = this.getAttribute('data-value');
+                    selectedValue = value;
+
+                    // Update trigger text (remove the arrow)
+                    customTrigger.textContent = value;
+
+                    // Update selected state
+                    customOptionItems.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    // Close dropdown
+                    customOptions.classList.remove('open');
+
+                    // Update hidden select
+                    document.getElementById('accountType').value = value;
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!customSelect.contains(e.target)) {
+                    customOptions.classList.remove('open');
+                }
+            });
+
+            // Register button click handler
             document.getElementById('register-btn').addEventListener('click', function (e) {
                 e.preventDefault();
-                const role = document.getElementById('reg-role').value;
-                if (role === 'factory') {
+                // Redirect based on selectedValue
+                if (selectedValue.toLowerCase().includes('factory') || selectedValue.toLowerCase().includes('collector')) {
                     window.location.href = 'factory-login.html';
                 } else {
                     window.location.href = 'user-login.html';

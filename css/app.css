@@ -59,8 +59,6 @@ body {
 
 
 
-
-
 /* Screens with a full header (not just a title) */
 .screen-header {
     background-color: var(--color-primary);
@@ -280,4 +278,107 @@ select:focus {
     color: var(--color-primary);
     font-weight: 700;
 }
+
+.custom-select-wrapper {
+  position: relative;
+  width: 93%;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.custom-select {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Trigger (the visible selected item) */
+.custom-select-trigger {
+  width: 100%;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid #047857;
+  border-radius: 8px;
+  font-size: 1em;
+  color: #1e293b;
+  font-weight: 500;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-select-trigger::after {
+  content: '▼';
+  font-size: 0.7em;
+  color: #047857;
+  margin-left: 8px;
+}
+
+.custom-select-trigger:hover {
+  border-color: #059669;
+  box-shadow: 0 0 8px rgba(4, 120, 87, 0.2);
+}
+
+/* Dropdown box */
+.custom-options {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #047857;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 100%;
+}
+
+.custom-options.open {
+  display: block;
+  animation: slideDown 0.2s ease-out;
+}
+
+/* Each option */
+.custom-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.95em;
+  color: #1e293b;
+  transition: background-color 0.2s, color 0.2s;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+}
+
+/* Hover effect */
+.custom-option:hover {
+  background: #047857;
+  color: #ffffff;
+}
+
+/* Animation */
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-8px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
 
