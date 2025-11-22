@@ -10,7 +10,7 @@
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px dashed var(--color-border);
+            border-bottom: 1px dashed var(--color-primary);
         }
         .detail-item:last-child {
             border-bottom: none;
@@ -20,14 +20,14 @@
 <body>
 
     <div class="phone-frame" id="task-details">
-        <div class="screen-header" style="background-color: var(--color-secondary);">
+        <div class="screen-header" style="background-color: var(--color-primary);">
             <a href="collector-tasks.html" style="color: white; text-decoration: none;">←</a>
             <span>Task #8372 Details</span>
             <span></span>
         </div>
         <div class="content">
-            <h4 style="color: var(--color-secondary); margin-top: 0;">Customer & Location</h4>
-            <div class="card">
+            <h4 style="color: var(--color-primary); margin-top: 0;">Customer & Location</h4>
+            <div class="card" style="border: 1px solid var(--color-primary);">
                 <div class="detail-item">
                     <span>Customer Name:</span>
                     <strong>Alex Johnson</strong>
@@ -42,12 +42,12 @@
                 </div>
                 <div class="detail-item">
                     <span>Pickup Instructions:</span>
-                    <strong style="color: var(--color-primary);">Items by back gate. Code 456.</strong>
+                    <strong>Items by back gate. Code 456.</strong>
                 </div>
             </div>
 
-            <h4 style="color: var(--color-secondary);">Waste Summary & Estimate</h4>
-            <div class="card">
+            <h4 style="color: var(--color-primary);">Waste Summary & Estimate</h4>
+            <div class="card" style="border: 1px solid var(--color-primary);">
                 <div class="detail-item">
                     <span>Scheduled Time:</span>
                     <strong>10:45 AM - 11:45 AM</strong>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="detail-item">
                     <span>Est. Commission:</span>
-                    <strong style="color: var(--color-secondary);">$1.80</strong>
+                    <strong style="color: var(--color-primary);">$1.80</strong>
                 </div>
                 <p style="font-size: 0.9em; margin-top: 15px; color: var(--color-text-light);">
                     Waste types: Plastic Bottles, Paper, Small E-Waste.
@@ -66,7 +66,7 @@
                 <img src="https://via.placeholder.com/340x100?text=Customer+Photo+of+Waste" alt="Customer Photo" style="width: 100%; border-radius: 6px; margin-top: 10px;">
             </div>
             
-            <a href="verification.html" class="btn-primary" style="background-color: var(--color-secondary); text-align: center; display: block; margin-top: 20px;">
+            <a href="verification.html" class="btn-primary" style="background-color: var(--color-primary); text-align: center; display: block; margin-top: 20px; text-decoration: none;">
                 I Have Arrived - Start Verification
             </a>
             

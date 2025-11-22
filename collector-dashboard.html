@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,12 +112,10 @@
         /* Collector Nav Bar Styling */
         
         /* ==========================================================
-   1. PARENT CONTEXT FIX: .phone-frame
-   ========================================================== */
+            1. PARENT CONTEXT FIX: .phone-frame
+            ========================================================== */
 
         .phone-frame {
-            /* CRITICAL FIX: This makes the .phone-frame the reference point
-            for absolutely positioned children (like the nav bar). */
             position: relative; 
             /* The rest of your phone-frame styling (height, width, etc.) 
             must be defined elsewhere or inline. */
@@ -124,12 +124,10 @@
         }
 
 
-/* ==========================================================
-   2. COLLECTOR NAVIGATION BAR STYLING
-   ========================================================== */
+        /* ==========================================================
+        2. COLLECTOR NAVIGATION BAR STYLING
+        ========================================================== */
         .collector-nav-bar {
-            /* CRITICAL FIX: position: absolute makes it stick to the 
-            bottom of the *parent positioned element* (.phone-frame). */
             position: absolute; 
             bottom: 0;
             left: 0;
@@ -173,7 +171,7 @@
         ========================================================== */
 
         .phone-frame .content {
-            height: calc(100% - 181px); 
+            height: calc(100% - 160px); 
             padding-top: 15px;
            
             overflow-y: auto; 

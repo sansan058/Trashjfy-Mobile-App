@@ -20,46 +20,12 @@
             position: sticky;
             top: 0;
             z-index: 10;
-        }
-        .collector-nav-bar {
-            background-color: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            bottom: 0;
-            width: 100%; 
-            border-top: 1px solid var(--color-border);
-            z-index: 10;
-        }
-        .collector-nav-bar a {
-            text-align: center;
-            text-decoration: none;
-            color: var(--color-text-light);
-            font-size: 0.8em;
-            font-weight: 600;
-            flex-grow: 1;
-        }
-        .collector-nav-bar a.active {
-            color: var(--color-primary);
-        }
-        .collector-nav-bar a span {
-            display: block;
-            font-size: 1.5em; 
-            margin-bottom: 3px;
-        }
-        /* Crucial: Content height calculation */
-        .phone-frame .content {
-            height: calc(100% - 110px); 
-            padding-top: 15px;
-            overflow-y: auto;
-        }
+        }        
 
         /* --- Page Specific Styles --- */
         .verification-card {
-            background-color: var(--color-success-bg);
-            border: 1px solid #34d399;
+            background-color: white;
+            border: 1px solid var(--color-primary);
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 12px;
@@ -70,14 +36,26 @@
             margin-top: 0;
         }
         .input-group {
+            display: flexbox;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 15px;
+            padding-bottom: 0px;
+            
         }
         .input-group label {
             display: block;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             color: var(--color-text-dark);
+            padding-bottom: 0;
         }
+
+        .waste{
+            margin-bottom: 0;
+            margin-top: 20px;
+        }
+
         .action-buttons {
             display: flex;
             gap: 10px;
@@ -109,18 +87,18 @@
 
             <div class="verification-card">
                 <h3>Verification Checklist</h3>
-                <p style="color: var(--color-text-light); margin-bottom: 5px;">Customer: Alex Johnson (123 Main St)</p>
-                <p style="font-weight: bold; color: var(--color-secondary);">Status: Arrived at Location</p>
+                <p style="color: var(--color-text-light); margin-bottom: 20px;">Customer: Alex Johnson (123 Main St)</p>
+                <p style="font-weight: 700; color: var(--color-primary);">Status: Arrived at Location</p>
             </div>
 
             <h4 style="color: var(--color-primary); margin-top: 0;">1. Actual Weight & Quantity</h4>
             
-            <div class="card">
+            <div class="card" >
                 <div class="input-group">
                     <label>Actual Total Weight (kg)</label>
-                    <input type="number" placeholder="Est. 15 kg" value="14.8">
+                    <input type="number" placeholder="Est. 15 kg" value="14.8" style="border: 1px solid #047857; border-radius: 10px;">
                 </div>
-                <div class="input-group">
+                <div class="input-group waste">
                     <label>Waste Categories Confirmed</label>
                     <select>
                         <option>All items matched estimate</option>
@@ -142,7 +120,7 @@
 
             <h4 style="color: var(--color-primary);">3. Final Action</h4>
             
-            <a href="collector-dashboard.html" class="btn-primary" style="background-color: var(--color-secondary); text-align: center; display: block;">
+            <a href="collector-dashboard.html" class="btn-primary" style="background-color: var(--color-primary); text-align: center; display: block; text-decoration: none;">
                 Complete Pickup & Finalize Commission
             </a>
             
@@ -153,12 +131,12 @@
             <div style="height: 30px;"></div>
         </div>
         
-        <div class="collector-nav-bar">
+        <!-- <div class="collector-nav-bar">
             <a href="collector-dashboard.html"><span>🏠</span>Dashboard</a>
             <a href="collector-tasks.html" class="active"><span>📋</span>Tasks</a>
             <a href="collector-payouts.html"><span>💰</span>Payouts</a>
             <a href="collector-partner-profile.html"><span>⚙️</span>Profile</a>
-        </div>
+        </div> -->
     </div>
 
 </body>
