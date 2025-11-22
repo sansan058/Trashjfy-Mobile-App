@@ -1,3 +1,5 @@
+<!-- DONE -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,22 +14,22 @@
    1. PARENT CONTEXT FIX: .phone-frame
    ========================================================== */
 
-.phone-frame {
-    /* CRITICAL FIX: This makes the .phone-frame the reference point
-       for absolutely positioned children (like the nav bar). */
-    position: relative; 
-    /* The rest of your phone-frame styling (height, width, etc.) 
-       must be defined elsewhere or inline. */
-    height: 100vh; /* Assuming the frame takes up the viewport height */
-    overflow: hidden; /* Ensures nothing spills out of the frame */
-}
+        .phone-frame {
+            /* CRITICAL FIX: This makes the .phone-frame the reference point
+            for absolutely positioned children (like the nav bar). */
+            position: relative; 
+            /* The rest of your phone-frame styling (height, width, etc.) 
+            must be defined elsewhere or inline. */
+            height: 100vh; /* Assuming the frame takes up the viewport height */
+            overflow: hidden; /* Ensures nothing spills out of the frame */
+        }
 
 
 /* ==========================================================
    2. COLLECTOR NAVIGATION BAR STYLING
    ========================================================== */
 
-.collector-nav-bar {
+        .collector-nav-bar {
             position: absolute; 
             bottom: 0;
             left: 0;
@@ -76,33 +78,33 @@
    3. CONTENT SCROLLING FIX
    ========================================================== */
 
-.phone-frame .content {
-    /* CRITICAL FIX: Calculates scrollable area.
-       50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
-    height: calc(100% - 110px); 
-    padding-top: 15px;
-    /* Allows content inside to scroll independently */
-    overflow-y: auto; 
-}
+        .phone-frame .content {
+            /* CRITICAL FIX: Calculates scrollable area.
+            50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
+            height: calc(100% - 110px); 
+            padding-top: 15px;
+            /* Allows content inside to scroll independently */
+            overflow-y: auto; 
+        }
 
 /* ==========================================================
    4. HEADER STYLES (For completeness)
    ========================================================== */
 
-.screen-header-redesigned {
-    background-color: var(--color-primary); 
-    color: white;
-    padding: 10px 20px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+        .screen-header-redesigned {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
 
         /* --- Page Specific Styles --- */
         .profile-header {
@@ -117,7 +119,7 @@
             border-radius: 50%;
             margin: 0 auto 10px auto;
             overflow: hidden;
-            border: 3px solid var(--color-secondary);
+            border: 3px solid var(--color-primary);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -146,6 +148,11 @@
         .settings-list li:last-child {
             border-bottom: none;
         }
+
+        .card{
+            padding-top: 5px;
+            padding-bottom: 0px;
+        }
     </style>
 </head>
 <body>
@@ -163,14 +170,13 @@
             <div class="profile-header">
                 <div class="profile-img">
                     <img src="img/greenpf.jpg" alt="Logistics Partner Logo" 
-                         onerror="this.onerror=null;this.src='https://via.placeholder.com/80?text=L';" 
                          style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="profile-info">
-                    <h3>SwiftRoute Logistics</h3>
+                    <h3 style="color: var(--color-primary);">SwiftRoute Logistics</h3>
                     <small>Partner ID: FR-002-SRL</small>
                 </div>
-                <a href="#" class="link" style="margin-top: 5px; color: var(--color-secondary);">Edit Partner Details</a>
+                <a href="#" class="link" style="margin-top: 5px; color: var(--color-primary);">Edit Partner Details</a>
             </div>
             
             <h4 style="color: var(--color-primary);">Operational Scope</h4>
@@ -178,15 +184,15 @@
                 <ul class="settings-list">
                     <li>
                         <span>Service Area:</span>
-                        <span style="font-weight: bold;">North Sector, City Zone 3</span>
+                        <span style="color: var(--color-text-light);">North Sector, City Zone 3</span>
                     </li>
                     <li>
                         <span>Vehicle Fleet Size:</span>
-                        <span style="font-weight: bold;">3 Trucks, 1 Van</span>
+                        <span style="color: var(--color-text-light);">3 Trucks, 1 Van</span>
                     </li>
                     <li>
                         <span>Max Daily Pickups:</span>
-                        <span style="font-weight: bold;">45 Missions</span>
+                        <span style="color: var(--color-text-light);">45 Missions</span>
                     </li>
                     <li>
                         <span>Current Status:</span>
@@ -204,7 +210,7 @@
                     </li>
                     <li>
                         <span>Insurance & Licensing:</span>
-                        <span style="color: var(--color-secondary);">View Documents →</span>
+                        <span style="color: var(--color-text-light);">View Documents →</span>
                     </li>
                     <li>
                         <span>Contact Info for Support:</span>
@@ -213,32 +219,18 @@
                 </ul>
             </div>
 
-            <!-- <button class="btn-secondary" style="margin-top: 30px; border: 1px solid #ef4444; color: #ef4444;">
-                Go Offline / Log Out
-            </button>
-            <a href="login.html" class="link" style="color: var(--color-text-light);">Switch Role</a> -->
-
             <a href="login.html" class="btn-primary" 
-   style="
-        background-color: #ef4444; /* Standard red for log out */
-        text-align: center; 
-        display: block; 
-        margin-top: 30px; 
-        text-decoration: none;
-        padding: 12px; /* Ensure padding matches the btn-primary style */
-        border-radius: 8px;
-        font-weight: 700;
-        /* The default btn-primary style should handle the white text color */
-   "
->
-    Log Out
-</a>
-
-<a href="login.html" class="link" style="color: var(--color-text-light); margin-top: 10px; display: block; text-align: center;">
-    Switch Role
-</a>
-
-            <div style="height: 30px;"></div>
+            style="
+                    background-color: #ef4444; /* Standard red for log out */
+                    text-align: center; 
+                    display: block; 
+                    margin-top: 30px; 
+                    text-decoration: none;
+                    padding: 12px; /* Ensure padding matches the btn-primary style */
+                    border-radius: 8px;
+                    font-weight: 700;">
+                Log Out
+            </a>   
         </div>
         
         <div class="collector-nav-bar">
