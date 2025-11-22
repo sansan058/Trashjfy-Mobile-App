@@ -9,127 +9,171 @@
         /* Collector Nav Bar Styling */
         
         /* ==========================================================
-   1. PARENT CONTEXT FIX: .phone-frame
-   ========================================================== */
+        1. PARENT CONTEXT FIX: .phone-frame
+        ========================================================== */
 
-.phone-frame {
-    /* CRITICAL FIX: This makes the .phone-frame the reference point
-       for absolutely positioned children (like the nav bar). */
-    position: relative; 
-    /* The rest of your phone-frame styling (height, width, etc.) 
-       must be defined elsewhere or inline. */
-    height: 100vh; /* Assuming the frame takes up the viewport height */
-    overflow: hidden; /* Ensures nothing spills out of the frame */
-}
+        .phone-frame {
+            position: relative; 
+            height: 100vh; 
+            overflow: hidden;
+        }
 
+        /* ==========================================================
+        2. COLLECTOR NAVIGATION BAR STYLING
+        ========================================================== */
 
-/* ==========================================================
-   2. COLLECTOR NAVIGATION BAR STYLING
-   ========================================================== */
+        .collector-nav-bar {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
 
-.collector-nav-bar {
-    /* CRITICAL FIX: position: absolute makes it stick to the 
-       bottom of the *parent positioned element* (.phone-frame). */
-    position: absolute; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%; /* Ensures it spans the full width of the frame */
-    
-    height: 60px; 
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start; /* Aligns content better with padding-bottom */
-    
-    background: white; /* Use a solid background color */
-    border-top: 1px solid var(--color-border);
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    
-    z-index: 10; 
-    
-    padding-top: 5px; 
-    padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
-}
+        .collector-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
 
-.collector-nav-bar a {
-    color: var(--color-text-light);
-    text-decoration: none;
-    font-size: 0.8em;
-    text-align: center;
-    font-weight: 500;
-    padding: 5px;
-    border-radius: 5px;
-    flex-grow: 1;
-    display: block; 
-}
+        .collector-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
 
-.collector-nav-bar a.active {
-    color: var(--color-primary);
-    font-weight: 700;
-}
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
 
-/* ==========================================================
-   3. CONTENT SCROLLING FIX
-   ========================================================== */
+        .phone-frame .content {
+            height: calc(100% - 80px); 
+            padding-top: 15px;
+            overflow-y: auto; 
+            padding-bottom: 30px;
+        }
 
-.phone-frame .content {
-    /* CRITICAL FIX: Calculates scrollable area.
-       50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
-    height: calc(100% - 120px); 
-    padding-top: 15px;
-    /* Allows content inside to scroll independently */
-    overflow-y: auto; 
-}
+        /* ==========================================================
+        4. HEADER STYLES (For completeness)
+        ========================================================== */
 
-/* ==========================================================
-   4. HEADER STYLES (For completeness)
-   ========================================================== */
-
-.screen-header-redesigned {
-    background-color: var(--color-primary); 
-    color: white;
-    padding: 10px 20px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+        .screen-header-redesigned {
+            background-color: var(--color-primary); 
+            color: white;
+            padding: 10px 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
 
         /* --- Page Specific Styles --- */
         .payout-summary {
-            background-color: #e0f2fe;
-            border: 2px solid var(--color-secondary);
+            background-color: white;
+            border: 2px solid #047857;
             text-align: center;
             padding: 20px;
         }
-        .payout-summary h1 {
-            color: var(--color-secondary);
-            font-size: 3em;
-            margin: 5px 0 10px 0;
+
+        .big-dollar {
+            font-size: 3em; 
+            font-weight: 700; 
+            color:#047857
+            
+        }
+
+        .small-dollar {
+            font-size: 0.75em; 
+            color:#047857
         }
         .transaction-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
         .transaction-list li {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
-            border-bottom: 1px solid var(--color-border);
+            border-bottom: 1px solid #047857;
         }
         .transaction-list li:last-child {
             border-bottom: none;
         }
         .commission-amount {
             font-weight: bold;
-            color: var(--color-secondary);
+            color: #047857;
+            white-space: nowrap;
         }
+
+        .transaction-list li > div {
+            /* Allows text elements to be vertically centered within the list item */
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        /* Styling for the Status Tag (e.g., "Verified", "Paid Out") */
+        .status-tag {
+            /* Inline-block allows padding and margin */
+            display: inline-block; 
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px; /* Separates the status from the pickup number */
+        }
+
+        /* Specific color for Verified status */
+        .status-verified {
+            background-color: #d1fae5; 
+            color: #047857; 
+        }
+
+        /* Specific color for Payout status (Red for money leaving) */
+        .status-paidout {
+            background-color: #fee2e2; 
+            color: #ef4444; 
+        }
+
+        /* Ensure the transaction number and status tag stick together on one line */
+        .transaction-header {
+            display: inline-flex; 
+            align-items: center; 
+            white-space: nowrap; 
+            font-weight: 600; 
+        }
+
+        .transaction-subtext {
+            display: block; 
+            margin-top: 2px;
+        }
+
     </style>
 </head>
 <body>
@@ -146,12 +190,15 @@
 
             <h4 style="color: var(--color-primary); margin-top: 0;">Total Balance</h4>
             <div class="card payout-summary">
-                <p style="margin: 0; font-size: 0.9em;">Total Earned (Pending Payout)</p>
-                <h1>$125.50</h1>
+                <p style="margin: 0; font-size: 0.85em;">Total Earned (Pending Payout)</p>
+                <span class="big-dollar">125.50</span> <span class="small-dollar"> USD</span>
                 <small style="display: block; color: var(--color-text-light);">Last updated: Nov 19, 2025</small>
             </div>
 
-            <a href="#" class="btn-primary" style="background-color: var(--color-secondary); text-align: center; display: block;">
+            <a href="#" class="btn-primary" style="background-color: #047857; margin-top: 20px;
+             text-align: center; 
+             display: block;
+             text-decoration: none;">
                 Request Payout to Bank Account
             </a>
 
@@ -160,37 +207,45 @@
             <div class="card">
                 <ul class="transaction-list">
                     <li>
-                        <div>
-                            **Pickup #8365** (Verified)
-                            <small style="display: block; color: var(--color-text-light);">Nov 18, 2025 | 18 kg</small>
+                        <div class="transaction-details">
+                            <span class="transaction-header">
+                                Pickup #8365 <span class="status-tag status-verified">Verified</span>
+                            </span>
+                            <small class="transaction-subtext">Nov 18, 2025 | 18 kg</small>
                         </div>
                         <span class="commission-amount">+$1.95</span>
                     </li>
                     <li>
-                        <div>
-                            **Pickup #8364** (Verified)
-                            <small style="display: block; color: var(--color-text-light);">Nov 17, 2025 | 45 kg</small>
+                        <div class="transaction-details">
+                            <span class="transaction-header">
+                                Pickup #8364 <span class="status-tag status-verified">Verified</span>
+                            </span>
+                            <small class="transaction-subtext">Nov 17, 2025 | 45 kg</small>
                         </div>
                         <span class="commission-amount">+$4.20</span>
                     </li>
                     <li>
-                        <div>
-                            **Pickup #8363** (Paid Out)
-                            <small style="display: block; color: var(--color-text-light);">Nov 15, 2025 | Payout to Bank</small>
+                        <div class="transaction-details">
+                            <span class="transaction-header">
+                                Payout #8363 <span class="status-tag status-paidout">Paid Out</span>
+                            </span>
+                            <small class="transaction-subtext">Nov 15, 2025 | Payout to Bank</small>
                         </div>
                         <span style="font-weight: bold; color: #ef4444;">-$68.00</span>
                     </li>
                     <li>
-                        <div>
-                            **Pickup #8362** (Verified)
-                            <small style="display: block; color: var(--color-text-light);">Nov 15, 2025 | 12 kg</small>
+                        <div class="transaction-details">
+                            <span class="transaction-header">
+                                Pickup #8362 <span class="status-tag status-verified">Verified</span>
+                            </span>
+                            <small class="transaction-subtext">Nov 15, 2025 | 12 kg</small>
                         </div>
                         <span class="commission-amount">+$1.10</span>
                     </li>
                 </ul>
             </div>
             
-            <div style="height: 30px;"></div>
+            
         </div>
 
         <div class="collector-nav-bar">

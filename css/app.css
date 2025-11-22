@@ -178,7 +178,7 @@ select:focus {
 /* --- 4. DASHBOARD SPECIFIC --- */
 
 .balance-card {
-    background-color: var(--color-success-bg);
+    background-color: white;
     border: 2px solid var(--color-primary);
     text-align: center;
 }
@@ -191,13 +191,23 @@ select:focus {
 }
 
 .action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 20px 10px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    text-decoration: none;
-    color: var(--color-text-dark);
-    transition: transform 0.2s;
+    padding: 15px;
+    text-decoration: none; /* Remove underline from the links */
+    color: #333; /* Default text color */
+    border-radius: 12px; /* Smooth corners */
+    /* Add the Border Here */
+    border: 1px solid #047857; /* 1px solid border using the primary green */
+    
+    /* Make the card backgrounds white for high contrast */
+    background-color: white; 
+    
+    /* Add subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+    transition: all 0.2s ease; /* Smooth hover effect */
 }
 
 .action-card:hover {
@@ -221,10 +231,6 @@ select:focus {
 }
 .action-card.primary p { color: white; }
 
-.action-card.secondary {
-    background-color: white;
-    border: 1px solid var(--color-border);
-}
 
 /* --- 5. AUTHENTICATION & LOGO --- */
 
@@ -260,7 +266,6 @@ select:focus {
     background: var(--color-card-bg);
     border-top: 1px solid var(--color-border);
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
-    padding-bottom: 10px; /* Account for iPhone safe area/rounded corners */
 }
 
 .nav-bar a {

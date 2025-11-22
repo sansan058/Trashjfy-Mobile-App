@@ -1,3 +1,5 @@
+<!-- DONE -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +9,9 @@
     <link rel="stylesheet" href="css/app.css">
     <style>
         /* --- 1. Aesthetic Header Redesign --- */
+
         .screen-header-redesigned {
-            background-color: var(--color-primary);
+            background-color: #047857;
             color: white;
             padding: 10px 20px;
             height: 50px;
@@ -17,9 +20,9 @@
             align-items: center;
             font-weight: 600;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
+            position: relative;
             z-index: 10;
+            
         }
         .header-logo-group {
             display: flex;
@@ -34,40 +37,125 @@
             margin-right: 8px;
             border: 1px solid white; 
         }
-        /* --- Removed .welcome-box styling as the element is removed --- */
+       
+        /* notification */
 
-        /* --- 2. Search Bar Styling --- */
-        .search-container {
-            padding: 8px 20px; 
-            background-color: #e9ffd5;
-            border-bottom: 0.5px solid var(--color-border);
-            position: sticky;
-            /* FIX: Top position is now exactly the header height (50px) */
-            top: 50px; 
-            z-index: 9;
-        }
-        .search-input-group {
+        .notification-icon-link {
             display: flex;
             align-items: center;
-            gap: 5px; 
+            text-decoration: none; 
         }
-        .search-input-group input {
-            padding: 8px; 
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            flex-grow: 1; 
-            font-size: 0.9em; 
-            margin-bottom: 0; 
+
+        .my-fixed-img {
+            margin-top: 7.5px;
+            height: 24px; 
+            width: 24px;
         }
+
+
+        /* --- 2. Search Bar Styling --- */
+
+        /* Container settings kept mostly the same, but simplified for the example */
+        .search-container {
+        padding: 8px 20px;
+        background-color: #e9ffd5; 
+        }
+
+        /* This is the new wrapper for the entire search bar */
+        .search-bar-rounded {
+        display: flex;
+        align-items: center;
+        border-radius: 50px;
+        border: 1px solid #047857; 
+        overflow: hidden; 
+        height: 40px; 
+        }
+
+        /* Styling for the input field */
+        .search-bar-rounded input {
+        padding: 8px 15px; 
+        border: none; /* Crucial: Remove the individual input border */
+        flex-grow: 1;
+        font-size: 1.1em; 
+        margin: 0;
+        height: 100%;
+        }
+
+        /* Styling for the button */
         .search-btn-right {
-            background-color: var(--color-primary);
-            color: white;
-            padding: 8px 10px; 
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9em; 
-            cursor: pointer;
-            line-height: 1; 
+        background-color: #047857;
+        color: white;
+        padding: 0 15px; 
+        border: none; /* Crucial: Remove the individual button border */
+        border-radius: 0;
+        cursor: pointer;
+        line-height: 1;
+        height: 100%; /* Ensure button fills the height of the bar */
+
+        font-size: 0; 
+        text-indent: -9999px; 
+        overflow: hidden;
+
+        background-image: url(img/search.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 65%;
+        background-color: #047857;
+        }
+
+        /* To ensure the input placeholder text looks good */
+        .search-bar-rounded input::placeholder {
+            color: #999;
+            font-size: 0.85em;
+        }
+        
+        #dashboard-screen .content {
+            height: calc(100% - 160px); 
+            overflow-y: auto; 
+            padding: 15px 20px 20px 20px; 
+        }
+
+        .big{
+            font-size: 3em;
+            font-weight: 700;
+            color:#047857
+        }
+        .small{
+            font-size: 1em;
+            font-weight: 400;
+            margin-left: 5px;
+            color: #047857;
+        }
+
+        .transaction-header {
+            display: inline-flex; 
+            align-items: center; 
+            white-space: nowrap; 
+            font-weight: 600; 
+        }
+
+        .subtext {
+            display: block; 
+            margin-top: 5px;
+        }
+
+        .status-tag {
+            /* Inline-block allows padding and margin */
+            display: inline-block; 
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px; /* Separates the status from the pickup number */
+        }
+
+        .status-verified {
+            background-color: #d1fae5; 
+            color: #047857; 
+        }
+
+        .content .grid-2-col:last-of-type{
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -77,16 +165,18 @@
         
         <div class="screen-header-redesigned">
             <div class="header-logo-group">
-                <img src="img/trashifylogo.png" alt="Logo" onerror="this.onerror=null;this.src='https://via.placeholder.com/25?text=R';">
+                <img src="img/trashifylogo.png" alt="Logo">
                 Trashify
             </div>
-            <a href="notifications.html" style="color: white; text-decoration: none; font-size: 1.2em;">🔔</a>
+            <a href="notifications.html">
+                <img src="img/notifications.png" alt="Notifications" class="my-fixed-img">
+            </a>
         </div>
         
         <div class="search-container"> 
-            <div class="search-input-group">
+            <div class="search-bar-rounded">
                 <input type="text" placeholder="Search rewards, machines, or tips...">
-                <button class="search-btn-right">🔍</button>
+                <button class="search-btn-right"> </button>
             </div>
         </div>
         
@@ -95,8 +185,8 @@
             <h4 style="margin-top: 0;">Your Recycling Balance</h4>
             <div class="card balance-card">
                 <p style="margin: 0;">Total Points Earned</p>
-                <h2 style="color: var(--color-primary); margin: 5px 0 10px 0; font-size: 2.5em;">1,600 PTS</h2>
-                <a href="rewards.html" class="link" style="color: var(--color-primary); margin-top: 0;">View Rewards & Wallet →</a>
+                <span class="big">1,600</span><span class="small">PTS</span>
+                <a href="rewards.html" class="link" style="color:black; margin-top: 0; font-size: 0.8em;">View Rewards & Wallet →</a>
             </div>
 
             <h4 style="color: var(--color-primary);">Quick Actions</h4>
@@ -112,9 +202,14 @@
             </div>
 
             <h4 style="color: var(--color-primary);">Active Pickup Request</h4>
-            <a href="track-pickup.html" class="card" style="text-decoration: none; display: block; color: inherit;">
-                <p style="font-weight: bold; margin: 0;">Pickup #8372 (Confirmed)</p>
-                <small style="color: var(--color-text-light);">Collector ETA: 10:45 AM today. Tracking available.</small>
+            <a href="track-pickup.html" class="card" style="text-decoration: none; 
+            display: block; 
+            color: inherit;
+            border: 1px solid #047857;">
+                <span class="transaction-header">Pickup #8372 
+                    <span class="status-tag status-verified">Confirmed</span>
+                </span>        
+                <small class="subtext">Collector ETA: 10:45 AM today. Tracking available.</small>
             </a>
 
             <h4 style="color: var(--color-primary);">Community & Impact</h4>

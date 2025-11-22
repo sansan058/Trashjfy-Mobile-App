@@ -6,6 +6,7 @@
     <title>Trashify - Collector Dashboard</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
+
         /* --- Shared Design Elements for Collector Screens --- */
         .screen-header-redesigned {
             background-color: var(--color-primary); 
@@ -34,36 +35,76 @@
             margin-right: 8px;
             border: 1px solid white; 
         }
-        .search-container {
-            padding: 8px 20px; 
-            background-color: #e9ffd5; 
-            border-bottom: 0.5px solid var(--color-border);
-            position: sticky;
-            top: 50px; 
-            z-index: 9;
-        }
-        .search-input-group {
+
+        /* notification */
+
+        .notification-icon-link {
             display: flex;
             align-items: center;
-            gap: 5px; 
+            text-decoration: none; 
         }
-        .search-input-group input {
-            padding: 8px; 
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            flex-grow: 1; 
-            font-size: 0.9em; 
-            margin-bottom: 0; 
+
+        .my-fixed-img {
+            margin-top: 7.5px;
+            height: 24px; 
+            width: 24px;
         }
+
+        /* --- Search Bar Styling --- */
+        .search-container {
+        padding: 8px 20px;
+        background-color: #e9ffd5; 
+        position: sticky;
+        top: 50px;
+        z-index: 9;
+        }
+
+        /* This is the new wrapper for the entire search bar */
+        .search-bar-rounded {
+        display: flex;
+        align-items: center;
+        border-radius: 50px;
+        border: 1px solid #047857; 
+        overflow: hidden; 
+        height: 40px; 
+        }
+
+        /* Styling for the input field */
+        .search-bar-rounded input {
+        padding: 8px 15px; 
+        border: none; /* Crucial: Remove the individual input border */
+        flex-grow: 1;
+        font-size: 1.1em; 
+        margin: 0;
+        height: 100%;
+        }
+
+        /* Styling for the button */
         .search-btn-right {
-            background-color: var(--color-primary);
-            color: white;
-            padding: 8px 10px; 
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9em; 
-            cursor: pointer;
-            line-height: 1; 
+        background-color: #047857;
+        color: white;
+        padding: 0 15px; 
+        border: none; /* Crucial: Remove the individual button border */
+        border-radius: 0;
+        cursor: pointer;
+        line-height: 1;
+        height: 100%; /* Ensure button fills the height of the bar */
+
+        font-size: 0; 
+        text-indent: -9999px; 
+        overflow: hidden;
+
+        background-image: url(img/search.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 65%;
+        background-color: #047857;
+        }
+
+        /* To ensure the input placeholder text looks good */
+        .search-bar-rounded input::placeholder {
+            color: #999;
+            font-size: 0.85em;
         }
         
         /* Collector Nav Bar Styling */
@@ -72,93 +113,87 @@
    1. PARENT CONTEXT FIX: .phone-frame
    ========================================================== */
 
-.phone-frame {
-    /* CRITICAL FIX: This makes the .phone-frame the reference point
-       for absolutely positioned children (like the nav bar). */
-    position: relative; 
-    /* The rest of your phone-frame styling (height, width, etc.) 
-       must be defined elsewhere or inline. */
-    height: 100vh; /* Assuming the frame takes up the viewport height */
-    overflow: hidden; /* Ensures nothing spills out of the frame */
-}
+        .phone-frame {
+            /* CRITICAL FIX: This makes the .phone-frame the reference point
+            for absolutely positioned children (like the nav bar). */
+            position: relative; 
+            /* The rest of your phone-frame styling (height, width, etc.) 
+            must be defined elsewhere or inline. */
+            height: 100vh; /* Assuming the frame takes up the viewport height */
+            overflow: hidden; /* Ensures nothing spills out of the frame */
+        }
 
 
 /* ==========================================================
    2. COLLECTOR NAVIGATION BAR STYLING
    ========================================================== */
+        .collector-nav-bar {
+            /* CRITICAL FIX: position: absolute makes it stick to the 
+            bottom of the *parent positioned element* (.phone-frame). */
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width of the frame */
+            
+            height: 60px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; /* Aligns content better with padding-bottom */
+            
+            background: white; /* Use a solid background color */
+            border-top: 1px solid var(--color-border);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            
+            z-index: 10; 
+            
+            padding-top: 5px; 
+            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+        }
 
-.collector-nav-bar {
-    /* CRITICAL FIX: position: absolute makes it stick to the 
-       bottom of the *parent positioned element* (.phone-frame). */
-    position: absolute; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%; /* Ensures it spans the full width of the frame */
-    
-    height: 60px; 
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start; /* Aligns content better with padding-bottom */
-    
-    background: white; /* Use a solid background color */
-    border-top: 1px solid var(--color-border);
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    
-    z-index: 10; 
-    
-    padding-top: 5px; 
-    padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
-}
+        .collector-nav-bar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.8em;
+            text-align: center;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: block; 
+        }
 
-.collector-nav-bar a {
-    color: var(--color-text-light);
-    text-decoration: none;
-    font-size: 0.8em;
-    text-align: center;
-    font-weight: 500;
-    padding: 5px;
-    border-radius: 5px;
-    flex-grow: 1;
-    display: block; 
-}
+        .collector-nav-bar a.active {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
 
-.collector-nav-bar a.active {
-    color: var(--color-primary);
-    font-weight: 700;
-}
+        /* ==========================================================
+        3. CONTENT SCROLLING FIX
+        ========================================================== */
 
-/* ==========================================================
-   3. CONTENT SCROLLING FIX
-   ========================================================== */
+        .phone-frame .content {
+            height: calc(100% - 181px); 
+            padding-top: 15px;
+           
+            overflow-y: auto; 
+            padding-bottom: 15px; 
+        }
 
-.phone-frame .content {
-    /* CRITICAL FIX: Calculates scrollable area.
-       50px (Header) + 70px (Nav bar height + padding) = 120px total fixed height. */
-    height: calc(100% - 120px); 
-    padding-top: 15px;
-    /* Allows content inside to scroll independently */
-    overflow-y: auto; 
-}
 
-/* ==========================================================
-   4. HEADER STYLES (For completeness)
-   ========================================================== */
+        .big-dollar {
+            font-size: 2em; 
+            font-weight: 700; 
+            
+        }
+        .small-dollar {
+            font-size: 0.75em; 
+        }
 
-.screen-header-redesigned {
-    background-color: var(--color-primary); 
-    color: white;
-    padding: 10px 20px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+        .pickup {
+            font-size:  2em;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
@@ -167,28 +202,40 @@
         
         <div class="screen-header-redesigned">
             <div class="header-logo-group">
-                <img src="img/trashifylogo.png" alt="Logo" onerror="this.onerror=null;this.src='https://via.placeholder.com/25?text=R';">
+                <img src="img/trashifylogo.png" alt="Logo">
                 Trashify Logistics
             </div>
-            <a href="notifications.html" style="color: white; text-decoration: none; font-size: 1.2em;">🔔</a>
+            <a href="notifications.html">
+                <img src="img/notifications.png" alt="Notifications" class="my-fixed-img">
+            </a>
         </div>
         
         <div class="search-container"> 
-            <div class="search-input-group">
+            <div class="search-bar-rounded">
                 <input type="text" placeholder="Search tasks, locations, or payouts...">
-                <button class="search-btn-right">🔍</button>
+                <button class="search-btn-right"></button>
             </div>
         </div>
         
         <div class="content"> 
             
             <h4 style="color: var(--color-primary); margin-top: 0;">Today's Logistics Summary</h4>
-            <div class="card balance-card" style="text-align: center;">
-                <p style="margin: 0; font-size: 0.9em;">Active Pickups Today</p>
-                <h2 class="task-count">3</h2>
-                <p style="margin: 0; font-size: 0.9em;">Est. Earnings: **$8.30**</p>
-                <a href="collector-payouts.html" class="link" style="color: var(--color-primary); margin-top: 10px; display: block;">View Payouts & History →</a>
-            </div>
+                <div class="card balance-card" style="text-align: center; background-color: white;">
+                    <p style="margin: 0; font-size: 0.85em;">Active Pickups Today: <strong style="color: var(--color-primary);">
+                        <span class="pickup">3</span>
+                    </strong>
+                </p>
+                    
+                    <p style="margin: 0; font-size: 0.85em;">
+                        Earnings: <strong style="color: var(--color-primary);">
+                            <span class="big-dollar">8.30</span><span class="small-dollar"> USD</span>
+                        </strong>
+                    </p>
+                    <a href="collector-payouts.html" class="link" style="color: var(--color-primary); 
+                    margin-top: 10px; 
+                    display: block;
+                    font-size: 0.85em;">View Payouts & History →</a>
+                </div>
 
             <h4 style="color: var(--color-primary);">Quick Actions</h4>
             <div class="grid-2-col">
