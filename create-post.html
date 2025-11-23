@@ -8,16 +8,28 @@
 </head>
 <body>
 
+    <style>
+        .card input{
+            margin-top: 10px;
+            margin-left: 0;
+        }
+        .card select{
+            margin-left: 0;
+        }
+        .card textarea{
+            margin-left: 0;
+        }
+    </style>
     <div class="phone-frame" id="create-post">
         <div class="screen-header">
             <a href="forum.html" style="color: white; text-decoration: none;">←</a>
             <span>Create New Post</span>
             <span></span>
         </div>
-        <div class="content">
-            <h4 style="margin-top: 0;">Share Your Eco-Tip or Question</h4>
-            <div class="card">
-                <input type="text" placeholder="Post Title (e.g., Best way to flatten cardboard)">
+        <div class="content" style="text-align: center;">
+            <h4 style="margin-top: 50px;">Share Your Eco-Tip or Question</h4>
+            <div class="card" style="background-color: var(--color-success-bg);">
+                <input type="text" placeholder="Post Title">
                 <select>
                     <option value="">Select Topic/Category</option>
                     <option value="tips">Recycling Tips</option>
@@ -26,7 +38,8 @@
                     <option value="general">General</option>
                 </select>
                 <textarea placeholder="Write your post here..." rows="6"></textarea>
-                <button class="btn-secondary" style="width: 100%; margin-bottom: 10px;">Add Photo (Optional)</button>
+                <button class="btn-secondary" style="width: 100%; margin-bottom: 10px;
+                border: 1px dashed #047857;">Add Photo (Optional)</button>
             </div>
             
             <a href="forum.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block;">Publish Post</a>
