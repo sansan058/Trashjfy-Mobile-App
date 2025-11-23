@@ -37,22 +37,35 @@
             color: var(--color-primary);
             margin-top: 0;
         }
-        .input-group {
-            display: flexbox;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 0px;
-            
-        }
-        .input-group label {
-            display: block;
+       /* Styling for the recommended structure */
+        .input-group label span:first-child {
             font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--color-text-dark);
-            padding-bottom: 0;
+            color: var(--color-text); /* Use your primary text color */
         }
 
+        .input-estimate {
+            font-size: 0.8em;
+            color: var(--color-text-light); /* Use a subtle, light gray color */
+        }
+
+        .styled-input {
+            width: 50%;
+            padding: 5px 15px; /* Increase padding for a modern look */
+            border: 1px solid var(--color-primary); /* Use a neutral border color */
+            border-radius: 8px; /* Slightly smoother corners */
+            font-size: 1em;
+            font-weight: 500;
+            color: var(--color-text-dark);
+            /* Remove the inline style from the HTML */
+        }
+
+        /* Optional: Add a focus state */
+        .styled-input:focus {
+            border-color: #047857; /* Highlight border on focus */
+            box-shadow: 0 0 0 2px rgba(4, 120, 87, 0.2); /* Light green glow */
+            outline: none;
+            transition: all 0.2s ease;
+        }
         .waste{
             margin-bottom: 0;
             margin-top: 20px;
@@ -72,6 +85,72 @@
             font-size: 1em;
             font-weight: 700;
             flex-grow: 1;
+        }
+
+        .custom-select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .custom-select-wrapper:focus{
+            border-color: var(--color-primary);
+            outline: none;
+            box-shadow: 0 0 8px var(--color-primary);
+            transition: 0.2s ease;
+        }
+        .custom-select {
+            position: relative;
+            cursor: pointer;
+            width: 100%;
+        }
+        .custom-select-trigger {
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: white;
+            text-align: left;
+            position: relative;
+        }
+        .custom-select-trigger:after {
+            content: '▼';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: var(--color-text-light);
+            transition: transform 0.2s;
+        }
+        .custom-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid var(--color-primary);
+            border-top: none;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 5;
+            max-height: 200px; /* Increased max-height for 4 items */
+            overflow-y: auto;
+            transition: max-height 0.3s ease-out;
+        }
+        .custom-options.open {
+            max-height: 200px;
+        }
+        .custom-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            display: block;
+            text-align: left;
+        }
+        .custom-option:hover {
+            background-color: var(--color-primary);
+        }
+        .custom-option.selected {  
+            font-weight: 600;
         }
     </style>
 </head>
@@ -97,15 +176,35 @@
             
             <div class="card" >
                 <div class="input-group">
-                    <label>Actual Total Weight (kg)</label>
-                    <input type="number" placeholder="Est. 15 kg" value="14.8" style="border: 1px solid #047857; border-radius: 10px;">
+                    
+                        <div style="text-align: center;display:block; margin:12px 0 6px; font-weight:600;"><span>Actual Total Weight (kg)</span></div>
+                        
+                    
+                    <input 
+                        type="number" 
+                        value="14.8" 
+                        class="styled-input" 
+                    >
                 </div>
-                <div class="input-group waste">
-                    <label>Waste Categories Confirmed</label>
-                    <select>
-                        <option>All items matched estimate</option>
-                        <option>Discrepancy: Missing E-Waste</option>
-                        <option>Discrepancy: Quality Issue (Wet Paper)</option>
+                <div class="input-group waste" style="padding-right: 10px;">
+                    <label for="waste-categories" style="display:block; margin:12px 0 6px; font-weight:600;">Waste Categories Confirmed</label>
+                    
+                    <div class="custom-select-wrapper" style="padding-right: 10px;">
+                        <div class="custom-select" style="border: 1px solid #047857; border-radius: 8px; margin-right: 100px;">
+                            <div class="custom-select-trigger">All items matched estimate</div>
+                            
+                            <div class="custom-options" style="margin-top: 3px; border-top: 1px solid #047857; border-radius: 20px;">
+                                <span class="custom-option selected" data-value="matched">All items matched estimate</span>
+                                <span class="custom-option" data-value="missing-ewaste">Discrepancy: Missing E-Waste</span>
+                                <span class="custom-option" data-value="wet-paper">Discrepancy: Quality Issue (Wet Paper)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <select name="wasteCategories" id="waste-categories" style="display:none;">
+                        <option value="matched" selected>All items matched estimate</option>
+                        <option value="missing-ewaste">Discrepancy: Missing E-Waste</option>
+                        <option value="wet-paper">Discrepancy: Quality Issue (Wet Paper)</option>
                     </select>
                 </div>
             </div>
@@ -140,6 +239,54 @@
             <a href="collector-partner-profile.html"><span>⚙️</span>Profile</a>
         </div> -->
     </div>
+    <script>
+        // Custom select functionality
+        const customSelect = document.querySelector('.custom-select');
+        const customTrigger = document.querySelector('.custom-select-trigger');
+        const customOptions = document.querySelector('.custom-options');
+        const customOptionItems = document.querySelectorAll('.custom-option');
+        let selectedValue = 'User'; // default
 
+        // Initialize trigger text
+        customTrigger.textContent = customOptionItems[0].textContent;
+
+        // Toggle dropdown on trigger click
+        customTrigger.addEventListener('click', function (e) {
+            e.stopPropagation();
+            customOptions.classList.toggle('open');
+            customTrigger.classList.toggle('active');
+        });
+
+        // Handle option selection
+        customOptionItems.forEach(option => {
+            option.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const value = this.getAttribute('data-value');
+                selectedValue = value;
+
+                // Update trigger text
+                customTrigger.textContent = this.textContent;
+
+                // Update selected state
+                customOptionItems.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+
+                // Close dropdown
+                customOptions.classList.remove('open');
+                customTrigger.classList.remove('active');
+
+                // Update hidden select
+                document.getElementById('accountType').value = value;
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!customSelect.contains(e.target)) {
+                customOptions.classList.remove('open');
+                customTrigger.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>

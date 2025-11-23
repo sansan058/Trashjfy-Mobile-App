@@ -63,7 +63,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 1px dashed var(--color-border);
+            border-bottom: 1px dashed var(--color-primary);
         }
         .price-input-group:last-of-type {
             border-bottom: none;
@@ -80,6 +80,14 @@
             text-align: right;
             border: 1px solid var(--color-secondary);
         }
+
+        input{
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid var(--color-primary);
+            font-size: 0.9em;
+            color: var(--color-text-dark);
+        }
     </style>
 </head>
 <body>
@@ -91,7 +99,7 @@
             <span></span>
         </div>
         <div class="content">
-            <h4 style="color: var(--color-primary); margin-top: 0;">Current Purchase Prices (FR-FAC-002)</h4>
+            <h3 style="color: var(--color-primary); margin-top: 0; margin-bottom: 15px;">Current Purchase Prices</h3>
             
             <div class="card">
                 <p style="color: var(--color-text-light); margin-top: 0;">
@@ -121,9 +129,10 @@
                 <button class="btn-primary" style="margin-top: 20px; width: 100%;">Update & Publish Prices</button>
             </div>
             
-            <h4 style="color: var(--color-secondary);">Price History</h4>
-            <div class="card">
-                <p>Plastic price last updated: **10 days ago** (from $0.14 to $0.15)</p>
+            <h3 style="color: var(--color-secondary); margin-bottom: 15px;">Price History</h3>
+            <div class="card" style="background-color: var(--color-success-bg);">
+                <p >Plastic price last updated: <strong>10 days ago</strong> </p>
+                <p>(from <strong>$0.14</strong> to <strong>$0.15</strong>)</p>
             </div>
         </div>
         
