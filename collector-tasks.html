@@ -121,17 +121,15 @@
             padding: 10px 0;
             margin-bottom: 5px;
         }
-        .task-list-card {
-            border-bottom: 1px dashed var(--color-primary);
+        .task-list-card {            
             padding: 15px 25px 15px 20px;
             margin-bottom: 0px;
             cursor: pointer;
             display: block;
+            border-left: 4px solid green
         }
 
-        .gigabox a:last-child{
-            border-bottom: none;
-        }
+        
         .task-list-card h5 {
             margin: 0 0 5px 0;
             color: var(--color-text-dark);
@@ -199,24 +197,25 @@
             
             <div class="gigabox">
                 <a href="task-details.html" class="task-list-card" style="text-decoration: none;">
-                    <h5>#8372: Residential Pickup</h5>
+                    <h5 style="border-bottom: 1px solid var(--color-primary);">#8372: Residential Pickup</h5>
                     <div class="task-meta" >
                         <div>Time: 10:45 AM - 11:45 AM (Today)</div>
                         <div>Location: 123 Main St, Apt 4A</div>
                         <div>Est. Weight: 15 kg | Commission: $1.80</div>
                     </div>
                 </a>
-            
+            </div>
 
-            <a href="task-details.html" class="task-list-card" style="text-decoration: none;
-            margin-top: 0;">
-                <h5>#8373: Commercial E-Waste</h5>
-                <div class="task-meta">
-                    <div>Time: 1:00 PM - 2:00 PM (Today)</div>
-                    <div>Location: 456 Commerce Blvd (1.2 mi)</div>
-                    <div>Est. Weight: 50 kg | Commission: $5.50</div>
-                </div>
-            </a>
+            <div class="gigabox">
+                <a href="task-details.html" class="task-list-card" style="text-decoration: none;
+                margin-top: 0;">
+                    <h5 style="border-bottom: 1px solid var(--color-primary);">#8373: Commercial E-Waste</h5>
+                    <div class="task-meta">
+                        <div>Time: 1:00 PM - 2:00 PM (Today)</div>
+                        <div>Location: 456 Commerce Blvd (1.2 mi)</div>
+                        <div>Est. Weight: 50 kg | Commission: $5.50</div>
+                    </div>
+                </a>
             </div>
 
             <h4 class="box"
@@ -224,7 +223,7 @@
 
             <div class="gigabox">
                 <a href="task-details.html" class="task-list-card new" style="text-decoration: none;">
-                    <h5>#8377: Plastic & Cardboard</h5>
+                    <h5 style="border-bottom: 1px solid var(--color-primary);">#8377: Plastic & Cardboard</h5>
                     <div class="task-meta">
                         <div>Time: Tomorrow Morning (7:00 AM)</div>
                         <div>Location: 890 Green Street (4.5 mi)</div>
