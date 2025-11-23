@@ -53,9 +53,6 @@
         .search-container {
         padding: 8px 20px;
         background-color: #e9ffd5; 
-        position: sticky;
-        top: 50px;
-        z-index: 9;
         }
 
         /* This is the new wrapper for the entire search bar */
@@ -129,23 +126,23 @@
             bottom: 0;
             left: 0;
             right: 0;
-            width: 100%; /* Ensures it spans the full width of the frame */
-            
-            height: 60px; 
+            width: 100%; 
+                    
+            height: 60px; /* New preferred height */
             display: flex;
             justify-content: space-around;
-            align-items: flex-start; /* Aligns content better with padding-bottom */
-            
-            background: white; /* Use a solid background color */
+            align-items: flex-start; 
+                    
+            background: white; 
             border-top: 1px solid var(--color-border);
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            
+                    
             z-index: 10; 
-            
+                    
             padding-top: 5px; 
-            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
+            padding-bottom: 10px; /* Accounts for bottom safe area */
         }
-
+                
         .factory-nav-bar a {
             color: var(--color-text-light);
             text-decoration: none;
@@ -155,12 +152,18 @@
             padding: 5px;
             border-radius: 5px;
             flex-grow: 1;
-            display: block; 
+            display: block; /* Important for icon/text alignment */
         }
-
+                
         .factory-nav-bar a.active {
             color: var(--color-primary);
             font-weight: 700;
+        }
+                
+        .factory-nav-bar a span {
+            display: block;
+            font-size: 1.5em; 
+            margin-bottom: 3px;
         }
 
         /* ==========================================================
@@ -169,15 +172,16 @@
 
         .phone-frame .content {
             height: calc(100% - 160px); 
-            padding-top: 15px;
-           
             overflow-y: auto; 
             padding-bottom: 15px; 
         }
         /* --- Page Specific Styles --- */
         .factory-metric {
-            text-align: center;
+            display: flex;
+            align-items: center;
             padding: 15px;
+            padding-right: 20px;
+            margin-bottom: 10px;
             background-color: var(--color-success-bg);
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -194,11 +198,37 @@
             font-size: 0.9em;
             font-weight: 600;
         }
-        /* Style for the search input to fit the dashboard context */
-        .phone-frame input[type="text"] {
-            width: 93%;
-            margin: 0 10px 15px 10px;
+    
+        .big{
+            padding-left: 20px;
+            text-align: right;
+            font-size: 3em;
+            font-weight: 700;
+            color:#047857
         }
+
+        .bigger{
+            padding-left: 25px;
+            text-align: right;
+            font-size: 3em;
+            font-weight: 700;
+            color:#047857
+        }
+        .small{
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 10px;
+            padding-top: 18px;
+            color: #047857;
+        }
+        .smaller{
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 5px;
+            padding-top: 22px;
+            color: #047857;
+        }
+        
     </style>
 </head>
 <body>
@@ -224,15 +254,15 @@
         
         <div class="content">
                         
-            <h4 style="margin-top: 20px; color: var(--color-secondary);">Today's Supply Status</h4>
-            <div class="grid-2-col">
+            <h4 style="margin-top: 0px; color: var(--color-secondary);">Today's Supply Status</h4>
+            <div class="factory-metrics-list">
                 <div class="factory-metric">
-                    <h2>850 kg</h2>
-                    <p>Expected Delivery</p>
+                    <span class="text">Expected Delivery:</span>
+                    <span class="bigger">850</span><span class="smaller">KG</span>
                 </div>
                 <div class="factory-metric">
-                    <h2>$0.15 / kg</h2>
-                    <p>Plastic Purchase Price</p>
+                    <span class="text">Plastic Purchase Price:</span>
+                    <span class="big">0.15</span><span class="small">USD / KG</span>
                 </div>
             </div>
 
@@ -240,22 +270,22 @@
             
             <div class="grid-2-col" style="gap: 20px;">
                 
-                <a href="factory-deliveries.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                <a href="factory-deliveries.html" class="action-card" style="border: 1px solid var(--color-primary);">
                     <p style="color: var(--color-primary);">🚚</p>
                     <span style="color: var(--color-primary);">Verify Deliveries</span>
                 </a>
                 
-                <a href="factory-pricing.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                <a href="factory-pricing.html" class="action-card" style="border: 1px solid var(--color-primary);">
                     <p style="color: var(--color-primary);">💲</p>
                     <span style="color: var(--color-primary);">Pricing Management</span>
                 </a>
 
-                 <a href="factory-reports.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                 <a href="factory-reports.html" class="action-card" style="border: 1px solid var(--color-primary); ">
                     <p style="color: var(--color-primary);">📈</p>
                     <span style="color: var(--color-primary);">Supply & Analytics</span>
                 </a>
                 
-                <a href="factory-payouts.html" class="action-card" style="border: 2px solid var(--color-primary); background-color: var(--color-success-bg);">
+                <a href="factory-payouts.html" class="action-card" style="border: 1px solid var(--color-primary);">
                     <p style="color: var(--color-primary);">🏦</p>
                     <span style="color: var(--color-primary);">Commission Payouts</span>
                 </a>
@@ -265,18 +295,18 @@
             <div class="card">
                 <p style="margin: 0; font-weight: 600;">Delivery #2035 from Truck 4 (15:00)</p>
                 <small style="color: var(--color-text-light);">Expected: 300 kg Mixed Paper | Status: Awaiting weigh-in verification.</small>
-                <div style="text-align: right; margin-top: 10px;">
+                <div style="text-align: center; margin-top: 10px;">
                     <a href="factory-deliveries.html" class="link-text">View Details &rarr;</a>
                 </div>
             </div>
             
-            <div style="height: 30px;"></div>
+    
         </div>
         
         <div class="factory-nav-bar">
             <a href="factory-dashboard.html" class="active"><span>🏠</span>Dashboard</a>
-            <a href="factory-deliveries.html"><span>🚚</span>Deliveries</a>
-            <a href="factory-pricing.html"><span>💲</span>Pricing</a>
+             <a href="factory-deliveries.html"><span>🚚</span>Deliveries</a>
+            <!-- <a href="factory-pricing.html"><span>💲</span>Pricing</a>  -->
             <a href="factory-reports.html"><span>📈</span>Reports</a>
             <a href="factory-profile.html"><span>👤</span>Profile</a>
 

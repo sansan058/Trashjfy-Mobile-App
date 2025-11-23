@@ -12,6 +12,12 @@
             display: inline-block;
             width: 100%;
         }
+        .custom-select-wrapper:focus{
+            border-color: var(--color-primary);
+            outline: none;
+            box-shadow: 0 0 8px var(--color-primary);
+            transition: 0.2s ease;
+        }
         .custom-select {
             position: relative;
             cursor: pointer;
@@ -41,7 +47,7 @@
             top: 100%;
             left: 0;
             right: 0;
-            border: 1px solid var(--color-border);
+            border: 1px solid var(--color-primary);
             border-top: none;
             background-color: white;
             border-radius: 0 0 8px 8px;
@@ -61,15 +67,15 @@
             text-align: left;
         }
         .custom-option:hover {
-            background-color: #f3f4f6;
+            background-color: var(--color-primary);
         }
-        .custom-option.selected {
-            background-color: var(--color-primary-bg);
+        .custom-option.selected {  
             font-weight: 600;
         }
         .signup-container {
             padding: 40px 20px;
             text-align: center;
+            margin-bottom: 0px;
         }
         .signup-container input {
             width: 95%;
@@ -85,9 +91,9 @@
                 <img src="img/trashifylogo.png" alt="Trashify Logo"> 
                 Trashify
             </div>
-            <h3 style="text-align: center; margin-bottom: 20px; color: #047857;">Create Your Account</h3>
+            <h3 style="text-align: center; margin-bottom: 0px; color: #047857;">Create Your Account</h3>
             
-            <form class="signup-container">
+            <form class="signup-container" style="padding-bottom: 20px">
                 <input type="text" placeholder="Full Name" required>
                 <input type="email" placeholder="Email Address" required>
                 <input type="text" placeholder="Phone Number" required>
@@ -95,14 +101,14 @@
                 <input type="text" id="reg-address" placeholder="Residential Address" required>
 
                 <label for="reg-role" style="display:block; margin:12px 0 6px; font-weight:600; color: #047857;">Account Type</label>
-                <div class="custom-select-wrapper">
-                    <div class="custom-select">
+                <div class="custom-select-wrapper" style="padding-right: 10px;">
+                    <div class="custom-select" style="border: 1px solid #047857; border-radius: 8px;">
                         <div class="custom-select-trigger">User (Individual Recycler)</div>
-                        <div class="custom-options">
+                        <div class="custom-options" style="margin-top: 3px; border-top: 1px solid #047857; border-radius: 20px;">
                         <span class="custom-option selected" data-value="User">User</span>
                         <span class="custom-option" data-value="Collector">Collector</span>
                         <span class="custom-option" data-value="Factory">Factory</span>
-                        <span class="custom-option" data-value="Admin">Admin</span>
+                       
                         </div>
                     </div>
                 </div>
@@ -111,16 +117,16 @@
                 <option value="User" selected>User</option>
                 <option value="Collector">Collector</option>
                 <option value="Factory">Factory</option>
-                <option value="Admin">Admin</option>
+                
                 </select>
 
 
-                <div class="center-container" style="margin-top: 30px;">
-                    <button id="register-btn" class="btn-primary" type="submit" style="border:none; cursor:pointer;">Register</button>
+                <div class="center-container" style="margin-top: 10px;">
+                    <button id="register-btn" class="btn-primary" type="submit" style="border:none; cursor:pointer; margin-top: 0; margin-bottom: 0;">Register</button>
                 </div>
             </form>
             
-            <p class="link" style="text-align: center; margin-top: 20px;"> Already have an account?
+            <p class="link" style="text-align: center; margin-top: 0px;"> Already have an account?
                 <a href="login.html" class="link-text"> Sign In</a>
             </p>
         </div>
