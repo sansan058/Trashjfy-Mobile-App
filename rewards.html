@@ -12,9 +12,24 @@
             align-items: center;
             margin: 10px 0;
             padding: 10px;
-            border-bottom: 1px solid var(--color-border);
+            border-bottom: 1px solid rgb(208, 208, 208);
         }
-        .reward-item:last-child { border-bottom: none; }
+        .reward-item:last-child { 
+            border-bottom: none;
+            margin-bottom: 0px;
+         }
+
+        .big{
+            font-size: 3em;
+            font-weight: 700;
+            color:#047857
+        }
+        .small{
+            font-size: 1em;
+            font-weight: 400;
+            margin-left: 5px;
+            color: #047857;
+        }
     </style>
 </head>
 <body>
@@ -26,35 +41,36 @@
             <span></span>
         </div>
         <div class="content">
-            <div class="card" style="text-align: center; background-color: white;">
+            <div class="card" style="text-align: center; background-color: var(--color-success-bg);">
                 <p style="margin: 0; font-size: 1em;">Your Current Balance</p>
-                <h1 style="color: var(--color-primary); margin: 5px 0 15px 0; font-size: 2.5em;">1,600 PTS</h1>
-                <button class="btn-secondary" style="width: 80%; padding: 10px; border: 2px solid var(--color-primary);
+                <span class="big">1,600</span><span class="small">PTS</span>
+                <button class="btn-secondary" style="width: fit-content; padding: 10px; border: 2px solid var(--color-primary);
                 background-color: var(--color-primary);
-                color:white">Cashout to Bank Account</button>
+                color:white;
+                font-size: 0.9em;">Cashout to Bank Account</button>
             </div>
             
-            <h4 style="color: var(--color-primary);">Redeem Rewards (FR-REWARD-002)</h4>
+            <h4 style="color: var(--color-primary);">Redeem Rewards</h4>
             <div class="card">
                 <a href="redeem.html" class="reward-item" style="cursor: pointer; text-decoration: none; color: inherit;">
                     <span>🎁 $10 Gift Card Voucher</span>
                     <span style="font-weight: bold; color: var(--color-primary);">500 PTS →</span>
                 </a>
                 <a href="redeem.html" class="reward-item" style="cursor: pointer; text-decoration: none; color: inherit;">
-                    <span>🌳 Plant a Tree Donation</span>
+                    <span >🌳 Plant a Tree Donation</span>
                     <span style="font-weight: bold; color: var(--color-primary);">200 PTS →</span>
                 </a>
                 <div class="reward-item" style="color: var(--color-text-light);">
-                    <span>🎟️ 15% off Partner Retailer</span>
-                    <span style="font-weight: bold;">(Locked at 2,000 PTS)</span>
+                    <span style="text-align: left;">🎟️ 15% off Partner Retailer</span>
+                    <span style="font-weight: bold;"> 2,000 PTS →</span>
                 </div>
             </div>
             
             <h4 style="color: var(--color-secondary);">Transaction History</h4>
             <div class="card">
-                <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/17 Machine Deposit</span> <span style="color:var(--color-primary);">+350 PTS</span></p>
-                <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/15 Pickup #8372</span> <span style="color:var(--color-primary);">+900 PTS</span></p>
-                <p style="display: flex; justify-content: space-between; margin: 5px 0;"><span>11/01 Reward Redemption</span> <span style="color:#ef4444;">-500 PTS</span></p>
+                <p style="display: flex; justify-content: space-between; margin-bottom: 20px; margin-top: 10px; border-bottom: 1px solid rgb(208, 208, 208);"><span>11/17 Machine Deposit</span> <span style="color:var(--color-primary); font-weight: bold;">+350 PTS</span></p>
+                <p style="display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid rgb(208, 208, 208);"><span>11/15 Pickup #8372</span> <span style="color:var(--color-primary); font-weight: bold;">+900 PTS</span></p>
+                <p style="display: flex; justify-content: space-between;"><span>11/01 Reward Redemption</span> <span style="color:#ef4444; font-weight: bold;">-500 PTS</span></p>
             </div>
         </div>
     </div>

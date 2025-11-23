@@ -9,6 +9,7 @@
     --color-card-bg: white;
     --color-success-bg: #ecfdf5; /* Very light green */
     --color-border: #e2e8f0;
+    --color-danger-text: #b91c1c; /* Red for errors/warnings */
 }
 
 * {
