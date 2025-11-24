@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Home Screen</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for app icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Custom styles for the phone frame and icons */
+        body {
+            background-color: white; /* Dark background for contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .phone-frame {
+            position: relative;
+            width: 100%;
+            max-width: 420px; /* Standard mobile width limit */
+            height: 100vh;
+            max-height: 850px;
+            background-color: #000;
+            border-radius: 40px;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4), 0 15px 30px rgba(0, 0, 0, 0.2), inset 0 0 0 8px #e0e0e0;
+            overflow: hidden;
+            border: 8px solid #333; /* Inner border for shell depth */
+            transform: scale(0.9); /* Consistent scaling for display */
+        }
+
+        .screen {
+            background: linear-gradient(135deg, #1f2937, #374151); /* Dark, textured wallpaper */
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .status-bar {
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            padding: 0 15px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .app-grid {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px 5px; /* Larger gap vertically */
+            padding: 30px 10px 10px 10px;
+            overflow-y: auto;
+        }
+
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s;
+        }
+
+        .icon-container:active {
+            transform: scale(0.95);
+        }
+
+        .app-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px; /* iOS standard corner radius for icons */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 3px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-label {
+            color: white;
+            font-size: 10px;
+            font-weight: 400;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+            max-width: 65px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        /* Dock specific styles */
+        .dock {
+            height: 100px;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15); /* Translucent frosted glass effect */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 0 10px 25px 10px; /* Position above the bottom edge */
+        }
+
+        .home-indicator {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 4px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        /* Calendar specific styling */
+        .calendar-date {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ef4444; /* Red color for the date */
+            line-height: 1;
+        }
+        .calendar-day {
+            position: absolute;
+            top: 5px;
+            font-size: 8px;
+            font-weight: 500;
+            color: #ef4444; /* Red color for the day */
+        }
+
+        /* Instagram icon gradient */
+        .instagram-icon {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        
+        /* Custom Image Icon (Trashify) */
+        .img-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        /* Custom Modal Box for Alerts */
+        .custom-modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            width: 80%;
+            max-width: 300px;
+            backdrop-filter: blur(5px);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .custom-modal.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        <div class="screen">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div>9:41</div>
+                <div class="flex space-x-1 items-center">
+                    <i class="fas fa-signal"></i>
+                    <span>5G</span>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-battery-full"></i>
+                </div>
+            </div>
+
+            <!-- App Grid -->
+            <div class="app-grid">
+                <!-- App 1: Calendar (Custom Design) -->
+                <div class="icon-container" onclick="showAppMessage('Calendar')">
+                    <div class="app-icon bg-white text-red-500 relative p-0 overflow-visible">
+                        <div class="w-full h-1/4 bg-red-500 rounded-t-xl absolute top-0"></div>
+                        <span class="calendar-day absolute top-1 text-white">MON</span>
+                        <span class="calendar-date text-gray-800 mt-2">24</span>
+                    </div>
+                    <span class="app-label">Calendar</span>
+                </div>
+
+                <!-- App 2: Photos -->
+                <div class="icon-container" onclick="showAppMessage('Photos')">
+                    <div class="app-icon bg-purple-500">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <span class="app-label">Photos</span>
+                </div>
+
+                <!-- App 3: Weather -->
+                <div class="icon-container" onclick="showAppMessage('Weather')">
+                    <div class="app-icon bg-blue-300">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <span class="app-label">Weather</span>
+                </div>
+
+                <!-- App 4: Clock -->
+                <div class="icon-container" onclick="showAppMessage('Clock')">
+                    <div class="app-icon bg-white text-gray-800">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <span class="app-label">Clock</span>
+                </div>
+
+                <!-- App 5: Trashify (Custom App) -->
+                <div class="icon-container" onclick="showAppMessage('Trashify')">
+                    <div class="app-icon p-0 border-0 bg-transparent shadow-none">
+                        <img src="img/trashifylogo.png" alt="Trashify Logo" class="img-icon">
+                    </div>
+                    <span class="app-label">Trashify</span>
+                </div>
+                
+                <!-- App 6: Facebook -->
+                <div class="icon-container" onclick="showAppMessage('Facebook')">
+                    <div class="app-icon bg-blue-700">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <span class="app-label">Facebook</span>
+                </div>
+
+                <!-- App 7: Instagram -->
+                <div class="icon-container" onclick="showAppMessage('Instagram')">
+                    <div class="app-icon instagram-icon text-white">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <span class="app-label">Instagram</span>
+                </div>
+
+                <!-- App 8: YouTube -->
+                <div class="icon-container" onclick="showAppMessage('YouTube')">
+                    <div class="app-icon bg-red-600">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <span class="app-label">YouTube</span>
+                </div>
+
+                <!-- App 9: LINE -->
+                <div class="icon-container" onclick="showAppMessage('LINE')">
+                    <div class="app-icon bg-green-500 text-white">
+                        <i class="fab fa-line"></i>
+                    </div>
+                    <span class="app-label">LINE</span>
+                </div>
+                
+                <!-- App 10: Messages -->
+                <div class="icon-container" onclick="showAppMessage('Messages')">
+                    <div class="app-icon bg-green-400">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <span class="app-label">Messages</span>
+                </div>
+
+                <!-- App 11: Spotify -->
+                <div class="icon-container" onclick="showAppMessage('Spotify')">
+                    <div class="app-icon bg-green-600 text-black">
+                        <i class="fab fa-spotify"></i>
+                    </div>
+                    <span class="app-label">Spotify</span>
+                </div>
+                
+                <!-- App 12: X (formerly Twitter) -->
+                <div class="icon-container" onclick="showAppMessage('X')">
+                    <div class="app-icon bg-black text-white">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <span class="app-label">X</span>
+                </div>
+
+                <!-- App 13: Maps -->
+                <div class="icon-container" onclick="showAppMessage('Maps')">
+                    <div class="app-icon bg-green-600">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <span class="app-label">Maps</span>
+                </div>
+
+                <!-- App 14: Health -->
+                <div class="icon-container" onclick="showAppMessage('Health')">
+                    <div class="app-icon bg-red-500">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span class="app-label">Health</span>
+                </div>
+
+                <!-- App 15: Wallet -->
+                <div class="icon-container" onclick="showAppMessage('Wallet')">
+                    <div class="app-icon bg-gray-500">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <span class="app-label">Wallet</span>
+                </div>
+
+                <!-- App 16: Files -->
+                <div class="icon-container" onclick="showAppMessage('Files')">
+                    <div class="app-icon bg-blue-400">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <span class="app-label">Files</span>
+                </div>
+            </div>
+            
+            <!-- Dock -->
+            <div class="dock">
+                <!-- App 17: Phone -->
+                <div class="icon-container" onclick="showAppMessage('Phone')">
+                    <div class="app-icon bg-green-600">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <span class="app-label hidden">Phone</span>
+                </div>
+                
+                <!-- App 18: Safari -->
+                <div class="icon-container" onclick="showAppMessage('Safari')">
+                    <div class="app-icon bg-blue-500">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <span class="app-label hidden">Safari</span>
+                </div>
+                
+                <!-- App 19: Mail -->
+                <div class="icon-container" onclick="showAppMessage('Mail')">
+                    <div class="app-icon bg-blue-500">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="app-label hidden">Mail</span>
+                </div>
+                
+                <!-- App 20: Music -->
+                <div class="icon-container" onclick="showAppMessage('Music')">
+                    <div class="app-icon bg-red-500">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <span class="app-label hidden">Music</span>
+                </div>
+            </div>
+
+            <!-- Home Indicator (Simulated) -->
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+    
+    <!-- Custom Modal for Messages (Replacing alert()) -->
+    <div id="custom-modal" class="custom-modal">
+        <div id="modal-message" class="text-gray-800 font-semibold mb-3"></div>
+        <button onclick="closeModal()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-150">
+            OK
+        </button>
+    </div>
+
+    <script>
+        // JS for handling app clicks and the custom modal
+
+        const modal = document.getElementById('custom-modal');
+        const modalMessage = document.getElementById('modal-message');
+
+        /**
+         * Shows the custom modal with a message about the clicked app, 
+         * or redirects to splash.html if the Trashify app is clicked.
+         * @param {string} appName The name of the app that was clicked.
+         */
+        function showAppMessage(appName) {
+            if (appName === 'Trashify') {
+                // Redirect to splash.html when Trashify is clicked
+                window.location.href = 'splash.html';
+                return; // Stop execution here
+            }
+
+            // Show the modal for all other apps
+            modalMessage.textContent = `Launching ${appName}... (Mockup Action)`;
+            modal.classList.add('visible');
+        }
+
+        /**
+         * Closes the custom modal.
+         */
+        function closeModal() {
+            modal.classList.remove('visible');
+        }
+    </script>
+
+</body>
+</html>
