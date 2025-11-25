@@ -6,69 +6,45 @@
     <title>Trashify - System Settings</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
-        /* --- ADMIN INTERFACE SHARED STYLES --- */
-        .admin-header {
+        /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
+        .desktop-layout { display: flex; height: 100vh; width: 100%; }
+        .sidebar-nav { 
+            width: 300px; /* Increased width */
             background-color: var(--color-primary); 
-            color: white;
-            padding: 10px 20px;
-            height: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            position: sticky; top: 0; z-index: 10;
-        }
-        .admin-nav-bar {
-            position: absolute; 
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%; /* Ensures it spans the full width of the frame */
-            
-            height: 60px; 
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start; /* Aligns content better with padding-bottom */
-            
-            background: white; /* Use a solid background color */
-            border-top: 1px solid var(--color-border);
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            
-            z-index: 10; 
-            
-            padding-top: 5px; 
-            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
-        }
-
-        .admin-nav-bar a {
-            color: var(--color-text-light);
-            text-decoration: none;
-            font-size: 0.8em;
-            text-align: center;
-            font-weight: 500;
-            padding: 5px;
-            border-radius: 5px;
-            flex-grow: 1;
-            display: block; 
-        }
-
-        .admin-nav-bar a.active {
-            color: var(--color-primary);
-            font-weight: 700;
-        }
-
-        /* ==========================================================
-        3. CONTENT SCROLLING FIX
-        ========================================================== */
-
-        .phone-frame .content {
-            height: calc(100% - 160px); 
-            padding-top: 15px;
-           
+            color: white; 
+            padding-top: 20px; 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
+            flex-shrink: 0; 
             overflow-y: auto; 
-            padding-bottom: 15px; 
         }
+        .sidebar-logo {
+            font-size: 2.0em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        .sidebar-logo span {
+            text-align: left;
+            margin-left: 55px;
+            display: block;
+            font-size: 0.5em;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        .sidebar-menu a { display: flex; align-items: center; padding: 12px 20px; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
+        .sidebar-menu a:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .sidebar-menu a.active { background-color: var(--color-secondary); font-weight: 700; }
+        .sidebar-menu a span:first-child { margin-right: 15px; font-size: 1.3em; }
+
+        .main-area { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+        
+        .admin-header { background-color: white; color: var(--color-text-dark); border-bottom: 1px solid var(--color-border); padding: 0 30px; height: 60px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); flex-shrink: 0; }
+        .admin-header .actions a { color: var(--color-primary); text-decoration: none; font-size: 1.2em; margin-left: 20px; }
+        .admin-header .title { color: var(--color-primary); font-size: 1.4em; }
+
+        .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
+
+        /* --- Settings Specific Styles --- */
         .settings-list {
             list-style: none;
             padding: 0;
@@ -83,66 +59,88 @@
         .settings-list li:last-child {
             border-bottom: none;
         }
+        .settings-list input {
+            width: 120px; 
+            text-align: right; 
+            border: 1px solid var(--color-border);
+            padding: 8px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="phone-frame">
+    <div class="desktop-layout">
         
-        <div class="admin-header">
-            <a href="admin-dashboard.html" style="color: white; text-decoration: none;">←</a>
-            <span style="flex-grow: 1; text-align: center;">System Settings</span>
-            <span></span>
-        </div>
-        
-        <div class="content">
-            
-            <a href="admin-promotions.html" class="btn-primary" style="background-color: var(--color-secondary); margin-bottom: 25px; text-decoration: none; text-align: center; display: block;">
-                Manage Promotions & Rewards
-            </a>
-
-            <h4 style="color: var(--color-primary);">Recyclable Rates (Per KG)</h4>
-            <div class="card">
-                <ul class="settings-list">
-                    <li>
-                        <span>PET Plastic</span>
-                        <input type="text" value="$0.55" style="width: 80px; text-align: right; border: 1px solid var(--color-border);">
-                    </li>
-                    <li>
-                        <span>Aluminum Cans</span>
-                        <input type="text" value="$1.20" style="width: 80px; text-align: right; border: 1px solid var(--color-border);">
-                    </li>
-                    <li>
-                        <span>Mixed Paper</span>
-                        <input type="text" value="$0.30" style="width: 80px; text-align: right; border: 1px solid var(--color-border);">
-                    </li>
-                </ul>
+        <div class="sidebar-nav">
+            <div class="sidebar-logo">
+                <img src="img/trashifylogo.png" alt="Trashify Logo" style="height: 35px; width: 35px; vertical-align: middle; margin-right: 5px; border-radius: 50%">
+                Trashify
+                <span>Admin</span>
             </div>
-
-            <h4 style="color: var(--color-primary);">Commission & Fees</h4>
-            <div class="card" style="margin-bottom: 100px;">
-                <ul class="settings-list">
-                    <li>
-                        <span>Platform Commission (Factory)</span>
-                        <input type="text" value="10%" style="width: 80px; text-align: right; border: 1px solid var(--color-border);">
-                    </li>
-                    <li style="border-bottom: none;">
-                        <span>Service Fee (User)</span>
-                        <input type="text" value="$1.00" style="width: 80px; text-align: right; border: 1px solid var(--color-border);">
-                    </li>
-                </ul>
-            </div>
-
-            <button class="btn-primary" style="display: block; width: 100%;">Save All Changes</button>
             
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
+                <a href="admin-user-management.html"><span>👤</span>User Management</a>
+                <a href="admin-tracking.html"><span>🗺️</span>Logistics Tracking</a>
+                <a href="admin-analytics.html"><span>📈</span>System Analytics</a>
+                <a href="admin-rates.html" class="active"><span>⚙️</span>Pricing & Settings</a>
+                <a href="admin-promotions.html"><span>🎁</span>Promotions</a>
+                <a href="admin-machines.html"><span>🤖</span>Machine Network</a>
+            </nav>
         </div>
-        
-        <div class="admin-nav-bar">
-            <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
-            <a href="admin-user-management.html"><span>👤</span>Users</a>
-            <a href="admin-tracking.html"><span>🗺️</span>Track</a>
-            <a href="admin-rates.html" class="active"><span>⚙️</span>Settings</a>
-            <a href="admin-profile.html"><span>👑</span>Profile</a>
+
+        <div class="main-area">
+            
+            <div class="admin-header">
+                <span class="title">Pricing & System Settings</span>
+                <div class="actions">
+                    <a href="notifications.html" title="Notifications">🔔</a>
+                    <a href="admin-profile.html" title="Admin Profile">👤</a>
+                </div>
+            </div>
+            
+            <div class="content">
+                
+                <a href="admin-promotions.html" class="btn-primary" style="background-color: var(--color-secondary); margin-bottom: 25px; text-decoration: none; text-align: center; display: block; padding: 15px; max-width: 400px;">
+                    🎁 Manage Promotions & Rewards
+                </a>
+
+                <h4 style="color: var(--color-primary);">Recyclable Rates (Per KG)</h4>
+                <div class="card" style="max-width: 600px;">
+                    <ul class="settings-list">
+                        <li>
+                            <span>PET Plastic</span>
+                            <input type="text" value="$0.55/kg">
+                        </li>
+                        <li>
+                            <span>Aluminum Cans</span>
+                            <input type="text" value="$1.20/kg">
+                        </li>
+                        <li>
+                            <span>Mixed Paper</span>
+                            <input type="text" value="$0.30/kg">
+                        </li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--color-primary);">Commission & Fees</h4>
+                <div class="card" style="max-width: 600px;">
+                    <ul class="settings-list">
+                        <li>
+                            <span>Platform Commission (Factory)</span>
+                            <input type="text" value="10%">
+                        </li>
+                        <li style="border-bottom: none;">
+                            <span>Service Fee (User)</span>
+                            <input type="text" value="$1.00 per pickup">
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="btn-primary" style="display: block; width: 300px; margin-top: 40px;">Save All Changes</button>
+            
+            </div>
         </div>
     </div>
 

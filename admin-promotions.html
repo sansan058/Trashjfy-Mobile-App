@@ -6,69 +6,45 @@
     <title>Trashify - Promotions</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
-        /* --- ADMIN INTERFACE SHARED STYLES --- */
-        .admin-header {
+        /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
+        .desktop-layout { display: flex; height: 100vh; width: 100%; }
+        .sidebar-nav { 
+            width: 300px; /* Increased width */
             background-color: var(--color-primary); 
-            color: white;
-            padding: 10px 20px;
-            height: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            position: sticky; top: 0; z-index: 10;
-        }
-        .admin-nav-bar {
-            position: absolute; 
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%; /* Ensures it spans the full width of the frame */
-            
-            height: 60px; 
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start; /* Aligns content better with padding-bottom */
-            
-            background: white; /* Use a solid background color */
-            border-top: 1px solid var(--color-border);
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            
-            z-index: 10; 
-            
-            padding-top: 5px; 
-            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
-        }
-
-        .admin-nav-bar a {
-            color: var(--color-text-light);
-            text-decoration: none;
-            font-size: 0.8em;
-            text-align: center;
-            font-weight: 500;
-            padding: 5px;
-            border-radius: 5px;
-            flex-grow: 1;
-            display: block; 
-        }
-
-        .admin-nav-bar a.active {
-            color: var(--color-primary);
-            font-weight: 700;
-        }
-
-        /* ==========================================================
-        3. CONTENT SCROLLING FIX
-        ========================================================== */
-
-        .phone-frame .content {
-            height: calc(100% - 160px); 
-            padding-top: 15px;
-           
+            color: white; 
+            padding-top: 20px; 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
+            flex-shrink: 0; 
             overflow-y: auto; 
-            padding-bottom: 15px; 
         }
+        .sidebar-logo {
+            font-size: 2.0em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        .sidebar-logo span {
+            text-align: left;
+            margin-left: 55px;
+            display: block;
+            font-size: 0.5em;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        .sidebar-menu a { display: flex; align-items: center; padding: 12px 20px; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
+        .sidebar-menu a:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .sidebar-menu a.active { background-color: var(--color-secondary); font-weight: 700; }
+        .sidebar-menu a span:first-child { margin-right: 15px; font-size: 1.3em; }
+
+        .main-area { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+        
+        .admin-header { background-color: white; color: var(--color-text-dark); border-bottom: 1px solid var(--color-border); padding: 0 30px; height: 60px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); flex-shrink: 0; }
+        .admin-header .actions a { color: var(--color-primary); text-decoration: none; font-size: 1.2em; margin-left: 20px; }
+        .admin-header .title { color: var(--color-primary); font-size: 1.4em; }
+
+        .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
+
+        /* --- Promotions Specific Styles --- */
         .promotion-card {
             padding: 15px;
             border: 1px solid var(--color-primary);
@@ -76,55 +52,93 @@
             border-radius: 8px;
             margin-bottom: 15px;
             background-color: var(--color-primary-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+        }
+        .promotion-card small {
+            margin-right: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="phone-frame">
+    <div class="desktop-layout">
         
-        <div class="admin-header">
-            <a href="admin-rates.html" style="color: white; text-decoration: none;">←</a>
-            <span style="flex-grow: 1; text-align: center;">Promotions Management</span>
-            <span></span>
+        <div class="sidebar-nav">
+            <div class="sidebar-logo">
+                <img src="img/trashifylogo.png" alt="Trashify Logo" style="height: 35px; width: 35px; vertical-align: middle; margin-right: 5px; border-radius: 50%">
+                Trashify
+                <span>Admin</span>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
+                <a href="admin-user-management.html"><span>👤</span>User Management</a>
+                <a href="admin-tracking.html"><span>🗺️</span>Logistics Tracking</a>
+                <a href="admin-analytics.html"><span>📈</span>System Analytics</a>
+                <a href="admin-rates.html"><span>⚙️</span>Pricing & Settings</a>
+                <a href="admin-promotions.html" class="active"><span>🎁</span>Promotions</a>
+                <a href="admin-machines.html"><span>🤖</span>Machine Network</a>
+            </nav>
         </div>
-        
-        <div class="content">
+
+        <div class="main-area">
             
-            <button class="btn-primary" style="background-color: var(--color-success); margin-bottom: 25px; text-align: center; display: block;">
-                + Create New Promotion
-            </button>
-
-            <h4 style="color: var(--color-primary); margin-top: 0;">Active Promotions (2)</h4>
-
-            <div class="promotion-card">
-                <strong style="display: block; color: var(--color-primary);">Weekend Bonus: +20% Points</strong>
-                <small>Duration: Sat & Sun only</small>
-                <small style="display: block; color: var(--color-text-light);">Status: Active</small>
-            </div>
-
-            <div class="promotion-card">
-                <strong style="display: block; color: var(--color-primary);">Referral Reward: $5 Voucher</strong>
-                <small>Duration: Until 12/31</small>
-                <small style="display: block; color: var(--color-text-light);">Status: Active</small>
+            <div class="admin-header">
+                <span class="title">Promotions & Rewards Management</span>
+                <div class="actions">
+                    <a href="notifications.html" title="Notifications">🔔</a>
+                    <a href="admin-profile.html" title="Admin Profile">👤</a>
+                </div>
             </div>
             
-            <h4 style="color: var(--color-primary);">Expired Promotions (3)</h4>
-            
-            <div class="promotion-card" style="border-left: 4px solid var(--color-text-light); background-color: #f1f5f9; margin-bottom: 100px;">
-                <strong style="display: block; color: var(--color-text-dark);">First 5KG Double Points</strong>
-                <small>Expired: 10/31/2025</small>
-                <small style="display: block; color: var(--color-danger);">Status: Inactive</small>
-            </div>
+            <div class="content">
 
-        </div>
-        
-        <div class="admin-nav-bar">
-            <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
-            <a href="admin-user-management.html"><span>👤</span>Users</a>
-            <a href="admin-tracking.html"><span>🗺️</span>Track</a>
-            <a href="admin-rates.html" class="active"><span>⚙️</span>Settings</a>
-            <a href="admin-profile.html"><span>👑</span>Profile</a>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h4 style="color: var(--color-primary); margin: 0;">Active Promotions (2)</h4>
+                    <button class="btn-primary" style="background-color: var(--color-success); padding: 10px 20px;">
+                        + Create New Promotion
+                    </button>
+                </div>
+
+                <div class="promotion-card">
+                    <div>
+                        <strong style="display: block; color: var(--color-primary);">Weekend Bonus: +20% Points</strong>
+                        <small>Target: All Users | Duration: Sat & Sun only</small>
+                    </div>
+                    <div style="text-align: right;">
+                        <small style="display: block; color: var(--color-success); font-weight: 700;">Status: ACTIVE</small>
+                        <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-top: 5px;">Edit / Pause</button>
+                    </div>
+                </div>
+
+                <div class="promotion-card">
+                    <div>
+                        <strong style="display: block; color: var(--color-primary);">Referral Reward: $5 Voucher</strong>
+                        <small>Target: New Signups | Duration: Until 12/31</small>
+                    </div>
+                    <div style="text-align: right;">
+                        <small style="display: block; color: var(--color-success); font-weight: 700;">Status: ACTIVE</small>
+                        <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-top: 5px;">Edit / Pause</button>
+                    </div>
+                </div>
+                
+                <h4 style="color: var(--color-primary); margin-top: 40px;">Expired Promotions (3)</h4>
+                
+                <div class="promotion-card" style="border-left: 4px solid var(--color-text-light); background-color: #f1f5f9;">
+                    <div>
+                        <strong style="display: block; color: var(--color-text-dark);">First 5KG Double Points</strong>
+                        <small>Expired: 10/31/2025</small>
+                    </div>
+                    <div style="text-align: right;">
+                        <small style="display: block; color: var(--color-danger); font-weight: 700;">Status: INACTIVE</small>
+                        <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-top: 5px;">Reactivate</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 

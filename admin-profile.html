@@ -6,88 +6,61 @@
     <title>Trashify - Admin Profile</title>
     <link rel="stylesheet" href="css/app.css">
     <style>
-        /* --- ADMIN INTERFACE SHARED STYLES --- */
-        .admin-header {
-            background-color: var(--color-primary); /* Uses main green color */
-            color: white;
-            padding: 10px 20px;
-            height: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            position: sticky; top: 0; z-index: 10;
-        }
-       .admin-nav-bar {
-            position: absolute; 
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%; /* Ensures it spans the full width of the frame */
-            
-            height: 60px; 
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start; /* Aligns content better with padding-bottom */
-            
-            background: white; /* Use a solid background color */
-            border-top: 1px solid var(--color-border);
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            
-            z-index: 10; 
-            
-            padding-top: 5px; 
-            padding-bottom: 10px; /* Accounts for bottom safe area/rounded corners */
-        }
-
-        .admin-nav-bar a {
-            color: var(--color-text-light);
-            text-decoration: none;
-            font-size: 0.8em;
-            text-align: center;
-            font-weight: 500;
-            padding: 5px;
-            border-radius: 5px;
-            flex-grow: 1;
-            display: block; 
-        }
-
-        .admin-nav-bar a.active {
-            color: var(--color-primary);
-            font-weight: 700;
-        }
-
-        /* ==========================================================
-        3. CONTENT SCROLLING FIX
-        ========================================================== */
-
-        .phone-frame .content {
-            height: calc(100% - 160px); 
-            padding-top: 15px;
-           
+        /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
+        .desktop-layout { display: flex; height: 100vh; width: 100%; }
+        .sidebar-nav { 
+            width: 300px; /* Increased width */
+            background-color: var(--color-primary); 
+            color: white; 
+            padding-top: 20px; 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
+            flex-shrink: 0; 
             overflow-y: auto; 
-            padding-bottom: 15px; 
         }
+         .sidebar-logo {
+            font-size: 2.0em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        .sidebar-logo span {
+            text-align: left;
+            margin-left: 55px;
+            display: block;
+            font-size: 0.5em;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        .sidebar-menu a { display: flex; align-items: center; padding: 12px 20px; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
+        .sidebar-menu a:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .sidebar-menu a.active { background-color: var(--color-secondary); font-weight: 700; }
+        .sidebar-menu a span:first-child { margin-right: 15px; font-size: 1.3em; }
+
+        .main-area { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
         
-       /* --- PROFILE-SPECIFIC STYLES --- */
+        .admin-header { background-color: white; color: var(--color-text-dark); border-bottom: 1px solid var(--color-border); padding: 0 30px; height: 60px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); flex-shrink: 0; }
+        .admin-header .actions a { color: var(--color-primary); text-decoration: none; font-size: 1.2em; margin-left: 20px; }
+        .admin-header .title { color: var(--color-primary); font-size: 1.4em; }
+
+        .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
+
+        /* --- PROFILE-SPECIFIC STYLES --- */
         .profile-header {
             text-align: center;
             padding: 15px 0;
             margin-bottom: 20px;
         }
         .profile-img {
-            width: 80px;
-            height: 80px;
-            background-color: var(--color-primary-bg);
+            width: 100px; /* Larger size for desktop */
+            height: 100px;
+            background-color: var(--color-primary-bg); 
             border-radius: 50%;
             margin: 0 auto 10px auto;
             overflow: hidden;
-            border: 3px solid var(--color-primary); 
+            border: 4px solid var(--color-primary); 
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Removed emoji specific styling */
         }
         .profile-info h3 {
             margin: 0 0 5px 0;
@@ -115,75 +88,91 @@
 </head>
 <body>
 
-    <div class="phone-frame" id="admin-profile-screen">
+    <div class="desktop-layout" id="admin-profile-screen">
         
-        <div class="admin-header">
-            <a href="admin-dashboard.html" style="color: white; text-decoration: none;">←</a>
-            <span style="flex-grow: 1; text-align: center;">Admin Profile</span>
-            <span></span>
+        <div class="sidebar-nav">
+            <div class="sidebar-logo">
+                <img src="img/trashifylogo.png" alt="Trashify Logo" style="height: 35px; width: 35px; vertical-align: middle; margin-right: 5px; border-radius: 50%">
+                Trashify
+                <span>Admin</span>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
+                <a href="admin-user-management.html"><span>👤</span>User Management</a>
+                <a href="admin-tracking.html"><span>🗺️</span>Logistics Tracking</a>
+                <a href="admin-analytics.html"><span>📈</span>System Analytics</a>
+                <a href="admin-rates.html"><span>⚙️</span>Pricing & Settings</a>
+                <a href="admin-promotions.html"><span>🎁</span>Promotions</a>
+                <a href="admin-machines.html"><span>🤖</span>Machine Network</a>
+                <!-- <a href="admin-profile.html" class="active"><span>👤</span>Profile</a> -->
+            </nav>
         </div>
-        
-        <div class="content">
-            
-            <div class="profile-header">
-                <div class="profile-img">
-                    <img src="img/adminpf.png" alt="Admin Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="profile-info">
-                    <h3>System Administrator</h3>
-                    <small>Role: Super Admin</small>
-                </div>
-                <a href="#" class="link" style="margin-top: 5px;">Edit Personal Details</a>
-            </div>
-            
-            <h4 style="color: var(--color-primary);">Security & Preferences</h4>
-            <div class="card">
-                <ul class="settings-list">
-                    <li>
-                        <span>Change Password</span>
-                        <span style="color: var(--color-text-light);">→</span>
-                    </li>
-                    <li>
-                        <span>Two-Factor Authentication (2FA)</span>
-                        <strong style="color: var(--color-success);">Enabled</strong>
-                    </li>
-                    <li>
-                        <span>Admin Activity Log</span>
-                        <span style="color: var(--color-text-light);">→</span>
-                    </li>
-                    <li>
-                        <span>System Alert Notifications</span>
-                        <strong style="color: var(--color-text-dark);">Email / SMS</strong>
-                    </li>
-                </ul>
-            </div>
 
-            <h4 style="color: var(--color-primary);">System & Access</h4>
-            <div class="card">
-                <ul class="settings-list">
-                    <li>
-                        <span>Last Login IP</span>
-                        <span style="color: var(--color-text-dark);">192.168.1.1</span>
-                    </li>
-                    <li style="border-bottom: none;">
-                        <span>Current Session Duration</span>
-                        <span style="color: var(--color-text-dark);">2 hours 15 min</span>
-                    </li>
-                </ul>
-            </div>
-
-            <a href="login.html" class="btn-primary" style="background-color: #ef4444; text-align: center; display: block; margin-top: 40px; text-decoration: none;">
-                Log Out
-            </a>
+        <div class="main-area">
             
-        </div>
-        
-        <div class="admin-nav-bar">
-            <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
-            <a href="admin-user-management.html"><span>👤</span>Users</a>
-            <a href="admin-tracking.html"><span>🗺️</span>Track</a>
-            <a href="admin-rates.html"><span>⚙️</span>Settings</a>
-            <a href="admin-profile.html" class="active"><span>👑</span>Profile</a>
+            <div class="admin-header">
+                <span class="title">My Admin Profile</span>
+                <div class="actions">
+                    <a href="notifications.html" title="Notifications">🔔</a>
+                    <a href="admin-profile.html" title="Admin Profile">👤</a>
+                </div>
+            </div>
+            
+            <div class="content">
+            
+                <div class="profile-header">
+                    <div class="profile-img">
+                        <img src="img/adminpf.png" alt="Admin Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="profile-info">
+                        <h3>System Administrator</h3>
+                        <small>Role: Super Admin</small>
+                    </div>
+                    <a href="#" class="link" style="margin-top: 5px;">Edit Personal Details</a>
+                </div>
+                
+                <h4 style="color: var(--color-primary);">Security & Preferences</h4>
+                <div class="card">
+                    <ul class="settings-list">
+                        <li>
+                            <span>Change Password</span>
+                            <span style="color: var(--color-text-light);">→</span>
+                        </li>
+                        <li>
+                            <span>Two-Factor Authentication (2FA)</span>
+                            <strong style="color: var(--color-success);">Enabled</strong>
+                        </li>
+                        <li>
+                            <span>Admin Activity Log</span>
+                            <span style="color: var(--color-text-light);">→</span>
+                        </li>
+                        <li>
+                            <span>System Alert Notifications</span>
+                            <strong style="color: var(--color-text-dark);">Email / SMS</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4 style="color: var(--color-primary);">System & Access</h4>
+                <div class="card">
+                    <ul class="settings-list">
+                        <li>
+                            <span>Last Login IP</span>
+                            <span style="color: var(--color-text-dark);">192.168.1.1</span>
+                        </li>
+                        <li style="border-bottom: none;">
+                            <span>Current Session Duration</span>
+                            <span style="color: var(--color-text-dark);">2 hours 15 min</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <a href="admin-login.html" class="btn-primary" style="background-color: #ef4444; text-align: center; display: block; margin-top: 40px; text-decoration: none; max-width: 300px; margin-left: auto; margin-right: auto;">
+                    Log Out
+                </a>
+                
+            </div>
         </div>
     </div>
 
