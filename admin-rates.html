@@ -44,27 +44,47 @@
 
         .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
 
-        /* --- Settings Specific Styles --- */
-        .settings-list {
-            list-style: none;
-            padding: 0;
-        }
-        .settings-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--color-border);
+        /* --- Custom Pricing List Styles (Inspired by factory-pricing) --- */
+        .price-input-group {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 10px 0;
+            /* Using a dashed border for the item separation, similar to the factory page */
+            border-bottom: 1px dashed var(--color-primary); 
         }
-        .settings-list li:last-child {
+        .price-input-group:last-of-type {
             border-bottom: none;
         }
-        .settings-list input {
-            width: 120px; 
-            text-align: right; 
-            border: 1px solid var(--color-border);
+        .price-input-group label {
+            font-weight: 600;
+            color: var(--color-text-dark);
+            flex-basis: 60%; /* Adjusted for better label space on Admin side */
+        }
+        .price-input-group input {
+            width: 35%;
             padding: 8px;
-            border-radius: 4px;
+            margin: 0;
+            text-align: right;
+            border-radius: 8px;
+            /* Using a prominent border color for the input field */
+            border: 1px solid var(--color-secondary); 
+            font-size: 0.9em;
+            color: var(--color-text-dark);
+        }
+        /* Style for the container card */
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        /* Remove original settings-list styles as we now use .price-input-group */
+        .settings-list {
+            list-style: none;
+            padding: 0;
+            /* Removed padding/border/display properties */
         }
     </style>
 </head>
@@ -81,7 +101,7 @@
             
             <nav class="sidebar-menu">
                 <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
-                <a href="admin-user-management.html"><span>👤</span>User Management</a>
+                <a href="admin-user-management.html"><span>👤</span>Management</a>
                 <a href="admin-tracking.html"><span>🗺️</span>Logistics Tracking</a>
                 <a href="admin-analytics.html"><span>📈</span>System Analytics</a>
                 <a href="admin-rates.html" class="active"><span>⚙️</span>Pricing & Settings</a>
@@ -101,41 +121,33 @@
             </div>
             
             <div class="content">
-                
-                <!-- <a href="admin-promotions.html" class="btn-primary" style="background-color: var(--color-secondary); margin-bottom: 25px; text-decoration: none; text-align: center; display: block; padding: 15px; max-width: 400px;">
-                    🎁 Manage Promotions & Rewards
-                </a> -->
 
                 <h4 style="color: var(--color-primary);">Recyclable Rates (Per KG)</h4>
                 <div class="card" style="max-width: 600px;">
-                    <ul class="settings-list">
-                        <li>
-                            <span>PET Plastic</span>
-                            <input type="text" value="$0.55/kg">
-                        </li>
-                        <li>
-                            <span>Aluminum Cans</span>
-                            <input type="text" value="$1.20/kg">
-                        </li>
-                        <li>
-                            <span>Mixed Paper</span>
-                            <input type="text" value="$0.30/kg">
-                        </li>
-                    </ul>
+                    <div class="price-input-group">
+                        <label>PET Plastic</label>
+                        <input type="text" value="$0.55/kg" placeholder="$ / kg">
+                    </div>
+                    <div class="price-input-group">
+                        <label>Aluminum Cans</label>
+                        <input type="text" value="$1.20/kg" placeholder="$ / kg">
+                    </div>
+                    <div class="price-input-group" style="border-bottom: none;">
+                        <label>Mixed Paper</label>
+                        <input type="text" value="$0.30/kg" placeholder="$ / kg">
+                    </div>
                 </div>
 
                 <h4 style="color: var(--color-primary);">Commission & Fees</h4>
                 <div class="card" style="max-width: 600px;">
-                    <ul class="settings-list">
-                        <li>
-                            <span>Platform Commission (Factory)</span>
-                            <input type="text" value="10%">
-                        </li>
-                        <li style="border-bottom: none;">
-                            <span>Service Fee (User)</span>
-                            <input type="text" value="$1.00 per pickup">
-                        </li>
-                    </ul>
+                    <div class="price-input-group">
+                        <label>Platform Commission (Factory)</label>
+                        <input type="text" value="27%" placeholder="Percentage %">
+                    </div>
+                    <div class="price-input-group" style="border-bottom: none;">
+                        <label>Service Fee (User)</label>
+                        <input type="text" value="$1.25 per pickup" placeholder="$ / pickup">
+                    </div>
                 </div>
 
                 <button class="btn-primary" style="display: block; width: 300px; margin-top: 40px;">Save All Changes</button>
