@@ -10,6 +10,11 @@
     --color-success-bg: #ecfdf5; /* Very light green */
     --color-border: #e2e8f0;
     --color-danger-text: #b91c1c; /* Red for errors/warnings */
+    --color-warning: #FFC107; /* Amber for warnings */
+    --color-warning-bg: #fffbe6;; /* Very light amber */
+    --color-danger: #DC3545;
+    --color-danger-bg: #f8d7da; /* Very light red */
+    --color-success: #28A745;
 }
 
 * {

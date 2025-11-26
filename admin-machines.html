@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/app.css">
     <style>
         /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
+        
         .desktop-layout { display: flex; height: 100vh; width: 100%; }
         .sidebar-nav { 
             width: 300px; /* Increased width */
@@ -89,7 +90,7 @@
         /* Status-inspired border and background styling */
         .status-success {
             border-left-color: var(--color-success);
-            background-color: var(--color-success-bg);
+            background-color: #d4edda;
             border-color: var(--color-success);
         }
         .status-warning {
@@ -194,14 +195,14 @@
                     </div>
                     
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%; background-color: var(--color-primary);"></div>
+                        <div class="progress-fill" style="width: 75%; background-color: var(--color-warning);"></div>
                     </div>
                     
                     <small style="display: block; color: var(--color-text-dark);">Status: 🟢Online | Last serviced: 2 hours ago</small>
                     
                     <div class="machine-footer">
                          <small style="color: var(--color-text-light);">Last Deposit: 10 minutes ago</small>
-                         <button class="btn-primary" style="background-color: var(--color-warning); font-size: 0.8em; padding: 5px 10px;">Schedule Pickup</button>
+                         <button class="btn-primary" style="background-color: var(--color-warning); font-size: 0.8em; padding: 5px 10px; color: black;">Schedule Pickup</button>
                     </div>
                 </div>
 
@@ -212,14 +213,14 @@
                     </div>
                     
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 20%; background-color: var(--color-primary);"></div>
+                        <div class="progress-fill" style="width: 20%; background-color: var(--color-danger);"></div>
                     </div>
                     
-                    <small style="display: block; color: var(--color-danger); font-weight: 700;">Error: Communication Timeout</small>
+                    <small style="display: block; color: var(--color-danger-text); font-weight: 700;">Error: Communication Timeout</small>
                     <small style="display: block; color: var(--color-text-light); margin-bottom: 5px;">Requires immediate attention</small>
                     
                     <div class="machine-footer">
-                         <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px;">View Logs</button>
+                         <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-left: -10px;">View Logs</button>
                          <button class="btn-primary" style="background-color: var(--color-danger); padding: 8px 15px;">Dispatch Team →</button>
                     </div>
                 </div>
@@ -237,7 +238,7 @@
                     <small style="display: block; color: var(--color-text-dark);">Status: 🟢Online | Last serviced: 3 days ago</small>
                     <div class="machine-footer">
                          <small style="color: var(--color-text-light);">Last Deposit: 5 minutes ago</small>
-                         <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px;">View Data</button>
+                         <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-right: -10px;" >View Data</button>
                     </div>
                 </div>
 
