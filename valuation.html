@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+    <style>
+        .small{
+            font-size: 1em;
+            font-weight: 400;
+            margin-left: 5px;
+            color: #047857;
+        }
 
+         .big{
+            font-size: 3em;
+            font-weight: 700;
+            color:#047857
+        }
+    </style>
     <div class="phone-frame" id="valuation-result">
         <div class="screen-header">
             <a href="upload-waste.html" style="color: white; text-decoration: none;">←</a>
@@ -23,15 +36,15 @@
                 <ul style="list-style: none; padding-left: 0;">
                     <li style="display: flex; justify-content: space-between; padding: 5px 0;">
                         <span>Plastic Bottles (4.5 kg)</span>
-                        <span style="font-weight: bold; color: var(--color-primary);">$3.50</span>
+                        <span style="font-weight: bold; color: var(--color-primary);">3.50 PTS</span>
                     </li>
                     <li style="display: flex; justify-content: space-between; padding: 5px 0;">
                         <span>Mixed Paper (3.0 kg)</span>
-                        <span style="font-weight: bold; color: var(--color-primary);">$1.40</span>
+                        <span style="font-weight: bold; color: var(--color-primary);">1.40 PTS</span>
                     </li>
                     <li style="display: flex; justify-content: space-between; padding: 5px 0;">
                         <span>E-Waste (1 Unit)</span>
-                        <span style="font-weight: bold; color: var(--color-primary);">$2.00</span>
+                        <span style="font-weight: bold; color: var(--color-primary);">2.00 PTS</span>
                     </li>
                 </ul>
                 <hr style="border-top: 1px dashed var(--color-primary); margin: 15px 0;">
@@ -39,8 +52,8 @@
             
             <div class="card" style="text-align: center; background-color: var(--color-success-bg);">
                 <p style="margin: 0; font-size: 1.1em;">Estimated Total Value:</p>
-                <h1 style="color: var(--color-primary); margin: 5px 0 10px 0; font-size: 2.5em;">$6.90</h1>
-                <small>Points will be credited upon collector verification.</small>
+                <span class="big">6.90</span><span class="small">PTS</span>
+                <small style="display: block;">Points will be credited upon collector verification.</small>
             </div>
 
             <a href="track-pickup.html" class="btn-primary" style="text-decoration: none; text-align: center; display: block; margin-top: 20px;">
