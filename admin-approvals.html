@@ -4,62 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Pending Approvals</title>
-    <link rel="stylesheet" href="css/app.css">
-    <style>
-        /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
-        .desktop-layout { display: flex; height: 100vh; width: 100%; }
-        .sidebar-nav { 
-            width: 300px; /* Increased width */
-            background-color: var(--color-primary); 
-            color: white; 
-            padding-top: 20px; 
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
-            flex-shrink: 0; 
-            overflow-y: auto; 
-        }
-        .sidebar-logo {
-            font-size: 2.0em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            padding: 0 15px;
-        }
-        .sidebar-logo span {
-            text-align: left;
-            margin-left: 55px;
-            display: block;
-            font-size: 0.5em;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        .sidebar-menu a { display: flex; align-items: center; padding: 12px 20px; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
-        .sidebar-menu a:hover { background-color: rgba(255, 255, 255, 0.1); }
-        .sidebar-menu a.active { background-color: var(--color-secondary); font-weight: 700; }
-        .sidebar-menu a span:first-child { margin-right: 15px; font-size: 1.3em; }
-
-        .main-area { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-        
-        .admin-header { background-color: white; color: var(--color-text-dark); border-bottom: 1px solid var(--color-border); padding: 0 30px; height: 60px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); flex-shrink: 0; }
-        .admin-header .actions a { color: var(--color-primary); text-decoration: none; font-size: 1.2em; margin-left: 20px; }
-        .admin-header .title { color: var(--color-primary); font-size: 1.4em; }
-
-        .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
-
-        /* --- Approvals Specific Styles --- */
-        .approval-item {
-            padding: 15px;
-            border: 1px solid var(--color-border);
-            border-left: 4px solid var(--color-danger);
-            border-radius: 8px;
-            margin-bottom: 20px;
-            background-color: white;
-            max-width: 600px;
-        }
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/admin-styles.css"> 
 </head>
 <body>
 
@@ -67,9 +12,11 @@
         
         <div class="sidebar-nav">
             <div class="sidebar-logo">
-                <img src="img/trashifylogo.png" alt="Trashify Logo" style="height: 35px; width: 35px; vertical-align: middle; margin-right: 5px; border-radius: 50%">
-                Trashify
-                <span>Admin</span>
+                <div>
+                    <img src="img/trashifylogo.png" alt="Trashify Logo">
+                    Trashify
+                </div>
+                <span>Admin Panel</span>
             </div>
             
             <nav class="sidebar-menu">
@@ -95,33 +42,33 @@
             
             <div class="content">
             
-                <h4 style="color: var(--color-primary); margin-top: 0;">New Factory Partner</h4>
-                <div class="approval-item" style="border-left: 4px solid var(--color-secondary);">
-                    <strong style="display: block; color: var(--color-primary); font-size: 1.1em;">EcoSort Inc.</strong>
-                    <small>Role: Factory Partner | Applied: 2 hours ago | <strong>Requires Document Verification</strong> </small>
+                <h4>NEW FACTORY PARTNER</h4>
+                <div class="approval-item approval-factory">
+                    <strong>EcoSort Inc.</strong>
+                    <small>Role: Factory Partner | Applied: 2 hours ago | <strong style="color: var(--color-danger);">Requires Document Verification</strong></small>
                     <div class="action-buttons">
-                        <button class="btn-primary" style="background-color: var(--color-success); flex-grow: 1;">Approve</button>
-                        <button class="btn-secondary" style="background-color: var(--color-danger); color: white; flex-grow: 1;">Reject</button>
-                        <button class="btn-secondary" style="background-color: var(--color-secondary); color: white; flex-grow: 1;">Request More Info</button>
+                        <button class="btn-approve">Approve</button>
+                        <button class="btn-reject">Reject</button>
+                        <button class="btn-info-action">Request More Info</button>
                     </div>
                 </div>
 
-                <h4 style="color: var(--color-primary);">New Collector Applications (3)</h4>
-                <div class="approval-item" style="border-left: 4px solid var(--color-secondary);">
-                    <strong style="display: block; color: var(--color-secondary); font-size: 1.1em;">Maria A.</strong>
+                <h4>NEW COLLECTOR APPLICATIONS (3)</h4>
+                <div class="approval-item approval-collector">
+                    <strong>Maria A.</strong>
                     <small>Role: Logistics Collector | Applied: 4 hours ago | Vehicle: Small Van</small>
                     <div class="action-buttons">
-                        <button class="btn-primary" style="background-color: var(--color-success); flex-grow: 1;">Approve</button>
-                        <button class="btn-secondary" style="background-color: var(--color-danger); color: white; flex-grow: 1;">Reject</button>
+                        <button class="btn-approve">Approve</button>
+                        <button class="btn-reject">Reject</button>
                     </div>
                 </div>
                 
-                <div class="approval-item" style="border-left: 4px solid var(--color-secondary);">
-                    <strong style="display: block; color: var(--color-secondary); font-size: 1.1em;">Trucking Co. #34</strong>
+                <div class="approval-item approval-collector">
+                    <strong>Trucking Co. #34</strong>
                     <small>Role: Logistics Collector (Fleet) | Applied: 1 day ago | Area: West Zone</small>
                     <div class="action-buttons">
-                        <button class="btn-primary" style="background-color: var(--color-success); flex-grow: 1;">Approve</button>
-                        <button class="btn-secondary" style="background-color: var(--color-danger); color: white; flex-grow: 1;">Reject</button>
+                        <button class="btn-approve">Approve</button>
+                        <button class="btn-reject">Reject</button>
                     </div>
                 </div>
             

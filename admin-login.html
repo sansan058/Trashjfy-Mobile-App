@@ -4,51 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Admin Login</title>
-    <link rel="stylesheet" href="css/app.css">
-    <style>
-        /* Shared Login Page Styles */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: var(--color-background); /* Use the main background color */
-        }
-        .login-container {
-            width: 100%;
-            max-width: 400px; /* Constrain width for desktop */
-            padding: 40px;
-            text-align: center;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
-            width: 95%;
-            margin-bottom: 15px;
-            padding: 12px;
-            border-radius: 6px;
-        }
-        .login-title {
-            color: var(--color-primary); /* Uses main green color */
-            margin-bottom: 40px;
-        }
-        .auth-logo {
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-        .auth-logo img {
-            height: 40px; /* Slightly larger logo */
-            width: 40px;
-            vertical-align: middle;
-        }
-    </style>
+    <link rel="stylesheet" href="css/admin-styles.css"> 
 </head>
 <body>
     <div class="login-container">
-        <div class="auth-logo" style="color: var(--color-primary);">
+        <div class="auth-logo"> 
             <img src="img/trashifylogo.png" alt="Trashify Logo"> 
             Trashify
         </div>
@@ -59,19 +19,14 @@
             <input type="text" placeholder="Admin Username or Email">
             <input type="password" placeholder="Password">
             
-            <a href="admin-dashboard.html" class="btn-primary" style="display: block; text-decoration: none; margin-top: 20px; padding: 12px;">
+            <a href="admin-dashboard.html" class="btn-primary">
                 Log In
             </a>
         </form>
 
-        <!-- <p style="margin-top: 20px;">
-            <a href="#" class="link-text" style="color: var(--color-primary);">Need access help?</a>
-        </p> -->
         <p class="link">
-                <a href="forgotPassword.html?role=factory" class="link-text">Forgot Password?</a>
-            </p>
-        
-        <!-- <a href="login.html" class="link-text" style="display: block; margin-top: 40px; color: var(--color-text-light);">← Return to Main Login</a> -->
+            <a href="admin-forgot-password.html" class="link-text">Forgot Password?</a>
+        </p>
     </div>
 </body>
 </html>

@@ -4,61 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - User Management</title>
-    <link rel="stylesheet" href="css/app.css">
-    <style>
-        /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
-        .desktop-layout { display: flex; height: 100vh; width: 100%; }
-        .sidebar-nav { 
-            width: 300px; /* Increased width */
-            background-color: var(--color-primary); 
-            color: white; 
-            padding-top: 20px; 
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
-            flex-shrink: 0; 
-            overflow-y: auto; 
-        }
-         .sidebar-logo {
-            font-size: 2.0em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            padding: 0 15px;
-        }
-        .sidebar-logo span {
-            text-align: left;
-            margin-left: 55px;
-            display: block;
-            font-size: 0.5em;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        .sidebar-menu a { display: flex; align-items: center; padding: 12px 20px; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
-        .sidebar-menu a:hover { background-color: rgba(255, 255, 255, 0.1); }
-        .sidebar-menu a.active { background-color: var(--color-secondary); font-weight: 700; }
-        .sidebar-menu a span:first-child { margin-right: 15px; font-size: 1.3em; }
-
-        .main-area { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-        
-        .admin-header { background-color: white; color: var(--color-text-dark); border-bottom: 1px solid var(--color-border); padding: 0 30px; height: 60px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); flex-shrink: 0; }
-        .admin-header .actions a { color: var(--color-primary); text-decoration: none; font-size: 1.2em; margin-left: 20px; }
-        .admin-header .title { color: var(--color-primary); font-size: 1.4em; }
-
-        .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
-
-        /* --- Management Specific Styles --- */
-        .user-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .user-list li:hover {
-            background-color: var(--color-primary-bg);
-            cursor: pointer;
-            margin: 0 -10px;
-            padding: 15px 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/admin-styles.css"> 
 </head>
 <body>
 
@@ -66,9 +12,11 @@
         
         <div class="sidebar-nav">
             <div class="sidebar-logo">
-                <img src="img/trashifylogo.png" alt="Trashify Logo" style="height: 35px; width: 35px; vertical-align: middle; margin-right: 5px; border-radius: 50%">
-                Trashify
-                <span>Admin</span>
+                <div>
+                    <img src="img/trashifylogo.png" alt="Trashify Logo">
+                    Trashify
+                </div>
+                <span>Admin Panel</span>
             </div>
             
             <nav class="sidebar-menu">
@@ -85,7 +33,7 @@
         <div class="main-area">
             
             <div class="admin-header">
-                <span class="title">Management</span>
+                <span class="title" id="header-title">Management: Users</span>
                 <div class="actions">
                     <a href="notifications.html" title="Notifications">🔔</a>
                     <a href="admin-profile.html" title="Admin Profile">👤</a>
@@ -94,39 +42,194 @@
             
             <div class="content">
             
-                <a href="admin-approvals.html" class="btn-primary" style="background-color: var(--color-primary); margin-bottom: 25px; text-decoration: none; text-align: center; display: block; padding: 15px;">
+                <a href="admin-approvals.html" class="btn-primary approval-alert-strip">
                     4 Pending Approvals (Collectors/Factories) - Click to Review
                 </a>
 
-                <h4 style="color: var(--color-primary);">Filter by Role</h4>
-<div class="card" style="display: flex; justify-content: space-between; gap: 15px; margin-bottom: 35px; padding: 15px;">
-    <button class="btn-primary" style="background-color: var(--color-primary); border-radius: 4px; flex: 1;">Users (2.5K)</button>
-    <button class="btn-secondary" style="background-color: var(--color-primary-bg); color: var(--color-primary); border: 1px solid var(--color-primary); flex: 1;">Collectors (120)</button>
-    <button class="btn-secondary" style="background-color: var(--color-primary-bg); color: var(--color-primary); border: 1px solid var(--color-primary); flex: 1;">Factories (15)</button>
-</div>
-                <h4 style="color: var(--color-primary);">User List (Searchable)</h4>
-                <div class="card" style="margin-bottom: 20px;">
-                    <ul class="user-list" style="list-style: none; padding: 0;">
-                        <li>
+                <h4>FILTER BY ROLE</h4>
+                <div class="user-filter-container">
+                    <a id="btn-user" onclick="filterUsers('user', 'USER', 'User Management: Users')" class="btn-secondary-role active">Users (2.5K)</a>
+                    <a id="btn-collector" onclick="filterUsers('collector', 'COLLECTOR', 'User Management: Collectors')" class="btn-secondary-role">Collectors (120)</a>
+                    <a id="btn-factory" onclick="filterUsers('factory', 'FACTORY', 'User Management: Factories')" class="btn-secondary-role">Factories (15)</a>
+                </div>
+
+                <h4><span id="list-title">USER LIST</span> (SEARCHABLE)</h4>
+                <div class="card">
+                    
+                    <ul id="user-list-user" class="user-list">
+                        <li class="role-user">
                             <div>
-                                <strong style="display: block;">Alice Johnson (ID: 1004)</strong>
+                                <strong>Alice Johnson (ID: 1004)</strong>
                                 <small>Role: Recycling User - Total Points: 500</small>
                             </div>
-                            <span style="color: var(--color-text-light);">View Details →</span>
+                            <span>View Details →</span>
                         </li>
-                        <li>
+                        <li class="role-user">
                             <div>
-                                <strong style="display: block;">Truck 001 (R. Patel) (ID: 210)</strong>
-                                <small style="color: var(--color-secondary);">Role: Logistics Collector - Status: Active</small>
+                                <strong>Bob Smith (ID: 1005)</strong>
+                                <small>Role: Recycling User - Total Points: 210</small>
                             </div>
-                            <span style="color: var(--color-text-light);">View Details →</span>
+                            <span>View Details →</span>
                         </li>
-                        <li style="border-bottom: none;">
+                        <li class="role-user">
                             <div>
-                                <strong style="display: block;">GreenFlow Facility (ID: 302)</strong>
-                                <small style="color: var(--color-primary);">Role: Factory Partner - Material Focus: PET</small>
+                                <strong>Carol Mendes (ID: 1006)</strong>
+                                <small>Role: Recycling User - Total Points: 1,850</small>
                             </div>
-                            <span style="color: var(--color-text-light);">View Details →</span>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-user">
+                            <div>
+                                <strong>David Lee (ID: 1007)</strong>
+                                <small>Role: Recycling User - Total Points: 75</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-user">
+                            <div>
+                                <strong>Eva Rodriguez (ID: 1008)</strong>
+                                <small>Role: Recycling User - Total Points: 4,000</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-user">
+                            <div>
+                                <strong>Frank Williams (ID: 1009)</strong>
+                                <small>Role: Recycling User - Total Points: 320</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                         <li class="role-user">
+                            <div>
+                                <strong>Grace Chen (ID: 1010)</strong>
+                                <small>Role: Recycling User - Total Points: 1,200</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-user">
+                            <div>
+                                <strong>Henry Brown (ID: 1011)</strong>
+                                <small>Role: Recycling User - Total Points: 150</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                         <li class="role-user">
+                            <div>
+                                <strong>Ivy Stone (ID: 1012)</strong>
+                                <small>Role: Recycling User - Total Points: 6,100</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-user">
+                            <div>
+                                <strong>Jack Miller (ID: 1013)</strong>
+                                <small>Role: Recycling User - Total Points: 880</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                    </ul>
+
+                    <ul id="user-list-collector" class="user-list" style="display: none;">
+                        <li class="role-collector">
+                            <div>
+                                <strong>Truck 001 (R. Patel) (ID: 210)</strong>
+                                <small>Role: Logistics Collector - Status: Active (West Zone)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-collector">
+                            <div>
+                                <strong>Van 005 (S. Kim) (ID: 211)</strong>
+                                <small>Role: Logistics Collector - Status: On Route (Central)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-collector">
+                            <div>
+                                <strong>Scooter 011 (M. Singh) (ID: 212)</strong>
+                                <small>Role: Logistics Collector - Status: Offline (East Zone)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                         <li class="role-collector">
+                            <div>
+                                <strong>Truck 009 (A. Gomez) (ID: 213)</strong>
+                                <small>Role: Logistics Collector - Status: Active (North Zone)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-collector">
+                            <div>
+                                <strong>Van 002 (L. Wong) (ID: 214)</strong>
+                                <small>Role: Logistics Collector - Status: On Route (South East)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-collector">
+                            <div>
+                                <strong>Truck 015 (K. Ito) (ID: 215)</strong>
+                                <small>Role: Logistics Collector - Status: Offline (Maintenance)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-collector">
+                            <div>
+                                <strong>Scooter 003 (N. Khan) (ID: 216)</strong>
+                                <small>Role: Logistics Collector - Status: Active (Downtown)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                    </ul>
+
+                    <ul id="user-list-factory" class="user-list" style="display: none;">
+                        <li class="role-factory">
+                            <div>
+                                <strong>GreenFlow Facility (ID: 302)</strong>
+                                <small>Role: Factory Partner - Material Focus: PET (Plastic)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-factory">
+                            <div>
+                                <strong>MetaRecycle Plant (ID: 303)</strong>
+                                <small>Role: Factory Partner - Material Focus: Aluminum & Glass</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-factory">
+                            <div>
+                                <strong>Coastal Plastics (ID: 304)</strong>
+                                <small>Role: Factory Partner - Material Focus: HDPE (Plastic)</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                         <li class="role-factory">
+                            <div>
+                                <strong>Urban Paper Mills (ID: 305)</strong>
+                                <small>Role: Factory Partner - Material Focus: Cardboard & Paper</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-factory">
+                            <div>
+                                <strong>Alloy Dynamics (ID: 306)</strong>
+                                <small>Role: Factory Partner - Material Focus: Steel & Metals</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-factory">
+                            <div>
+                                <strong>EcoSort East (ID: 307)</strong>
+                                <small>Role: Factory Partner - Material Focus: Mixed Recyclables</small>
+                            </div>
+                            <span>View Details →</span>
+                        </li>
+                        <li class="role-factory">
+                            <div>
+                                <strong>Glass Refiners Co. (ID: 308)</strong>
+                                <small>Role: Factory Partner - Material Focus: Glass Only</small>
+                            </div>
+                            <span>View Details →</span>
                         </li>
                     </ul>
                 </div>
@@ -134,6 +237,46 @@
             </div>
         </div>
     </div>
+
+<script>
+    // Updated function signature to accept the new header text
+    function filterUsers(role, listTitle, headerTitle) {
+        // 1. Get all list containers and hide them
+        const lists = document.querySelectorAll('.user-list');
+        lists.forEach(list => {
+            list.style.display = 'none';
+        });
+
+        // 2. Show the selected list
+        const selectedList = document.getElementById('user-list-' + role);
+        if (selectedList) {
+            selectedList.style.display = 'block';
+        }
+
+        // 3. Update active button style
+        const buttons = document.querySelectorAll('.btn-secondary-role');
+        buttons.forEach(button => {
+            button.classList.remove('active');
+        });
+
+        const selectedButton = document.getElementById('btn-' + role);
+        if (selectedButton) {
+            selectedButton.classList.add('active');
+        }
+
+        // 4. Update the LIST heading text (e.g., USER LIST)
+        const listTitleSpan = document.getElementById('list-title');
+        if (listTitleSpan) {
+            listTitleSpan.textContent = listTitle + ' LIST';
+        }
+
+        // 5. Update the MAIN HEADER title (e.g., Management: Users)
+        const headerTitleSpan = document.getElementById('header-title');
+        if (headerTitleSpan) {
+            headerTitleSpan.textContent = headerTitle;
+        }
+    }
+</script>
 
 </body>
 </html>
