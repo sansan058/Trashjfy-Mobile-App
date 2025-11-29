@@ -4,63 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trashify - Promotions</title>
-    <link rel="stylesheet" href="css/app.css">
-    <style>
-        /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
-        .desktop-layout { display: flex; height: 100vh; width: 100%; }
-        .sidebar-nav { 
-            width: 300px; /* Increased width */
-            background-color: var(--color-primary); 
-            color: white; 
-            padding-top: 20px; 
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
-            flex-shrink: 0; 
-            overflow-y: auto; 
-        }
-        .sidebar-logo {
-            font-size: 2.0em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            padding: 0 15px;
-        }
-        .sidebar-logo span {
-            text-align: left;
-            margin-left: 55px;
-            display: block;
-            font-size: 0.5em;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        .sidebar-menu a { display: flex; align-items: center; padding: 12px 20px; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
-        .sidebar-menu a:hover { background-color: rgba(255, 255, 255, 0.1); }
-        .sidebar-menu a.active { background-color: var(--color-secondary); font-weight: 700; }
-        .sidebar-menu a span:first-child { margin-right: 15px; font-size: 1.3em; }
-
-        .main-area { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-        
-        .admin-header { background-color: white; color: var(--color-text-dark); border-bottom: 1px solid var(--color-border); padding: 0 30px; height: 60px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); flex-shrink: 0; }
-        .admin-header .actions a { color: var(--color-primary); text-decoration: none; font-size: 1.2em; margin-left: 20px; }
-        .admin-header .title { color: var(--color-primary); font-size: 1.4em; }
-
-        .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
-
-        /* --- Promotions Specific Styles --- */
-        .promotion-card {
-            padding: 15px;
-            border: 1px solid var(--color-primary);
-            border-left: 4px solid var(--color-primary);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background-color: var(--color-primary-bg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 800px;
-        }
-        .promotion-card small {
-            margin-right: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/admin-styles.css">
 </head>
 <body>
 
@@ -68,11 +12,9 @@
         
         <div class="sidebar-nav">
             <div class="sidebar-logo">
-                <img src="img/trashifylogo.png" alt="Trashify Logo" style="height: 35px; width: 35px; vertical-align: middle; margin-right: 5px; border-radius: 50%">
-                Trashify
-                <span>Admin</span>
+                <div><img src="img/trashifylogo.png" alt="Trashify Logo">Trashify</div>
+                <span>Admin Panel</span>
             </div>
-            
             <nav class="sidebar-menu">
                 <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
                 <a href="admin-user-management.html"><span>👤</span>Management</a>
@@ -96,45 +38,84 @@
             
             <div class="content">
 
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                    <h4 style="color: var(--color-primary); margin: 0;">Active Promotions (2)</h4>
-                    <button class="btn-primary" style="background-color: var(--color-success); padding: 10px 20px;">
+                <div class="promotions-header-bar">
+                    <h4>ACTIVE PROMOTIONS (3)</h4>
+                    <button class="btn-primary btn-create-promotion">
                         + Create New Promotion
                     </button>
                 </div>
 
-                <div class="promotion-card">
+                <div class="promotion-card active-promo">
                     <div>
-                        <strong style="display: block; color: var(--color-primary);">Weekend Bonus: +20% Points</strong>
+                        <strong>Weekend Bonus: +20% Points</strong>
                         <small>Target: All Users | Duration: Sat & Sun only</small>
                     </div>
-                    <div style="text-align: right;">
-                        <small style="display: block; color: var(--color-success); font-weight: 700;">Status: ACTIVE</small>
-                        <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-top: 5px;">Edit / Pause</button>
+                    <div class="promo-actions">
+                        <span class="status-text active-status">Status: ACTIVE</span>
+                        <button class="btn-promo-action">Edit</button>
+                        <button class="btn-promo-action">Pause</button>
                     </div>
                 </div>
 
-                <div class="promotion-card">
+                <div class="promotion-card active-promo">
                     <div>
-                        <strong style="display: block; color: var(--color-primary);">Referral Reward: $5 Voucher</strong>
+                        <strong>Referral Reward: $5 Voucher</strong>
                         <small>Target: New Signups | Duration: Until 12/31</small>
                     </div>
-                    <div style="text-align: right;">
-                        <small style="display: block; color: var(--color-success); font-weight: 700;">Status: ACTIVE</small>
-                        <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-top: 5px;">Edit / Pause</button>
+                    <div class="promo-actions">
+                        <span class="status-text active-status">Status: ACTIVE</span>
+                        <button class="btn-promo-action">Edit</button>
+                        <button class="btn-promo-action">Pause</button>
+                    </div>
+                </div>
+
+                <div class="promotion-card active-promo">
+                    <div>
+                        <strong>First Pickup Double Points!</strong>
+                        <small>Target: New Users | Duration: Ongoing</small>
+                    </div>
+                    <div class="promo-actions">
+                        <span class="status-text active-status">Status: ACTIVE</span>
+                        <button class="btn-promo-action">Edit</button>
+                        <button class="btn-promo-action">Pause</button>
                     </div>
                 </div>
                 
-                <h4 style="color: var(--color-primary); margin-top: 40px;">Expired Promotions (3)</h4>
-                
-                <div class="promotion-card" style="border-left: 4px solid var(--color-text-light); background-color: #f1f5f9;">
+                <h4 style="margin-top: 40px;">PAUSED PROMOTIONS (1)</h4>
+
+                <div class="promotion-card paused-promo">
                     <div>
-                        <strong style="display: block; color: var(--color-text-dark);">First 5KG Double Points</strong>
-                        <small>Expired: 10/31/2025</small>
+                        <strong>Summer Clean-Up Challenge</strong>
+                        <small>Target: Top Recyclers | Duration: May-August (Paused)</small>
                     </div>
-                    <div style="text-align: right;">
-                        <small style="display: block; color: var(--color-danger); font-weight: 700;">Status: INACTIVE</small>
-                        <button class="btn-secondary" style="font-size: 0.8em; padding: 5px 10px; margin-top: 5px;">Reactivate</button>
+                    <div class="promo-actions">
+                        <span class="status-text paused-status">Status: PAUSED</span>
+                        <button class="btn-promo-action">Edit</button>
+                        <button class="btn-promo-action btn-reactivate">Resume</button>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 40px;">INACTIVE & EXPIRED PROMOTIONS (2)</h4>
+                
+                <div class="promotion-card expired-promo">
+                    <div>
+                        <strong>Holiday Recycling Bonus</strong>
+                        <small>Expired: 01/05/2024</small>
+                    </div>
+                    <div class="promo-actions">
+                        <span class="status-text expired-status">Status: EXPIRED</span>
+                        <button class="btn-promo-action btn-reactivate">Reactivate</button>
+                    </div>
+                </div>
+
+                <div class="promotion-card expired-promo">
+                    <div>
+                        <strong>Neighborhood Clean Drive</strong>
+                        <small>Expired: 10/31/2023</small>
+                    </div>
+                    <div class="promo-actions">
+                        <span class="status-text expired-status">Status: EXPIRED</span>
+                        <button class="btn-promo-action btn-reactivate">Reactivate</button>
                     </div>
                 </div>
 

@@ -3,90 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trashify - System Settings</title>
-    <link rel="stylesheet" href="css/app.css">
-    <style>
-        /* --- WEBSITE LAYOUT STYLES (Copied from Dashboard) --- */
-        .desktop-layout { display: flex; height: 100vh; width: 100%; }
-        .sidebar-nav { 
-            width: 300px; /* Increased width */
-            background-color: var(--color-primary); 
-            color: white; 
-            padding-top: 20px; 
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
-            flex-shrink: 0; 
-            overflow-y: auto; 
-        }
-        .sidebar-logo {
-            font-size: 2.0em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            padding: 0 15px;
-        }
-        .sidebar-logo span {
-            text-align: left;
-            margin-left: 55px;
-            display: block;
-            font-size: 0.5em;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        .sidebar-menu a { display: flex; align-items: center; padding: 12px 20px; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
-        .sidebar-menu a:hover { background-color: rgba(255, 255, 255, 0.1); }
-        .sidebar-menu a.active { background-color: var(--color-secondary); font-weight: 700; }
-        .sidebar-menu a span:first-child { margin-right: 15px; font-size: 1.3em; }
-
-        .main-area { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-        
-        .admin-header { background-color: white; color: var(--color-text-dark); border-bottom: 1px solid var(--color-border); padding: 0 30px; height: 60px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); flex-shrink: 0; }
-        .admin-header .actions a { color: var(--color-primary); text-decoration: none; font-size: 1.2em; margin-left: 20px; }
-        .admin-header .title { color: var(--color-primary); font-size: 1.4em; }
-
-        .content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; background-color: var(--color-background); }
-
-        /* --- Custom Pricing List Styles (Inspired by factory-pricing) --- */
-        .price-input-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            /* Using a dashed border for the item separation, similar to the factory page */
-            border-bottom: 1px dashed var(--color-primary); 
-        }
-        .price-input-group:last-of-type {
-            border-bottom: none;
-        }
-        .price-input-group label {
-            font-weight: 600;
-            color: var(--color-text-dark);
-            flex-basis: 60%; /* Adjusted for better label space on Admin side */
-        }
-        .price-input-group input {
-            width: 35%;
-            padding: 8px;
-            margin: 0;
-            text-align: right;
-            border-radius: 8px;
-            /* Using a prominent border color for the input field */
-            border: 1px solid var(--color-secondary); 
-            font-size: 0.9em;
-            color: var(--color-text-dark);
-        }
-        /* Style for the container card */
-        .card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        /* Remove original settings-list styles as we now use .price-input-group */
-        .settings-list {
-            list-style: none;
-            padding: 0;
-            /* Removed padding/border/display properties */
-        }
-    </style>
+    <title>Trashify - Pricing & System Settings</title>
+    <link rel="stylesheet" href="css/admin-styles.css">
 </head>
 <body>
 
@@ -94,11 +12,9 @@
         
         <div class="sidebar-nav">
             <div class="sidebar-logo">
-                <img src="img/trashifylogo.png" alt="Trashify Logo" style="height: 35px; width: 35px; vertical-align: middle; margin-right: 5px; border-radius: 50%">
-                Trashify
-                <span>Admin</span>
+                <div><img src="img/trashifylogo.png" alt="Trashify Logo">Trashify</div>
+                <span>Admin Panel</span>
             </div>
-            
             <nav class="sidebar-menu">
                 <a href="admin-dashboard.html"><span>📊</span>Dashboard</a>
                 <a href="admin-user-management.html"><span>👤</span>Management</a>
@@ -122,39 +38,149 @@
             
             <div class="content">
 
-                <h4 style="color: var(--color-primary);">Recyclable Rates (Per KG)</h4>
-                <div class="card" style="max-width: 600px;">
-                    <div class="price-input-group">
-                        <label>PET Plastic</label>
-                        <input type="text" value="$0.55/kg" placeholder="$ / kg">
-                    </div>
-                    <div class="price-input-group">
-                        <label>Aluminum Cans</label>
-                        <input type="text" value="$1.20/kg" placeholder="$ / kg">
-                    </div>
-                    <div class="price-input-group" style="border-bottom: none;">
-                        <label>Mixed Paper</label>
-                        <input type="text" value="$0.30/kg" placeholder="$ / kg">
-                    </div>
+                <h4>FACTORY RATE SELECTION</h4>
+                <div style="max-width: 400px; margin-bottom: 20px;">
+                    <select class="settings-select" id="factory-select" onchange="loadFactoryData(this.value)">
+                        <option value="eco-sort" selected>EcoSort Inc. (Active Rate Source)</option>
+                        <option value="coastal">Coastal Plastics</option>
+                        <option value="meta">MetaRecycle Plant</option>
+                        <option value="urban">Urban Paper Mills</option>
+                    </select>
                 </div>
 
-                <h4 style="color: var(--color-primary);">Commission & Fees</h4>
-                <div class="card" style="max-width: 600px;">
+                <h4>RECYCLABLE RATES FOR <span id="factory-name" style="color: green; font-weight: 700;">ECOSORT INC.</span></h4>
+                <p style="color: var(--color-text-light); margin-bottom: 20px; max-width: 800px;">
+                    Below are the current rates offered by the selected factory. These rates are <strong>read-only</strong> and directly impact user rewards.
+                </p>
+
+                <div class="settings-card" style="max-width: 800px; padding: 0;">
+                    
+                    <table class="data-table rates-table" id="rates-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 35%;">Material Type</th>
+                                <th style="width: 30%; text-align: right;">Current Rate</th>
+                                <th style="width: 20%;">Status</th>
+                                <th style="width: 15%; text-align: center;">Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+
+                <h4>COMMISSION & SERVICE FEES (PLATFORM CONTROLS)</h4>
+                <div class="settings-card">
                     <div class="price-input-group">
-                        <label>Platform Commission (Factory)</label>
+                        <label>Platform Commission (Factory) <span class="price-status-badge badge-info">Stable</span></label>
                         <input type="text" value="27%" placeholder="Percentage %">
                     </div>
-                    <div class="price-input-group" style="border-bottom: none;">
-                        <label>Service Fee (User)</label>
+                    <div class="price-input-group">
+                        <label>Service Fee (User) <span class="price-status-badge badge-info">Fixed Rate</span></label>
                         <input type="text" value="$1.25 per pickup" placeholder="$ / pickup">
                     </div>
                 </div>
 
-                <button class="btn-primary" style="display: block; width: 300px; margin-top: 40px;">Save All Changes</button>
+                <button class="btn-primary btn-save-settings">Save Platform Controls</button>
             
             </div>
         </div>
     </div>
 
+<script>
+    const FACTORY_DATA = {
+        'eco-sort': {
+            name: "EcoSort Inc.",
+            rates: [
+                { material: "PET Plastic", rate: 0.55, status: "Available", active: true, updated: "4 hours ago" },
+                { material: "HDPE Plastic", rate: 0.40, status: "Available", active: false, updated: "1 day ago" },
+                { material: "Aluminum Cans", rate: 1.25, status: "Limited", active: true, updated: "2 days ago" },
+                { material: "Mixed Paper", rate: 0.00, status: "Not Accepted", active: false, updated: "N/A" }
+            ]
+        },
+        'coastal': {
+            name: "Coastal Plastics",
+            rates: [
+                { material: "PET Plastic", rate: 0.58, status: "Available", active: false, updated: "3 hours ago" },
+                { material: "HDPE Plastic", rate: 0.45, status: "Available", active: true, updated: "2 hours ago" },
+                { material: "Aluminum Cans", rate: 0.00, status: "Not Accepted", active: false, updated: "N/A" },
+                { material: "Mixed Paper", rate: 0.35, status: "Available", active: false, updated: "1 week ago" }
+            ]
+        },
+        'meta': {
+            name: "MetaRecycle Plant",
+            rates: [
+                { material: "PET Plastic", rate: 0.50, status: "Limited", active: false, updated: "1 day ago" },
+                { material: "HDPE Plastic", rate: 0.38, status: "Available", active: false, updated: "1 day ago" },
+                { material: "Aluminum Cans", rate: 1.30, status: "Available", active: true, updated: "1 hour ago" },
+                { material: "Mixed Paper", rate: 0.00, status: "Not Accepted", active: false, updated: "N/A" }
+            ]
+        },
+        'urban': {
+            name: "Urban Paper Mills",
+            rates: [
+                { material: "PET Plastic", rate: 0.00, status: "Not Accepted", active: false, updated: "N/A" },
+                { material: "HDPE Plastic", rate: 0.00, status: "Not Accepted", active: false, updated: "N/A" },
+                { material: "Aluminum Cans", rate: 0.00, status: "Not Accepted", active: false, updated: "N/A" },
+                { material: "Mixed Paper", rate: 0.32, status: "Available", active: true, updated: "2 days ago" }
+            ]
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const initialFactoryId = document.getElementById('factory-select').value;
+        loadFactoryData(initialFactoryId);
+    });
+
+    function loadFactoryData(factoryId) {
+        const data = FACTORY_DATA[factoryId];
+        const tbody = document.querySelector('#rates-table tbody');
+        const headingSpan = document.getElementById('factory-name');
+
+        if (!data || !tbody || !headingSpan) return;
+
+        // 1. Update the Heading
+        headingSpan.textContent = data.name;
+
+        // 2. Clear existing rows
+        tbody.innerHTML = '';
+
+        // 3. Render new rows based on factory data
+        data.rates.forEach(item => {
+            const row = document.createElement('tr');
+            
+            const isUnavailable = item.status === "Not Accepted";
+            const isActive = item.active;
+
+            let statusClass = '';
+            if (item.status === "Not Accepted") {
+                row.classList.add('unavailable-rate');
+                statusClass = 'status-text atpickup'; // Red/Danger for Not Accepted
+            } else if (item.status === "Limited") {
+                statusClass = 'status-text enroute'; // Amber/Warning for Limited
+            } else if (item.status === "Available") {
+                statusClass = 'status-text completed'; // Green/Success for Available
+            }
+
+            if (isActive) {
+                row.classList.add('active-rate');
+            }
+            
+            const rateDisplay = isUnavailable ? 'N/A' : `$${item.rate.toFixed(2)} / kg`;
+            // Updated to display Last Updated time
+            const lastUpdatedDisplay = item.updated === "N/A" ? '—' : item.updated;
+            
+            const rateColor = isUnavailable ? 'var(--color-text-light)' : 'var(--color-text-dark)';
+
+            row.innerHTML = `
+                <td style="font-weight: 700;">${item.material}</td>
+                <td style="text-align: right; font-weight: 700; color: ${rateColor};">${rateDisplay}</td>
+                <td style="text-align: center;"><span class="${statusClass}">${item.status}</span></td>
+                <td style="text-align: center; color: var(--color-text-light);">${lastUpdatedDisplay}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+</script>
 </body>
 </html>
