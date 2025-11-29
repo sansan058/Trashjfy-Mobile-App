@@ -1649,3 +1649,15 @@ body {
     background-color: #c82333; /* Darker red on hover */
     box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
 }
+
+.fa-bell{
+    font-size: 1em;
+}
+.actions{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.fa-user{
+    font-size: 1em;
+}
